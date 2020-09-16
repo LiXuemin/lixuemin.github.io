@@ -161,6 +161,76 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/16/加一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李学民">
+      <meta itemprop="description" content="个人博客,温故知新">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="设计与思考">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/16/加一/" class="post-title-link" itemprop="url">加一</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-16 21:52:44" itemprop="dateCreated datePublished" datetime="2020-09-16T21:52:44+08:00">2020-09-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/plus-one/" target="_blank" rel="noopener">LeetCode 66. Plus One</a></p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>难度在于要考虑到所有情况:</p>
+<ol>
+<li>末位 ≠ 9, 直接++, 返回数组</li>
+<li>末位 == 9, 且存在某位 ≠ 9, 在该位 ++ , 返回数组</li>
+<li>末位 == 9 , 前面所有位都是9, 新建一个数组, 首位置为1, 返回
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/16/加一/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </li></ol></div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/移除数组元素/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -880,87 +950,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/14/单链表删除倒数第K个节点/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="李学民">
-      <meta itemprop="description" content="个人博客,温故知新">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="设计与思考">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/14/单链表删除倒数第K个节点/" class="post-title-link" itemprop="url">单链表删除倒数第K个节点</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-14 22:42:33" itemprop="dateCreated datePublished" datetime="2020-06-14T22:42:33+08:00">2020-06-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>实现一个函数, 可以删除单链表中倒数第K个节点.<br>要求:<br>如果链表长度为N, 时间复杂度达到O(N),额外空间复杂度达到O(1)</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>假设让链表从头开始走到尾, 每移动一步就让K值减一,则当链表走到结尾时:</p>
-<ul>
-<li>K &gt; 0, 代表K - N &gt; 0, 则K &gt; N,说明链表不存在倒数第K个节点, 不用调整链表</li>
-<li>K = 0, 代表K = N, 倒数第K个节点就是头节点, 删除头节点即可</li>
-<li>K &lt; 0, 代表存在该节点, 单链表已经遍历过了, 那么怎么找到要删除的节点的前驱节点呢? (通过node.next = node.next.next来删除)<ol>
-<li>重新从头节点遍历, 每移动一步让K加一</li>
-<li>当K等于0时, 移动停止, 移动到的节点就是要删除节点的前驱节点
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/14/单链表删除倒数第K个节点/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </li></ol></li></ul></div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1030,7 +1019,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
