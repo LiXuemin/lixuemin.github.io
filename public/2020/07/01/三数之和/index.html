@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="问题链接:Remove Nth Node From End of List解法: 去除倒数第N个结点, 由于这是一个单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第L-N+1,那么思路就会清晰很多.  遍历两次, 第一次获取L,即链表的长度 第二次当遍历到L-N+1的位置时, 移除该结点即可 注意头结点和尾结点的特殊处理">
-<meta name="keywords" content="数据结构与算法,链表">
+  <meta name="description" content="题目LeetCode 15. 3Sum 思路 采用固定一个数, 双指针寻找另外两个数 排序后开始处理, 注意几个情况: nums[i] &amp;gt; 0, 代表后面的数都会大于0, 没必要计算了 跳过固定数值重复的情况 跳过left指针、right指针重复的情况">
+<meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode练习-Remove Nth Node From End of List">
-<meta property="og:url" content="http://yoursite.com/2019/06/24/LeetCode练习-Remove-Nth-Node-From-End-of-List/index.html">
+<meta property="og:title" content="三数之和">
+<meta property="og:url" content="http://yoursite.com/2020/07/01/三数之和/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="问题链接:Remove Nth Node From End of List解法: 去除倒数第N个结点, 由于这是一个单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第L-N+1,那么思路就会清晰很多.  遍历两次, 第一次获取L,即链表的长度 第二次当遍历到L-N+1的位置时, 移除该结点即可 注意头结点和尾结点的特殊处理">
+<meta property="og:description" content="题目LeetCode 15. 3Sum 思路 采用固定一个数, 双指针寻找另外两个数 排序后开始处理, 注意几个情况: nums[i] &amp;gt; 0, 代表后面的数都会大于0, 没必要计算了 跳过固定数值重复的情况 跳过left指针、right指针重复的情况">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-10T14:06:17.337Z">
+<meta property="og:updated_time" content="2020-09-17T07:58:22.867Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode练习-Remove Nth Node From End of List">
-<meta name="twitter:description" content="问题链接:Remove Nth Node From End of List解法: 去除倒数第N个结点, 由于这是一个单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第L-N+1,那么思路就会清晰很多.  遍历两次, 第一次获取L,即链表的长度 第二次当遍历到L-N+1的位置时, 移除该结点即可 注意头结点和尾结点的特殊处理">
+<meta name="twitter:title" content="三数之和">
+<meta name="twitter:description" content="题目LeetCode 15. 3Sum 思路 采用固定一个数, 双指针寻找另外两个数 排序后开始处理, 注意几个情况: nums[i] &amp;gt; 0, 代表后面的数都会大于0, 没必要计算了 跳过固定数值重复的情况 跳过left指针、right指针重复的情况">
 
-<link rel="canonical" href="http://yoursite.com/2019/06/24/LeetCode练习-Remove-Nth-Node-From-End-of-List/">
+<link rel="canonical" href="http://yoursite.com/2020/07/01/三数之和/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>LeetCode练习-Remove Nth Node From End of List | 设计与思考</title>
+  <title>三数之和 | 设计与思考</title>
   
 
 
@@ -164,7 +164,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/LeetCode练习-Remove-Nth-Node-From-End-of-List/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/01/三数之和/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LeetCode练习-Remove Nth Node From End of List
+          三数之和
         </h1>
 
         <div class="post-meta">
@@ -187,7 +187,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-06-24 22:30:42" itemprop="dateCreated datePublished" datetime="2019-06-24T22:30:42+08:00">2019-06-24</time>
+              <time title="创建时间：2020-07-01 15:31:59" itemprop="dateCreated datePublished" datetime="2020-07-01T15:31:59+08:00">2020-07-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,16 +217,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="问题链接-Remove-Nth-Node-From-End-of-List"><a href="#问题链接-Remove-Nth-Node-From-End-of-List" class="headerlink" title="问题链接:Remove Nth Node From End of List"></a>问题链接:<a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener">Remove Nth Node From End of List</a></h3><p>解法: 去除倒数第N个结点, 由于这是一个单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第<code>L-N+1</code>,那么思路就会清晰很多.</p>
-<ol>
-<li>遍历两次, 第一次获取<code>L</code>,即链表的长度</li>
-<li>第二次当遍历到L-N+1的位置时, 移除该结点即可</li>
-<li>注意头结点和尾结点的特殊处理<a id="more"></a></li>
-<li>这里我们加入哨兵结点<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        <span class="keyword">int</span> length  = <span class="number">0</span>;</span><br><span class="line">        ListNode first = head;</span><br><span class="line">        <span class="keyword">while</span> (first != <span class="keyword">null</span>) &#123;</span><br><span class="line">            length++;</span><br><span class="line">            first = first.next;</span><br><span class="line">        &#125;</span><br><span class="line">        length -= n;</span><br><span class="line">        first = dummy;</span><br><span class="line">        <span class="keyword">while</span> (length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            length--;</span><br><span class="line">            first = first.next;</span><br><span class="line">        &#125;</span><br><span class="line">        first.next = first.next.next;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/3sum/submissions/" target="_blank" rel="noopener">LeetCode 15. 3Sum</a></p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>采用固定一个数, 双指针寻找另外两个数</li>
+<li>排序后开始处理, 注意几个情况:<ol>
+<li>nums[i] &gt; 0, 代表后面的数都会大于0, 没必要计算了</li>
+<li>跳过固定数值重复的情况</li>
+<li>跳过left指针、right指针重复的情况<a id="more"></a>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3></li>
+</ol>
 </li>
 </ol>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> list;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">2</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> l = i + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> r = nums.length - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">0</span> || nums[i] != nums[i - <span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">                    sum = nums[i] + nums[l] + nums[r];</span><br><span class="line">                    <span class="keyword">if</span> (sum == <span class="number">0</span>) &#123;</span><br><span class="line">                        list.add(Arrays.asList(nums[i], nums[l], nums[r]));</span><br><span class="line">                        <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[l] == nums[l + <span class="number">1</span>]) &#123;</span><br><span class="line">                            l++;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[r] == nums[r - <span class="number">1</span>]) &#123;</span><br><span class="line">                            r--;</span><br><span class="line">                        &#125;</span><br><span class="line">                        l++;</span><br><span class="line">                        r--;</span><br><span class="line">                    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (sum &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                        l++;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        r--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;        </span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -236,7 +238,6 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/数据结构与算法/" rel="tag"># 数据结构与算法</a>
-              <a href="/tags/链表/" rel="tag"># 链表</a>
           </div>
 
         
@@ -245,12 +246,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/06/23/LeetCode练习-Middle-of-the-Linked-List/" rel="prev" title="LeetCode练习-Middle of the Linked List">
-      <i class="fa fa-chevron-left"></i> LeetCode练习-Middle of the Linked List
+    <a href="/2020/06/29/加一/" rel="prev" title="加一">
+      <i class="fa fa-chevron-left"></i> 加一
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/07/08/微服务改造-1-配置中心/" rel="next" title="微服务改造实践(1)-配置中心">
-      微服务改造实践(1)-配置中心 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/02/Z字形变换/" rel="next" title="Z字形变换">
+      Z字形变换 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -315,7 +316,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题链接-Remove-Nth-Node-From-End-of-List"><span class="nav-number">1.</span> <span class="nav-text">问题链接:Remove Nth Node From End of List</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
