@@ -161,6 +161,88 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/08/微服务改造-1-配置中心/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李学民">
+      <meta itemprop="description" content="个人博客,温故知新">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="设计与思考">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/08/微服务改造-1-配置中心/" class="post-title-link" itemprop="url">微服务改造实践(1)-配置中心</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-08 21:49:43" itemprop="dateCreated datePublished" datetime="2019-07-08T21:49:43+08:00">2019-07-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/微服务改造/" itemprop="url" rel="index"><span itemprop="name">微服务改造</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="一、问题发现"><a href="#一、问题发现" class="headerlink" title="一、问题发现"></a>一、问题发现</h4><p>之前使用配置文件的形式进行管理，比如MySQL配置文件分为:</p>
+<ul>
+<li><code>db.properties</code></li>
+<li><code>db.dev.properties</code></li>
+<li><code>db.test.properties</code></li>
+<li><code>db.prod.properties</code></li>
+</ul>
+<p>在部署到对应环境的时候，比如到<code>test</code>环境，运维会执行类似<code>mv db.test.properties db.properties</code>的命令，将对应环境的文件覆盖到程序指定的文件<code>db.properties</code>。
+除此之外，还有很多配置文件都与运行环境相关联，<strong>在不同的环境必须设置不同的值</strong>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/08/微服务改造-1-配置中心/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/LeetCode练习-Middle-of-the-Linked-List/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -212,80 +294,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/06/23/LeetCode练习-Middle-of-the-Linked-List/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/20/LeetCode练习-Linked-List-Cycle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="李学民">
-      <meta itemprop="description" content="个人博客,温故知新">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="设计与思考">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/20/LeetCode练习-Linked-List-Cycle/" class="post-title-link" itemprop="url">LeetCode练习-Linked List Cycle</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-20 22:35:39" itemprop="dateCreated datePublished" datetime="2019-06-20T22:35:39+08:00">2019-06-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="问题链接-Linked-List-Cycle"><a href="#问题链接-Linked-List-Cycle" class="headerlink" title="问题链接:Linked List Cycle"></a>问题链接:<a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="noopener">Linked List Cycle</a></h3><p>最先想到的是遍历链表, 并将结点的内存地址存在<code>HashSet</code>中.如果当前结点的内存地址已经存在,则表示存在环,直接返回<code>true</code>.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/06/20/LeetCode练习-Linked-List-Cycle/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

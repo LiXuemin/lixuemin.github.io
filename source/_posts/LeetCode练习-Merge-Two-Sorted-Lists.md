@@ -1,6 +1,6 @@
 ---
-title: LeetCode练习-Merge Two Sorted Lists
-date: 2019-07-04 20:42:36
+title: Merge Two Sorted Lists
+date: 2020-07-04 20:42:36
 categories: 算法日常练习
 tags:
 - 数据结构与算法

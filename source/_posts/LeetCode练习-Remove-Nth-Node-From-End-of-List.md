@@ -1,6 +1,6 @@
 ---
 title: Remove Nth Node From End of List
-date: 2019-07-03 22:30:42
+date: 2020-07-03 22:30:42
 categories: 算法日常练习
 tags:
 - 数据结构与算法
