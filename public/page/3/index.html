@@ -771,7 +771,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/06/24/LeetCode练习-Remove-Nth-Node-From-End-of-List/" class="post-title-link" itemprop="url">LeetCode练习-Remove Nth Node From End of List</a>
+            <a href="/2019/06/24/LeetCode练习-Remove-Nth-Node-From-End-of-List/" class="post-title-link" itemprop="url">Remove Nth Node From End of List</a>
         </h2>
 
         <div class="post-meta">
@@ -804,11 +804,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="问题链接-Remove-Nth-Node-From-End-of-List"><a href="#问题链接-Remove-Nth-Node-From-End-of-List" class="headerlink" title="问题链接:Remove Nth Node From End of List"></a>问题链接:<a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener">Remove Nth Node From End of List</a></h3><p>解法: 去除倒数第N个结点, 由于这是一个单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第<code>L-N+1</code>,那么思路就会清晰很多.</p>
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener">Remove Nth Node From End of List</a></p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>思路一:</p>
 <ol>
-<li>遍历两次, 第一次获取<code>L</code>,即链表的长度</li>
-<li>第二次当遍历到L-N+1的位置时, 移除该结点即可</li>
-<li>注意头结点和尾结点的特殊处理
+<li>单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第<code>L-N+1</code>个正数节点</li>
+<li>长度L可以提前遍历一次来求值</li>
+<li>移除第<code>L - N + 1</code>个节点</li>
+</ol>
+<p>思路二:</p>
+<ol>
+<li>利用双指针</li>
+<li>先让两个指针相隔<code>N - 1</code>的位置</li>
+<li>然后双指针同步后移</li>
+<li>当第二个指针到了尾部, 第一个指针恰好在倒数第N个节点的前驱位置.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/06/24/LeetCode练习-Remove-Nth-Node-From-End-of-List/#more" rel="contents">
