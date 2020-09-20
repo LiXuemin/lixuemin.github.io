@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="题目Remove Nth Node From End of List 思路思路一:  单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第L-N+1个正数节点 长度L可以提前遍历一次来求值 移除第L - N + 1个节点  思路二:  利用双指针 先让两个指针相隔N - 1的位置 然后双指针同步后移 当第二个指针到了尾部, 第一个指针恰好在倒数第N个节点的前驱位置.">
+  <meta name="description" content="题目LeetCode 19. Remove Nth Node From End of List 思路思路一:  单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第L-N+1个正数节点 长度L可以提前遍历一次来求值 移除第L - N + 1个节点  思路二:  利用双指针 先让两个指针相隔N - 1的位置 然后双指针同步后移 当第二个指针到了尾部, 第一个指针恰好在倒数第N个节点的前驱">
 <meta name="keywords" content="数据结构与算法,链表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Remove Nth Node From End of List">
+<meta property="og:title" content="LeetCode 19. Remove Nth Node From End of List">
 <meta property="og:url" content="http://yoursite.com/2020/07/03/algorithm/LeetCode练习-Remove-Nth-Node-From-End-of-List/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="题目Remove Nth Node From End of List 思路思路一:  单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第L-N+1个正数节点 长度L可以提前遍历一次来求值 移除第L - N + 1个节点  思路二:  利用双指针 先让两个指针相隔N - 1的位置 然后双指针同步后移 当第二个指针到了尾部, 第一个指针恰好在倒数第N个节点的前驱位置.">
+<meta property="og:description" content="题目LeetCode 19. Remove Nth Node From End of List 思路思路一:  单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第L-N+1个正数节点 长度L可以提前遍历一次来求值 移除第L - N + 1个节点  思路二:  利用双指针 先让两个指针相隔N - 1的位置 然后双指针同步后移 当第二个指针到了尾部, 第一个指针恰好在倒数第N个节点的前驱">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-18T14:08:15.485Z">
+<meta property="og:updated_time" content="2020-09-20T13:42:15.400Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Remove Nth Node From End of List">
-<meta name="twitter:description" content="题目Remove Nth Node From End of List 思路思路一:  单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第L-N+1个正数节点 长度L可以提前遍历一次来求值 移除第L - N + 1个节点  思路二:  利用双指针 先让两个指针相隔N - 1的位置 然后双指针同步后移 当第二个指针到了尾部, 第一个指针恰好在倒数第N个节点的前驱位置.">
+<meta name="twitter:title" content="LeetCode 19. Remove Nth Node From End of List">
+<meta name="twitter:description" content="题目LeetCode 19. Remove Nth Node From End of List 思路思路一:  单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第L-N+1个正数节点 长度L可以提前遍历一次来求值 移除第L - N + 1个节点  思路二:  利用双指针 先让两个指针相隔N - 1的位置 然后双指针同步后移 当第二个指针到了尾部, 第一个指针恰好在倒数第N个节点的前驱">
 
 <link rel="canonical" href="http://yoursite.com/2020/07/03/algorithm/LeetCode练习-Remove-Nth-Node-From-End-of-List/">
 
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>Remove Nth Node From End of List | 设计与思考</title>
+  <title>LeetCode 19. Remove Nth Node From End of List | 设计与思考</title>
   
 
 
@@ -177,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Remove Nth Node From End of List
+          LeetCode 19. Remove Nth Node From End of List
         </h1>
 
         <div class="post-meta">
@@ -217,7 +217,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener">Remove Nth Node From End of List</a></p>
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener">LeetCode 19. Remove Nth Node From End of List</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>思路一:</p>
 <ol>
 <li>单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第<code>L-N+1</code>个正数节点</li>
@@ -254,12 +254,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/02/algorithm/Z字形变换/" rel="prev" title="Z字形变换">
-      <i class="fa fa-chevron-left"></i> Z字形变换
+    <a href="/2020/07/02/algorithm/Z字形变换/" rel="prev" title="LeetCode 6. Z字形变换">
+      <i class="fa fa-chevron-left"></i> LeetCode 6. Z字形变换
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/04/algorithm/LeetCode练习-Merge-Two-Sorted-Lists/" rel="next" title="Merge Two Sorted Lists">
-      Merge Two Sorted Lists <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/04/algorithm/LeetCode练习-Merge-Two-Sorted-Lists/" rel="next" title="LeetCode 21. Merge Two Sorted Lists">
+      LeetCode 21. Merge Two Sorted Lists <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -349,7 +349,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

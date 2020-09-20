@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="题目:Linked List Cycle 思路: 最先想到的是遍历链表, 并将结点的内存地址存在HashSet中.如果当前结点的内存地址已经存在,则表示存在环,直接返回true 还可以用双指针(快慢指针)来解决, 如果两个指针相遇(套圈), 则代表存在环.">
+  <meta name="description" content="题目:LeetCode 141. Linked List Cycle 思路: 最先想到的是遍历链表, 并将结点的内存地址存在HashSet中.如果当前结点的内存地址已经存在,则表示存在环,直接返回true 还可以用双指针(快慢指针)来解决, 如果两个指针相遇(套圈), 则代表存在环.">
 <meta name="keywords" content="数据结构与算法,链表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linked List Cycle">
+<meta property="og:title" content="LeetCode 141. Linked List Cycle">
 <meta property="og:url" content="http://yoursite.com/2020/07/20/algorithm/LeetCode练习-Linked-List-Cycle/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="题目:Linked List Cycle 思路: 最先想到的是遍历链表, 并将结点的内存地址存在HashSet中.如果当前结点的内存地址已经存在,则表示存在环,直接返回true 还可以用双指针(快慢指针)来解决, 如果两个指针相遇(套圈), 则代表存在环.">
+<meta property="og:description" content="题目:LeetCode 141. Linked List Cycle 思路: 最先想到的是遍历链表, 并将结点的内存地址存在HashSet中.如果当前结点的内存地址已经存在,则表示存在环,直接返回true 还可以用双指针(快慢指针)来解决, 如果两个指针相遇(套圈), 则代表存在环.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-18T14:22:12.533Z">
+<meta property="og:updated_time" content="2020-09-20T13:40:52.561Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linked List Cycle">
-<meta name="twitter:description" content="题目:Linked List Cycle 思路: 最先想到的是遍历链表, 并将结点的内存地址存在HashSet中.如果当前结点的内存地址已经存在,则表示存在环,直接返回true 还可以用双指针(快慢指针)来解决, 如果两个指针相遇(套圈), 则代表存在环.">
+<meta name="twitter:title" content="LeetCode 141. Linked List Cycle">
+<meta name="twitter:description" content="题目:LeetCode 141. Linked List Cycle 思路: 最先想到的是遍历链表, 并将结点的内存地址存在HashSet中.如果当前结点的内存地址已经存在,则表示存在环,直接返回true 还可以用双指针(快慢指针)来解决, 如果两个指针相遇(套圈), 则代表存在环.">
 
 <link rel="canonical" href="http://yoursite.com/2020/07/20/algorithm/LeetCode练习-Linked-List-Cycle/">
 
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>Linked List Cycle | 设计与思考</title>
+  <title>LeetCode 141. Linked List Cycle | 设计与思考</title>
   
 
 
@@ -177,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Linked List Cycle
+          LeetCode 141. Linked List Cycle
         </h1>
 
         <div class="post-meta">
@@ -217,7 +217,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="题目"><a href="#题目" class="headerlink" title="题目:"></a>题目:</h3><p><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="noopener">Linked List Cycle</a></p>
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目:"></a>题目:</h3><p><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="noopener">LeetCode 141. Linked List Cycle</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><ol>
 <li>最先想到的是遍历链表, 并将结点的内存地址存在<code>HashSet</code>中.如果当前结点的内存地址已经存在,则表示存在环,直接返回<code>true</code></li>
 <li>还可以用双指针(快慢指针)来解决, 如果两个指针相遇(套圈), 则代表存在环.<a id="more"></a>
@@ -244,10 +244,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/04/algorithm/LeetCode练习-Merge-Two-Sorted-Lists/" rel="prev" title="Merge Two Sorted Lists">
-      <i class="fa fa-chevron-left"></i> Merge Two Sorted Lists
+    <a href="/2020/07/04/algorithm/LeetCode练习-Merge-Two-Sorted-Lists/" rel="prev" title="LeetCode 21. Merge Two Sorted Lists">
+      <i class="fa fa-chevron-left"></i> LeetCode 21. Merge Two Sorted Lists
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/21/algorithm/两数相加/" rel="next" title="LeetCode 2. 两数相加">
+      LeetCode 2. 两数相加 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -336,7 +339,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
