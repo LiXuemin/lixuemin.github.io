@@ -1,13 +1,18 @@
 ---
-title: LeetCode练习-Middle of the Linked List
-date: 2019-06-23 21:51:37
+title: LeetCode 876. Middle of the Linked List
+date: 2020-06-23 21:51:37
 categories: 算法日常练习
 tags:
 - 数据结构与算法
 - 链表
 - 双指针
 ---
-### 问题链接: [Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
+### 题目: 
+
+[LeetCode 876. Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
+
+### 思路:
+
 刷到这个题的时候, 因为之前做过快慢指针[判断链表中是否存在环](https://blog.lixuemin.com/2019/06/20/LeetCode%E7%BB%83%E4%B9%A0-Linked-List-Cycle/)的问题.<br/>
 最先想到的解法就是: 
 <b>因为快指针的速度是慢指针的一倍, 所以当快指针走到尾结点的时候, 慢指针恰好走到中间.</b>
@@ -19,7 +24,8 @@ tags:
 <br/>
 2. 假如<code>fast.next != null && fast.next.next == null</code>, 代表链表结点数为奇数, 此时<code>fast</code>是尾结点的前驱结点, <code>slow</code>是中间结点的前驱结点, 故返回<code>slow.next</code>
 
-代码如下:
+### 代码实现: 
+
 ```java
 /**
  * Definition for singly-linked list.

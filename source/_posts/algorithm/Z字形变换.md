@@ -1,5 +1,5 @@
 ---
-title: Z字形变换
+title: LeetCode 6. Z字形变换
 date: 2020-07-02 16:45:22
 categories: 算法日常练习
 tags:

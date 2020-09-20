@@ -1,5 +1,5 @@
 ---
-title: Linked List Cycle
+title: LeetCode 141. Linked List Cycle
 date: 2020-07-20 22:35:39
 categories: 算法日常练习
 tags:
@@ -10,7 +10,7 @@ tags:
 
 ### 题目:
 
-[Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
+[LeetCode 141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
 
 ### 思路:
 

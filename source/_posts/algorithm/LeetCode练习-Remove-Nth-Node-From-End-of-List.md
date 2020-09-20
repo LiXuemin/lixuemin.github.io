@@ -1,5 +1,5 @@
 ---
-title: Remove Nth Node From End of List
+title: LeetCode 19. Remove Nth Node From End of List
 date: 2020-07-03 22:30:42
 categories: 算法日常练习
 tags:
@@ -8,7 +8,7 @@ tags:
 ---
 ### 题目
 
-[Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+[LeetCode 19. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
 
 ### 思路
 

@@ -1,5 +1,5 @@
 ---
-title: Merge Two Sorted Lists
+title: LeetCode 21. Merge Two Sorted Lists
 date: 2020-07-04 20:42:36
 categories: 算法日常练习
 tags:
@@ -10,7 +10,7 @@ tags:
 
 ### 题目:
 
-[LeetCode 21.Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+[LeetCode 21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
 
 ### 思路:
 
