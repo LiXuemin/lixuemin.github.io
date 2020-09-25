@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一、问题发现之前使用配置文件的形式进行管理，比如MySQL配置文件分为:  db.properties db.dev.properties db.test.properties db.prod.properties  在部署到对应环境的时候，比如到test环境，运维会执行类似mv db.test.properties db.properties的命令，将对应环境的文件覆盖到程序指定的文件db.pr">
-<meta name="keywords" content="微服务,配置中心">
+  <meta name="description" content="题目LeetCode 112. 路径总和 思路这道题, 递归和广度优先都可以, 关键在于迭代的时候, 可以通过传递sum与节点值的差值来得到结果.  当差值为0, 代表确实存在这样一条路径.  如果使用额外的数据结构存储每条路径的和, 反而会极大增加代码复杂度.">
+<meta name="keywords" content="数据结构与算法,二叉树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微服务改造实践(1)-配置中心">
-<meta property="og:url" content="http://yoursite.com/2019/07/08/microservice/微服务改造-1-配置中心/index.html">
+<meta property="og:title" content="LeetCode 112. 路径总和">
+<meta property="og:url" content="http://yoursite.com/2020/07/26/algorithm/LeetCode-112-路径总和/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="一、问题发现之前使用配置文件的形式进行管理，比如MySQL配置文件分为:  db.properties db.dev.properties db.test.properties db.prod.properties  在部署到对应环境的时候，比如到test环境，运维会执行类似mv db.test.properties db.properties的命令，将对应环境的文件覆盖到程序指定的文件db.pr">
+<meta property="og:description" content="题目LeetCode 112. 路径总和 思路这道题, 递归和广度优先都可以, 关键在于迭代的时候, 可以通过传递sum与节点值的差值来得到结果.  当差值为0, 代表确实存在这样一条路径.  如果使用额外的数据结构存储每条路径的和, 反而会极大增加代码复杂度.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-10T14:06:17.339Z">
+<meta property="og:updated_time" content="2020-09-25T06:16:58.919Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微服务改造实践(1)-配置中心">
-<meta name="twitter:description" content="一、问题发现之前使用配置文件的形式进行管理，比如MySQL配置文件分为:  db.properties db.dev.properties db.test.properties db.prod.properties  在部署到对应环境的时候，比如到test环境，运维会执行类似mv db.test.properties db.properties的命令，将对应环境的文件覆盖到程序指定的文件db.pr">
+<meta name="twitter:title" content="LeetCode 112. 路径总和">
+<meta name="twitter:description" content="题目LeetCode 112. 路径总和 思路这道题, 递归和广度优先都可以, 关键在于迭代的时候, 可以通过传递sum与节点值的差值来得到结果.  当差值为0, 代表确实存在这样一条路径.  如果使用额外的数据结构存储每条路径的和, 反而会极大增加代码复杂度.">
 
-<link rel="canonical" href="http://yoursite.com/2019/07/08/microservice/微服务改造-1-配置中心/">
+<link rel="canonical" href="http://yoursite.com/2020/07/26/algorithm/LeetCode-112-路径总和/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>微服务改造实践(1)-配置中心 | 设计与思考</title>
+  <title>LeetCode 112. 路径总和 | 设计与思考</title>
   
 
 
@@ -164,7 +164,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/08/microservice/微服务改造-1-配置中心/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/26/algorithm/LeetCode-112-路径总和/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          微服务改造实践(1)-配置中心
+          LeetCode 112. 路径总和
         </h1>
 
         <div class="post-meta">
@@ -187,7 +187,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-07-08 21:49:43" itemprop="dateCreated datePublished" datetime="2019-07-08T21:49:43+08:00">2019-07-08</time>
+              <time title="创建时间：2020-07-26 14:09:47" itemprop="dateCreated datePublished" datetime="2020-07-26T14:09:47+08:00">2020-07-26</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -195,7 +195,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微服务改造/" itemprop="url" rel="index"><span itemprop="name">微服务改造</span></a>
+                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -217,42 +217,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="一、问题发现"><a href="#一、问题发现" class="headerlink" title="一、问题发现"></a>一、问题发现</h4><p>之前使用配置文件的形式进行管理，比如MySQL配置文件分为:</p>
-<ul>
-<li><code>db.properties</code></li>
-<li><code>db.dev.properties</code></li>
-<li><code>db.test.properties</code></li>
-<li><code>db.prod.properties</code></li>
-</ul>
-<p>在部署到对应环境的时候，比如到<code>test</code>环境，运维会执行类似<code>mv db.test.properties db.properties</code>的命令，将对应环境的文件覆盖到程序指定的文件<code>db.properties</code>。
-除此之外，还有很多配置文件都与运行环境相关联，<strong>在不同的环境必须设置不同的值</strong>。</p>
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode-cn.com/problems/path-sum/" target="_blank" rel="noopener">LeetCode 112. 路径总和</a></p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>这道题, 递归和广度优先都可以, 关键在于迭代的时候, 可以通过传递sum与节点值的<code>差值</code>来得到结果. </p>
+<p>当<code>差值</code>为<code>0</code>, 代表确实存在这样一条路径. </p>
+<p>如果使用额外的数据结构存储每条路径的和, 反而会极大增加代码复杂度.</p>
 <a id="more"></a>
-<p>随着越来越多服务上线，陆续暴露了很多问题：</p>
-<ol>
-<li>配置文件过多，过于分散，开发人员稍不留意就容易出错,并且运维人员很难审核排错</li>
-<li>配置无法追溯，无法回滚</li>
-<li>修改配置需要重启，希望能够在程序运行时动态调整部分配置</li>
-<li>所有开发人员都能看到线上生产环境配置，安全性很差</li>
-</ol>
-<h4 id="二、找寻方案"><a href="#二、找寻方案" class="headerlink" title="二、找寻方案"></a>二、找寻方案</h4><p>所以我们希望能有这样一个组件或者一套系统，能够实现如下功能：</p>
-<ol>
-<li>集中管理配置</li>
-<li>与程序分离，避免开发误操作影响系统</li>
-<li>配置支持版本控制</li>
-<li>配置能够动态生效</li>
-<li>能有权限和审核机制</li>
-<li>UI管理界面</li>
-</ol>
-<p>那从2017年开始，陆续我们已经看到了不少开源配置中心的发布，所以开始调研了一下目前开源的一些配置中心。</p>
-<ul>
-<li><code>Consul</code>（生态在国内并不好）</li>
-<li><code>Disconf</code> （无UI，生态比Apollo差很多）</li>
-<li><code>Diamond</code> （停止维护）</li>
-<li><code>Spring Cloud Config</code> （配置重启才生效）</li>
-<li><code>Nacos</code> </li>
-<li><code>Ctrip Apollo</code></li>
-</ul>
-<p>最终能够满足需求的只有<code>Apollo</code>和<code>Nacos</code>, 而<code>Apollo</code>已经很成熟，经历过太多生产环境的实践，所以最终选择了<code>Apollo</code>.</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPathSum</span><span class="params">(TreeNode root, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> hasPath(root, sum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">hasPath</span><span class="params">(TreeNode node, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> result = sum - node.val;</span><br><span class="line">        <span class="keyword">if</span> (result == <span class="number">0</span> &amp;&amp; node.left == <span class="keyword">null</span> &amp;&amp; node.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> hasPath(node.left, result) || hasPath(node.right, result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -262,8 +233,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/微服务/" rel="tag"># 微服务</a>
-              <a href="/tags/配置中心/" rel="tag"># 配置中心</a>
+              <a href="/tags/数据结构与算法/" rel="tag"># 数据结构与算法</a>
+              <a href="/tags/二叉树/" rel="tag"># 二叉树</a>
           </div>
 
         
@@ -271,11 +242,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2019/07/11/microservice/微服务改造-2-网关/" rel="next" title="微服务改造-2-网关">
-      微服务改造-2-网关 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/25/algorithm/LeetCode-101-对称二叉树/" rel="prev" title="LeetCode 101. 对称二叉树">
+      <i class="fa fa-chevron-left"></i> LeetCode 101. 对称二叉树
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -339,7 +310,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、问题发现"><span class="nav-number">1.</span> <span class="nav-text">一、问题发现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、找寻方案"><span class="nav-number">2.</span> <span class="nav-text">二、找寻方案</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
