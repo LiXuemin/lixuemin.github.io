@@ -22,23 +22,23 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="无界流和有界流无界数据流:  持续生成的, 本质上无限的数据集合 数据会随时间的推演而持续增加，计算持续进行且不存在结束的状态  有界数据流:  有限的数据集合 数据大小固定，计算最终会完成并处于结束的状态  状态 我们在设计一个微服务程序的时候, 往往追求服务是无状态的——这是因为要满足快速扩容、弹性缩容的要求。而对于无状态, 实际要求我们的接口满足幂等性-即无论多少次访问接口，同样的输入总能得">
+  <meta name="description" content="Flink运行模型以上为 Flink 的运行模型，Flink 的程序主要由三部分构成，分别为 Source、 Transformation、Sink。DataSource 主要负责数据的读取，Transformation 主要负责对 属于的转换操作，Sink 负责最终数据的输出。 每个 Flink 程序都包含以下的若干流程:  获得一个执行环境;(Execution Environment) 加载">
 <meta name="keywords" content="Flink">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Flink 0. 流处理基本概念">
-<meta property="og:url" content="http://yoursite.com/2020/08/26/flink/Flink-0-流处理基本概念/index.html">
+<meta property="og:title" content="Flink-2. 流计算API基础">
+<meta property="og:url" content="http://yoursite.com/2020/09/05/flink/Flink-2-流计算API/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="无界流和有界流无界数据流:  持续生成的, 本质上无限的数据集合 数据会随时间的推演而持续增加，计算持续进行且不存在结束的状态  有界数据流:  有限的数据集合 数据大小固定，计算最终会完成并处于结束的状态  状态 我们在设计一个微服务程序的时候, 往往追求服务是无状态的——这是因为要满足快速扩容、弹性缩容的要求。而对于无状态, 实际要求我们的接口满足幂等性-即无论多少次访问接口，同样的输入总能得">
+<meta property="og:description" content="Flink运行模型以上为 Flink 的运行模型，Flink 的程序主要由三部分构成，分别为 Source、 Transformation、Sink。DataSource 主要负责数据的读取，Transformation 主要负责对 属于的转换操作，Sink 负责最终数据的输出。 每个 Flink 程序都包含以下的若干流程:  获得一个执行环境;(Execution Environment) 加载">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj59zbvdtaj30k00b93za.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj5aj8c7erj30k00b9t9c.jpg">
-<meta property="og:updated_time" content="2020-09-29T08:08:25.888Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7lszqn0xj30jg04i74i.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7ls5f2oej30hl0dswfz.jpg">
+<meta property="og:updated_time" content="2020-09-30T11:58:30.942Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flink 0. 流处理基本概念">
-<meta name="twitter:description" content="无界流和有界流无界数据流:  持续生成的, 本质上无限的数据集合 数据会随时间的推演而持续增加，计算持续进行且不存在结束的状态  有界数据流:  有限的数据集合 数据大小固定，计算最终会完成并处于结束的状态  状态 我们在设计一个微服务程序的时候, 往往追求服务是无状态的——这是因为要满足快速扩容、弹性缩容的要求。而对于无状态, 实际要求我们的接口满足幂等性-即无论多少次访问接口，同样的输入总能得">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj59zbvdtaj30k00b93za.jpg">
+<meta name="twitter:title" content="Flink-2. 流计算API基础">
+<meta name="twitter:description" content="Flink运行模型以上为 Flink 的运行模型，Flink 的程序主要由三部分构成，分别为 Source、 Transformation、Sink。DataSource 主要负责数据的读取，Transformation 主要负责对 属于的转换操作，Sink 负责最终数据的输出。 每个 Flink 程序都包含以下的若干流程:  获得一个执行环境;(Execution Environment) 加载">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7lszqn0xj30jg04i74i.jpg">
 
-<link rel="canonical" href="http://yoursite.com/2020/08/26/flink/Flink-0-流处理基本概念/">
+<link rel="canonical" href="http://yoursite.com/2020/09/05/flink/Flink-2-流计算API/">
 
 
 <script id="page-configurations">
@@ -51,7 +51,7 @@
   };
 </script>
 
-  <title>Flink 0. 流处理基本概念 | 设计与思考</title>
+  <title>Flink-2. 流计算API基础 | 设计与思考</title>
   
 
 
@@ -167,7 +167,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/26/flink/Flink-0-流处理基本概念/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/05/flink/Flink-2-流计算API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -180,7 +180,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Flink 0. 流处理基本概念
+          Flink-2. 流计算API基础
         </h1>
 
         <div class="post-meta">
@@ -190,7 +190,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-26 21:57:26" itemprop="dateCreated datePublished" datetime="2020-08-26T21:57:26+08:00">2020-08-26</time>
+              <time title="创建时间：2020-09-05 16:15:49" itemprop="dateCreated datePublished" datetime="2020-09-05T16:15:49+08:00">2020-09-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,54 +220,50 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="无界流和有界流"><a href="#无界流和有界流" class="headerlink" title="无界流和有界流"></a>无界流和有界流</h3><p>无界数据流:</p>
+        <h2 id="Flink运行模型"><a href="#Flink运行模型" class="headerlink" title="Flink运行模型"></a>Flink运行模型</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7lszqn0xj30jg04i74i.jpg" alt="runtime"><br>以上为 Flink 的运行模型，Flink 的程序主要由三部分构成，分别为 Source、 Transformation、Sink。DataSource 主要负责数据的读取，Transformation 主要负责对 属于的转换操作，Sink 负责最终数据的输出。</p>
+<p>每个 Flink 程序都包含以下的若干流程:</p>
+<ol>
+<li>获得一个执行环境;(Execution Environment)</li>
+<li>加载/创建初始数据;(Source)</li>
+<li>指定转换这些数据;(Transformation)</li>
+<li>指定放置计算结果的位置;(Sink)</li>
+<li>触发程序执行</li>
+</ol>
+<p>如下图所示:</p>
+<a id="more"></a>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7ls5f2oej30hl0dswfz.jpg" alt="stream dataflow"></p>
+<h2 id="Enviroment"><a href="#Enviroment" class="headerlink" title="Enviroment"></a>Enviroment</h2><p><strong>执行环境 StreamExecutionEnvironment 是所有 Flink 程序的基础。</strong></p>
+<p>创建一个执行环境，表示当前执行程序的上下文。</p>
 <ul>
-<li>持续生成的, 本质上无限的数据集合</li>
-<li>数据会随时间的推演而持续增加，计算持续进行且不存在结束的状态</li>
+<li>如果程序独立调用, 如IDE中Run, 返回本地执行环境</li>
+<li>如果提交到集群, 则返回此集群的执行环境</li>
 </ul>
-<p>有界数据流:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h2><p>数据源.</p>
 <ul>
-<li>有限的数据集合</li>
-<li>数据大小固定，计算最终会完成并处于结束的状态</li>
-</ul>
-<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><blockquote>
-<p>我们在设计一个微服务程序的时候, 往往追求服务是无状态的——这是因为要满足快速扩容、弹性缩容的要求。<br>而对于无状态, 实际要求我们的接口满足幂等性-即无论多少次访问接口，同样的输入总能得到同样的输出。<br>这里的状态，指的就是<code>中间计算结果</code>。</p>
-</blockquote>
-<p>但是流计算本质属于’增量处理’， 通常需要不断查询、保持状态；</p>
-<h3 id="时间语义"><a href="#时间语义" class="headerlink" title="时间语义"></a>时间语义</h3><a id="more"></a>
-<h4 id="Time"><a href="#Time" class="headerlink" title="Time"></a>Time</h4><ul>
-<li><strong>Event Time（很重要）</strong>, 事件实际发生的时间</li>
-<li>Ingestion Time（不太重要）, 数据进入流处理引擎的时间</li>
-<li><strong>Processing Time（重要）</strong>, 流计算引擎真正开始处理事件的时间<br><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gj59zbvdtaj30k00b93za.jpg" alt="flink time"></li>
-</ul>
-<h4 id="Watermarks-水位线"><a href="#Watermarks-水位线" class="headerlink" title="Watermarks, 水位线"></a>Watermarks, 水位线</h4><p>预估收到数据的截止时间。决定窗口是否触发， 小于水位线的数据默认丢弃。<br><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gj5aj8c7erj30k00b9t9c.jpg" alt="watermarks"></p>
-<h4 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h4><p>流处理应用中， 数据是连续不断的，因此我们不可能等所有数据都到了才处理。通常我们可以每来一个消息就处理一次， 但是有时我们需要做一些<strong>聚合类</strong>的处理。</p>
-<p>比如： 在过去的1小时内，有多少用户访问了我们的网页。</p>
-<p>为满足这种需求， 我们可以定义一个窗口， 用来收集最近1小时的数据， 并对窗口内的数据计算。</p>
-<p>窗口可以是时间驱动（Time Window, 例如：每分钟）, 也可以数据驱动（Count Window, 例如：每1000条记录）。</p>
-<p>通常把窗口分为三类：</p>
-<ul>
-<li><p>滚动窗口， Tumbling Window</p>
-<ul>
-<li>将数据依据固定窗口长度进行切割</li>
-<li>时间对齐，窗口长度固定，无重叠</li>
-</ul>
+<li><p>内置的数据源: 基于File, Socket, Collection等.</p>
 </li>
-<li><p>滑动窗口，Sliding Window</p>
-<ul>
-<li>窗口按照固定长度，平滑地对数据一直（实际上有滑动间隔）切割</li>
-<li>窗口长度固定，有重叠</li>
-</ul>
-</li>
-<li><p>会话窗口</p>
-<ul>
-<li>一段时间内没有接收到新数据就会生成新的窗口</li>
-<li>时间不对齐</li>
-</ul>
+<li><p>addSource, 自定义数据源, 官方提供了常用的kafka, rabbitmq等, 也可以自己开发</p>
 </li>
 </ul>
-<h4 id="Trigger"><a href="#Trigger" class="headerlink" title="Trigger"></a>Trigger</h4><p>触发器。决定了一个窗口何时能被计算或清除， 每个窗口都会拥有一个自己的Trigger。</p>
-<!-- ### 延迟和吞吐量 -->
+<p>eg: <code>env.addSource(new FlinkKafkaConsumer010&lt;&gt;(...))</code></p>
+<h2 id="Sink"><a href="#Sink" class="headerlink" title="Sink"></a>Sink</h2><p>Data Sinks消费DataStreams中的数据, 并且输出到file, socket, 外部系统中.</p>
+<ul>
+<li>内置可以输出到txt, csv, socket, 直接打印等</li>
+<li>addSink - 扩展sink方法, 通过connectors消费到外部系统</li>
+</ul>
+<h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a>Transformations</h2><p>转换算子.</p>
+<p>Basic Transformations </p>
+<ul>
+<li>map</li>
+<li>filter</li>
+<li>FlatMap<br>KeyedStream Transformations</li>
+<li>KeyBy</li>
+<li>Aggregations</li>
+<li>Reduce<br>Multistream Transformation<br>Distribution Transformation</li>
+</ul>
+
     </div>
 
     
@@ -285,13 +281,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/26/algorithm/LeetCode-112-路径总和/" rel="prev" title="LeetCode 112. 路径总和">
-      <i class="fa fa-chevron-left"></i> LeetCode 112. 路径总和
+    <a href="/2020/08/30/flink/Flink-1-Flink基本架构/" rel="prev" title="Flink 1. 基本架构">
+      <i class="fa fa-chevron-left"></i> Flink 1. 基本架构
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/30/flink/Flink-1-Flink基本架构/" rel="next" title="Flink 1. 基本架构">
-      Flink 1. 基本架构 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -355,7 +348,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#无界流和有界流"><span class="nav-number">1.</span> <span class="nav-text">无界流和有界流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态"><span class="nav-number">2.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间语义"><span class="nav-number">3.</span> <span class="nav-text">时间语义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Time"><span class="nav-number">3.1.</span> <span class="nav-text">Time</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Watermarks-水位线"><span class="nav-number">3.2.</span> <span class="nav-text">Watermarks, 水位线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Window"><span class="nav-number">3.3.</span> <span class="nav-text">Window</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Trigger"><span class="nav-number">3.4.</span> <span class="nav-text">Trigger</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink运行模型"><span class="nav-number">1.</span> <span class="nav-text">Flink运行模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Enviroment"><span class="nav-number">2.</span> <span class="nav-text">Enviroment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Source"><span class="nav-number">3.</span> <span class="nav-text">Source</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sink"><span class="nav-number">4.</span> <span class="nav-text">Sink</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformations"><span class="nav-number">5.</span> <span class="nav-text">Transformations</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -22,23 +22,23 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="编程模型Flink提供了不同级别的抽象, 以开发流或批处理作业.  ProcessFunction 最底层, 最具表达力的接口 提供了对于时间和状态的细粒度控制 可以用来实现许多有状态的事件驱动应用所需要的基于单个事件的复杂业务逻辑  DataStream API &amp;amp;&amp;amp; DataSet API 核心API 提供了通用的构建模块,比如transformations, joins, a">
+  <meta name="description" content="编程模型Flink提供了不同级别的抽象, 以开发流或批处理作业.  ProcessFunction 最底层, 最具表达力的接口 提供了对于时间和状态的细粒度控制 可以用来实现许多有状态的事件驱动应用所需要的基于单个事件的复杂业务逻辑  DataStream API &amp;amp;&amp;amp; DataSet API 核心API  提供了通用的构建模块,比如transformations, joins,">
 <meta name="keywords" content="Flink">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Flink 1. Flink基本架构">
+<meta property="og:title" content="Flink 1. 基本架构">
 <meta property="og:url" content="http://yoursite.com/2020/08/30/flink/Flink-1-Flink基本架构/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="编程模型Flink提供了不同级别的抽象, 以开发流或批处理作业.  ProcessFunction 最底层, 最具表达力的接口 提供了对于时间和状态的细粒度控制 可以用来实现许多有状态的事件驱动应用所需要的基于单个事件的复杂业务逻辑  DataStream API &amp;amp;&amp;amp; DataSet API 核心API 提供了通用的构建模块,比如transformations, joins, a">
+<meta property="og:description" content="编程模型Flink提供了不同级别的抽象, 以开发流或批处理作业.  ProcessFunction 最底层, 最具表达力的接口 提供了对于时间和状态的细粒度控制 可以用来实现许多有状态的事件驱动应用所需要的基于单个事件的复杂业务逻辑  DataStream API &amp;amp;&amp;amp; DataSet API 核心API  提供了通用的构建模块,比如transformations, joins,">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7iu5z64rj30r20bemy5.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7gl0iajpj30nn0h1wga.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7hrb734lj30g00b1t9p.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7k70qyjij30pn086q45.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7k7s4aylj30pn0bwgoi.jpg">
-<meta property="og:updated_time" content="2020-09-29T07:48:57.535Z">
+<meta property="og:updated_time" content="2020-09-29T08:08:52.428Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flink 1. Flink基本架构">
-<meta name="twitter:description" content="编程模型Flink提供了不同级别的抽象, 以开发流或批处理作业.  ProcessFunction 最底层, 最具表达力的接口 提供了对于时间和状态的细粒度控制 可以用来实现许多有状态的事件驱动应用所需要的基于单个事件的复杂业务逻辑  DataStream API &amp;amp;&amp;amp; DataSet API 核心API 提供了通用的构建模块,比如transformations, joins, a">
+<meta name="twitter:title" content="Flink 1. 基本架构">
+<meta name="twitter:description" content="编程模型Flink提供了不同级别的抽象, 以开发流或批处理作业.  ProcessFunction 最底层, 最具表达力的接口 提供了对于时间和状态的细粒度控制 可以用来实现许多有状态的事件驱动应用所需要的基于单个事件的复杂业务逻辑  DataStream API &amp;amp;&amp;amp; DataSet API 核心API  提供了通用的构建模块,比如transformations, joins,">
 <meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7iu5z64rj30r20bemy5.jpg">
 
 <link rel="canonical" href="http://yoursite.com/2020/08/30/flink/Flink-1-Flink基本架构/">
@@ -54,7 +54,7 @@
   };
 </script>
 
-  <title>Flink 1. Flink基本架构 | 设计与思考</title>
+  <title>Flink 1. 基本架构 | 设计与思考</title>
   
 
 
@@ -183,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Flink 1. Flink基本架构
+          Flink 1. 基本架构
         </h1>
 
         <div class="post-meta">
@@ -231,15 +231,21 @@
 <li>可以用来实现许多有状态的事件驱动应用所需要的基于单个事件的复杂业务逻辑</li>
 </ul>
 <h4 id="DataStream-API-amp-amp-DataSet-API"><a href="#DataStream-API-amp-amp-DataSet-API" class="headerlink" title="DataStream API &amp;&amp; DataSet API"></a>DataStream API &amp;&amp; DataSet API</h4><ul>
-<li>核心API</li>
-<li>提供了通用的构建模块,比如transformations, joins, aggregations, windows等</li>
-<li>DataSet API为有界数据集提供了额外的支持</li>
-</ul>
-<h4 id="Table-API-amp-amp-SQL"><a href="#Table-API-amp-amp-SQL" class="headerlink" title="Table API &amp;&amp; SQL"></a>Table API &amp;&amp; SQL</h4><ul>
-<li>关系型API, 最简洁, 但不如核心API更具表达能力</li>
-<li>Table API以表为中心, 其中表在表达流数据时可以动态变化(Dynamic Table)</li>
-<li>table与DataStream/DataSet可以无缝切换</li>
-<li>旨在简化数据分析、数据流水线和 ETL 应用的定义</li>
+<li><p>核心API</p>
+</li>
+<li><p>提供了通用的构建模块,比如transformations, joins, aggregations, windows等</p>
+</li>
+<li><p>DataSet API为有界数据集提供了额外的支持</p>
+<a id="more"></a>
+<h4 id="Table-API-amp-amp-SQL"><a href="#Table-API-amp-amp-SQL" class="headerlink" title="Table API &amp;&amp; SQL"></a>Table API &amp;&amp; SQL</h4></li>
+<li><p>关系型API, 最简洁, 但不如核心API更具表达能力</p>
+</li>
+<li><p>Table API以表为中心, 其中表在表达流数据时可以动态变化(Dynamic Table)</p>
+</li>
+<li><p>table与DataStream/DataSet可以无缝切换</p>
+</li>
+<li><p>旨在简化数据分析、数据流水线和 ETL 应用的定义</p>
+</li>
 </ul>
 <h3 id="Flink体系组件"><a href="#Flink体系组件" class="headerlink" title="Flink体系组件"></a>Flink体系组件</h3><h4 id="JobManager-Master"><a href="#JobManager-Master" class="headerlink" title="JobManager(Master)"></a>JobManager(Master)</h4><p>协调分布式执行, 进程由以下三个组件构成:</p>
 <ul>
@@ -330,8 +336,8 @@
       <i class="fa fa-chevron-left"></i> Flink 0. 流处理基本概念
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/09/27/flink/Flink-极客挑战赛记录-0-环境准备/" rel="next" title="Flink 极客挑战赛记录- 0.环境准备">
-      Flink 极客挑战赛记录- 0.环境准备 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/05/flink/Flink-2-流计算API/" rel="next" title="Flink-2. 流计算API基础">
+      Flink-2. 流计算API基础 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

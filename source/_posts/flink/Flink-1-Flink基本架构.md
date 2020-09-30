@@ -1,5 +1,5 @@
 ---
-title: Flink 1. Flink基本架构
+title: Flink 1. 基本架构
 date: 2020-08-30 10:32:43
 categories: 流计算
 tags: 
@@ -23,7 +23,7 @@ Flink提供了不同级别的抽象, 以开发流或批处理作业.
 * 核心API
 * 提供了通用的构建模块,比如transformations, joins, aggregations, windows等
 * DataSet API为有界数据集提供了额外的支持
-
+<!--more-->
 #### Table API && SQL
 
 * 关系型API, 最简洁, 但不如核心API更具表达能力
