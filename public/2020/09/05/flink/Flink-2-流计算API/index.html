@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7lszqn0xj30jg04i74i.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7ls5f2oej30hl0dswfz.jpg">
-<meta property="og:updated_time" content="2020-09-30T11:58:30.942Z">
+<meta property="og:updated_time" content="2020-10-01T14:58:09.513Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink-2. 流计算API基础">
 <meta name="twitter:description" content="Flink运行模型以上为 Flink 的运行模型，Flink 的程序主要由三部分构成，分别为 Source、 Transformation、Sink。DataSource 主要负责数据的读取，Transformation 主要负责对 属于的转换操作，Sink 负责最终数据的输出。 每个 Flink 程序都包含以下的若干流程:  获得一个执行环境;(Execution Environment) 加载">
@@ -254,14 +254,32 @@
 <li>addSink - 扩展sink方法, 通过connectors消费到外部系统</li>
 </ul>
 <h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a>Transformations</h2><p>转换算子.</p>
-<p>Basic Transformations </p>
+<p>Basic Transformations</p>
 <ul>
-<li>map</li>
-<li>filter</li>
-<li>FlatMap<br>KeyedStream Transformations</li>
-<li>KeyBy</li>
-<li>Aggregations</li>
-<li>Reduce<br>Multistream Transformation<br>Distribution Transformation</li>
+<li>map, 一对一转换</li>
+<li>filter, 过滤</li>
+<li>FlatMap, 一对零/一/多转换</li>
+</ul>
+<p>KeyedStream Transformations</p>
+<ul>
+<li>KeyBy, 基于key对流(内部使用hash函数)进行分区</li>
+<li>Aggregations, 聚合操作,如min, max, sum等</li>
+<li>Reduce, 返回单个结果值</li>
+</ul>
+<p>Multistream Transformation</p>
+<ul>
+<li>Union, 组合流</li>
+<li>Connect, coMap, coFlatMap</li>
+<li>Split &amp; select, split拆分流, select从拆分流中选择特定流</li>
+</ul>
+<p>Distribution Transformation</p>
+<ul>
+<li>Random</li>
+<li>Round-Robin</li>
+<li>Rescale</li>
+<li>Broadcast</li>
+<li>Global</li>
+<li>Custom</li>
 </ul>
 
     </div>

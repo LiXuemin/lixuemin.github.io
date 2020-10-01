@@ -57,13 +57,29 @@ Data Sinks消费DataStreams中的数据, 并且输出到file, socket, 外部系�
 
 转换算子.
 
-Basic Transformations 
-  * map
-  * filter
-  * FlatMap
+Basic Transformations
+
+* map, 一对一转换
+* filter, 过滤
+* FlatMap, 一对零/一/多转换
+
 KeyedStream Transformations
-  * KeyBy
-  * Aggregations
-  * Reduce
+
+* KeyBy, 基于key对流(内部使用hash函数)进行分区
+* Aggregations, 聚合操作,如min, max, sum等
+* Reduce, 返回单个结果值
+
 Multistream Transformation
+
+* Union, 组合流
+* Connect, coMap, coFlatMap
+* Split & select, split拆分流, select从拆分流中选择特定流
+
 Distribution Transformation
+
+* Random
+* Round-Robin
+* Rescale
+* Broadcast
+* Global
+* Custom
