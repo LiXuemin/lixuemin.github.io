@@ -59,8 +59,8 @@ Data Sinks消费DataStreams中的数据, 并且输出到file, socket, 外部系�
 
 Basic Transformations
 
-* map, 一对一转换
-* filter, 过滤
+* Map, 一对一转换
+* Filter, 过滤
 * FlatMap, 一对零/一/多转换
 
 KeyedStream Transformations
