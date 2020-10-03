@@ -59,15 +59,20 @@ Data Sinks消费DataStreams中的数据, 并且输出到file, socket, 外部系�
 
 Basic Transformations
 
-* Map, 一对一转换
+* Map
+    对整个DataStream做一一对应的映射, 即每一个元素产生一个输出元素。
 * Filter, 过滤
-* FlatMap, 一对零/一/多转换
+* FlatMap
+    对整个DataStream做一对多的映射， 即每一个元素可以产生多个（可以是一个）输出元素。
 
 KeyedStream Transformations
 
-* KeyBy, 基于key对流(内部使用hash函数)进行分区
-* Aggregations, 聚合操作,如min, max, sum等
-* Reduce, 返回单个结果值
+* KeyBy
+    对输入DataStream分区， 即相同key的元素分到同一分区。基于key对流(内部使用hash函数)进行分区。
+* Aggregations
+    聚合操作,如min, max, sum等。
+* Reduce
+    根据多个元素生成一个元素。返回单个结果值。
 
 Multistream Transformation
 
@@ -78,8 +83,15 @@ Multistream Transformation
 Distribution Transformation
 
 * Random
+    均匀分布分区
 * Round-Robin
+    轮询分区
 * Rescale
+    可伸缩分区
 * Broadcast
+    广播分区
+* Rebanlance
+    负载均衡分区
 * Global
 * Custom
+    用户程序自定义分区
