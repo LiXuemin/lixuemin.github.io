@@ -58,4 +58,20 @@ tags:
 
 ## 清除器
 
+在触发器触发后， 窗口函数执行前或执行后清除窗口内元素，有以下两个方法：
+
+1. 触发器被触发后， 窗口函数执行前， 清除窗口内元素
+
+```java
+void evictBefore(Iterable<TimestampdValue<T>> elements, int size,  W window, EvictorContext evictorContext);
+```
+
+2. 触发器被触发后，窗口函数执行后，清除窗口内元素
+
+```java
+void evictAfter(Iterable<TimestampdValue<T>> elements, int size,  W window, EvictorContext evictorContext);
+```
+
+提供了三种内置清除器： CountEvictor, DeltaEvictor, TimeEvictor
+
 ## 迟到生存期
