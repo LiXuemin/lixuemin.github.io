@@ -75,3 +75,15 @@ void evictAfter(Iterable<TimestampdValue<T>> elements, int size,  W window, Evic
 提供了三种内置清除器： CountEvictor, DeltaEvictor, TimeEvictor
 
 ## 迟到生存期
+
+Flink默认的迟到生存期为0， 即事件时间窗口在水印到来后结束， 无需考虑事件迟到的情况。
+
+```scala
+val input: DataStream[T] = ...
+
+input
+    .keyBy(...)
+    .window(...)
+    .allowedLateness(Time.seconds(10))
+    ...
+```
