@@ -82,7 +82,7 @@ KeyedStream Transformations
 * Reduce
     根据多个元素生成一个元素。返回单个结果值。
 
-Multistream Transformation
+Multistream Transformation，多流转换
 
 * Union, 组合流
 * Connect, coMap, coFlatMap
@@ -101,5 +101,6 @@ Distribution Transformation
 * Rebanlance
     负载均衡分区
 * Global
+    global()方法将输入流中的所有事件发往下游算子的第一个并行任务。
 * Custom
     用户程序自定义分区
