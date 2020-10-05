@@ -55,7 +55,15 @@ Data Sinks消费DataStreams中的数据, 并且输出到file, socket, 外部系�
 
 ## Transformations
 
-转换算子.
+DataStream API的转换分为四类：
+
+1. 作用于单个事件的基本转换
+
+2. 针对相同键值事件的KeyedStream转换
+
+3. 将多条数据流合并为一条，或将一条数据流拆分为多条流的转换
+
+4. 对流中的事件进行重新组织的分发转换
 
 Basic Transformations
 
