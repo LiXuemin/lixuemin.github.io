@@ -161,6 +161,94 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/13/bigdata/数仓之聊聊数据采集/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李学民">
+      <meta itemprop="description" content="个人博客,温故知新">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="设计与思考">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/13/bigdata/数仓之聊聊数据采集/" class="post-title-link" itemprop="url">数仓之聊聊数据采集</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-13 22:16:34" itemprop="dateCreated datePublished" datetime="2020-10-13T22:16:34+08:00">2020-10-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据采集-行为事件采集"><a href="#数据采集-行为事件采集" class="headerlink" title="数据采集- 行为事件采集"></a>数据采集- 行为事件采集</h1><h2 id="1-用户行为数据模型-Event-Model"><a href="#1-用户行为数据模型-Event-Model" class="headerlink" title="1. 用户行为数据模型 -  Event Model"></a>1. 用户行为数据模型 -  Event Model</h2><p>使用事件模型Event Model来描述用户在产品上的各种行为.</p>
+<h3 id="1-1-事件模型主要包括"><a href="#1-1-事件模型主要包括" class="headerlink" title="1.1  事件模型主要包括:"></a>1.1  事件模型主要包括:</h3><p>两个核心实体</p>
+<ul>
+<li>User(用户)</li>
+<li>Event(事件)</li>
+</ul>
+<p>配合Item(物品)来做各种维度分析.</p>
+<h3 id="1-2-复杂的数据纬度-统一的数据格式"><a href="#1-2-复杂的数据纬度-统一的数据格式" class="headerlink" title="1.2 复杂的数据纬度, 统一的数据格式"></a>1.2 复杂的数据纬度, 统一的数据格式</h3><p> 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的分析, 都需要复杂的数据纬度来支撑. </p>
+<h3 id="1-3-Event五要素"><a href="#1-3-Event五要素" class="headerlink" title="1.3 Event五要素"></a>1.3 Event五要素</h3><ul>
+<li>Who:  登录用户ID, 匿名ID(cookie_id, 设备id)</li>
+<li>When: 事件发生实际时间, 要考虑到本地时间不一定准确的问题, 可以初始化时从服务器获取, 而服务器要做NTP服务</li>
+<li>Where: ip, GPS</li>
+<li>How: 从事这个事件的方式. 包括设备,浏览器,APP版本,OS版本,渠道,referer,屏幕宽高,是否wifi</li>
+<li>What: 用户所做事件的具体内容</li>
+</ul>
+<p>eg: </p>
+<ul>
+<li>对于一个“购买”类型的事件，则可能需要记录的字段有：商品名称、商品类型、购买数量、购买金额、 付款方式等；</li>
+<li>对于一个“搜索”类型的事件，则可能需要记录的字段有：搜索关键词、搜索类型等；</li>
+<li>对于一个“点击”类型的事件，则可能需要记录的字段有：点击 URL、点击 title、点击位置等；</li>
+<li>对于一个“用户注册”类型的事件，则可能需要记录的字段有：注册渠道、注册邀请码等；</li>
+<li>对于一个“用户投诉”类型的事件，则可能需要记录的字段有：投诉内容、投诉对象、投诉渠道、投诉方式等；</li>
+<li>对于一个“申请退货”类型的事件，则可能需要记录的字段有：退货金额、退货原因、退货方式等。</li>
+</ul>
+<h3 id="1-4-前端-客户端埋点-vs-后端"><a href="#1-4-前端-客户端埋点-vs-后端" class="headerlink" title="1.4 前端/客户端埋点 vs 后端"></a>1.4 前端/客户端埋点 vs 后端</h3><p>事件只在前端发生, 不往后端发送任何请求, 前端发</p>
+<p>前端不能拿到事件所有(关键)字段,  后端发</p>
+<p>事件数据后端也需要使用, 后端发</p>
+<p>经常新增或修改指标, 后端发 (app涉及发版和用户更新问题)</p>
+<p>对数据的完整性、一致性、即时性要求很高, 后端发(controller层在处理业务请求时同时发送)</p>
+<p>eg: </p>
+<p>客户端通常会多条数据打包压缩, 等满足一定条件再发, 如果网络状况不好, 或者应用关闭or进入后台, 可能造成上传不及时</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/12/distribute/读DDIA-4-数据编码与演化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -201,6 +289,102 @@
       
           <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gjmvngyne8j30u016ve81.jpg" alt="思维导图笔记"></p>
 
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/12/flink/Flink-3-窗口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李学民">
+      <meta itemprop="description" content="个人博客,温故知新">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="设计与思考">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/12/flink/Flink-3-窗口/" class="post-title-link" itemprop="url">Flink-2. 流计算API窗口</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-12 22:21:49" itemprop="dateCreated datePublished" datetime="2020-09-12T22:21:49+08:00">2020-09-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/流计算/" itemprop="url" rel="index"><span itemprop="name">流计算</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h2><p>窗口是另一类算子， 是DataStream的逻辑边界， 在第一个元素到达后被创建， 在生命周期结束后被销毁。</p>
+<p>应用程序可以定义开窗机制， 触发器， 迟到生存期， 窗口聚合函数和清除器。</p>
+<p>窗口分两大类， 即Keyed Window和 Non-Keyed Window。</p>
+<h2 id="窗口分类"><a href="#窗口分类" class="headerlink" title="窗口分类"></a>窗口分类</h2><h3 id="滚动窗口"><a href="#滚动窗口" class="headerlink" title="滚动窗口"></a>滚动窗口</h3><p>滚动窗口的时间长度是固定的， 且不同时间区间的窗口不会重叠， 可根据事件时间和处理时间定义。</p>
+<h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><p>滑动窗口按照滑动步长将时间拆分成固定长度的窗口， 当滑动步长小于窗口长度时，相邻窗口间会重叠。</p>
+<h3 id="会话窗口"><a href="#会话窗口" class="headerlink" title="会话窗口"></a>会话窗口</h3><p>根据相邻元素之间的时间间隔确定会话窗口的边界， 分为固定时间间隔和动态时间间隔。</p>
+<h3 id="全局窗口"><a href="#全局窗口" class="headerlink" title="全局窗口"></a>全局窗口</h3><p>将相同KEY的元素聚合在一起，但是这种窗口没有起点也没有终点，因此必须自定义触发器、</p>
+<h3 id="增量式计算"><a href="#增量式计算" class="headerlink" title="增量式计算"></a>增量式计算</h3><p>拆分窗口的目的是将指定时间区间内的所有元素当成一个有界数据集， 以分析这个数据集的整体特征。</p>
+<p>那么从实现上来看，等待所有元素都被收集后再进行计算是最简单的， 但是毫无疑问会在最后的时间里疯狂占用CPU。</p>
+<p>如果我们采用增量式计算的设计，即数据进入引擎立刻被处理， 这样是可以提升整体计算性能。</p>
+<p>这样的好处是让计算任务平均在每个时间点上， 不会出现某个时刻突然大量计算的问题，减轻最后的计算压力。当然也增加数据处理引擎架构设计的复杂度。</p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>触发器原型中包括4类触发机制， 基于事件驱动。</p>
+<p>（1）onElement: 每收到一个元素调用一次该方法。</p>
+<p>（2）onProcessingTime: 根据注册的处理时间定时器触发。</p>
+<p>（3）onEventTime: 根据注册的事件时间定时器触发。</p>
+<p>（4）onMerge: 两个窗口合并时触发。</p>
+<p>另外还提供了资源清除接口clear().</p>
+<h2 id="清除器"><a href="#清除器" class="headerlink" title="清除器"></a>清除器</h2><p>在触发器触发后， 窗口函数执行前或执行后清除窗口内元素，有以下两个方法：</p>
+<ol>
+<li>触发器被触发后， 窗口函数执行前， 清除窗口内元素</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">evictBefore</span><span class="params">(Iterable&lt;TimestampdValue&lt;T&gt;&gt; elements, <span class="keyword">int</span> size,  W window, EvictorContext evictorContext)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>触发器被触发后，窗口函数执行后，清除窗口内元素</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">evictAfter</span><span class="params">(Iterable&lt;TimestampdValue&lt;T&gt;&gt; elements, <span class="keyword">int</span> size,  W window, EvictorContext evictorContext)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>提供了三种内置清除器： CountEvictor, DeltaEvictor, TimeEvictor</p>
+<h2 id="迟到生存期"><a href="#迟到生存期" class="headerlink" title="迟到生存期"></a>迟到生存期</h2><p>Flink默认的迟到生存期为0， 即事件时间窗口在水印到来后结束， 无需考虑事件迟到的情况。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> input: <span class="type">DataStream</span>[<span class="type">T</span>] = ...</span><br><span class="line"></span><br><span class="line">input</span><br><span class="line">    .keyBy(...)</span><br><span class="line">    .window(...)</span><br><span class="line">    .allowedLateness(<span class="type">Time</span>.seconds(<span class="number">10</span>))</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -793,161 +977,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/23/algorithm/LeetCode-145-二叉树的后序遍历/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="李学民">
-      <meta itemprop="description" content="个人博客,温故知新">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="设计与思考">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/23/algorithm/LeetCode-145-二叉树的后序遍历/" class="post-title-link" itemprop="url">LeetCode 145. 二叉树的后序遍历</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-23 22:06:49" itemprop="dateCreated datePublished" datetime="2020-07-23T22:06:49+08:00">2020-07-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/" target="_blank" rel="noopener">LeetCode 145. 二叉树的后序遍历</a></p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>后序遍历是按照<code>左-右-根</code>的顺序.</p>
-<p>按照<code>根-左-右</code>的顺序将节点入栈, 出栈顺序则是后序遍历的值.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/23/algorithm/LeetCode-145-二叉树的后序遍历/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/23/algorithm/LeetCode-94-二叉树的中序遍历/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="李学民">
-      <meta itemprop="description" content="个人博客,温故知新">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="设计与思考">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/23/algorithm/LeetCode-94-二叉树的中序遍历/" class="post-title-link" itemprop="url">LeetCode 94. 二叉树的中序遍历</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-23 22:06:29" itemprop="dateCreated datePublished" datetime="2020-07-23T22:06:29+08:00">2020-07-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="noopener">LeetCode 94. 二叉树的中序遍历</a></p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>中序遍历是按照<code>左-根-右</code>的顺序.</p>
-<ol>
-<li>首先要找到左-左-左….的那个节点</li>
-<li>打印后, 再判断它有没有右孩子, 若存在则继续迭代, 若无则打印当前节点</li>
-<li>打印完毕再从栈中取出之前存入的节点
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/23/algorithm/LeetCode-94-二叉树的中序遍历/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </li></ol></div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1017,7 +1046,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1028,7 +1057,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

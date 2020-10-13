@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7lszqn0xj30jg04i74i.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7ls5f2oej30hl0dswfz.jpg">
-<meta property="og:updated_time" content="2020-10-02T15:04:11.355Z">
+<meta property="og:updated_time" content="2020-10-12T13:40:38.008Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink-2. 流计算API基础">
 <meta name="twitter:description" content="Flink运行模型以上为 Flink 的运行模型，Flink 的程序主要由三部分构成，分别为 Source、 Transformation、Sink。DataSource 主要负责数据的读取，Transformation 主要负责对 属于的转换操作，Sink 负责最终数据的输出。 每个 Flink 程序都包含以下的若干流程:  获得一个执行环境;(Execution Environment) 加载">
@@ -253,20 +253,30 @@
 <li>内置可以输出到txt, csv, socket, 直接打印等</li>
 <li>addSink - 扩展sink方法, 通过connectors消费到外部系统</li>
 </ul>
-<h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a>Transformations</h2><p>转换算子.</p>
+<h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a>Transformations</h2><p>DataStream API的转换分为四类：</p>
+<ol>
+<li><p>作用于单个事件的基本转换</p>
+</li>
+<li><p>针对相同键值事件的KeyedStream转换</p>
+</li>
+<li><p>将多条数据流合并为一条，或将一条数据流拆分为多条流的转换</p>
+</li>
+<li><p>对流中的事件进行重新组织的分发转换</p>
+</li>
+</ol>
 <p>Basic Transformations</p>
 <ul>
-<li>Map, 一对一转换</li>
+<li>Map<br>  对整个DataStream做一一对应的映射, 即每一个元素产生一个输出元素。</li>
 <li>Filter, 过滤</li>
-<li>FlatMap, 一对零/一/多转换</li>
+<li>FlatMap<br>  对整个DataStream做一对多的映射， 即每一个元素可以产生多个（可以是一个）输出元素。</li>
 </ul>
 <p>KeyedStream Transformations</p>
 <ul>
-<li>KeyBy, 基于key对流(内部使用hash函数)进行分区</li>
-<li>Aggregations, 聚合操作,如min, max, sum等</li>
-<li>Reduce, 返回单个结果值</li>
+<li>KeyBy<br>  对输入DataStream分区， 即相同key的元素分到同一分区。基于key对流(内部使用hash函数)进行分区。</li>
+<li>Aggregations<br>  聚合操作,如min, max, sum等。</li>
+<li>Reduce<br>  根据多个元素生成一个元素。返回单个结果值。</li>
 </ul>
-<p>Multistream Transformation</p>
+<p>Multistream Transformation，多流转换</p>
 <ul>
 <li>Union, 组合流</li>
 <li>Connect, coMap, coFlatMap</li>
@@ -274,12 +284,13 @@
 </ul>
 <p>Distribution Transformation</p>
 <ul>
-<li>Random</li>
-<li>Round-Robin</li>
-<li>Rescale</li>
-<li>Broadcast</li>
-<li>Global</li>
-<li>Custom</li>
+<li>Random<br>  均匀分布分区</li>
+<li>Round-Robin<br>  轮询分区</li>
+<li>Rescale<br>  可伸缩分区</li>
+<li>Broadcast<br>  广播分区</li>
+<li>Rebanlance<br>  负载均衡分区</li>
+<li>Global<br>  global()方法将输入流中的所有事件发往下游算子的第一个并行任务。</li>
+<li>Custom<br>  用户程序自定义分区</li>
 </ul>
 
     </div>
@@ -303,8 +314,8 @@
       <i class="fa fa-chevron-left"></i> Flink 1. 基本架构
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/10/12/distribute/读DDIA-4-数据编码与演化/" rel="next" title="读DDIA 4.数据编码与演化">
-      读DDIA 4.数据编码与演化 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/12/flink/Flink-3-窗口/" rel="next" title="Flink-2. 流计算API窗口">
+      Flink-2. 流计算API窗口 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -383,7 +394,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -394,7 +405,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
