@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="数据采集- 行为事件采集1. 用户行为数据模型 -  Event Model使用事件模型Event Model来描述用户在产品上的各种行为. 1.1  事件模型主要包括:两个核心实体  User(用户) Event(事件)  配合Item(物品)来做各种维度分析. 1.2 复杂的数据纬度, 统一的数据格式 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的">
+  <meta name="description" content="数据采集之行为事件采集1. 用户行为数据模型 -  Event Model使用事件模型Event Model来描述用户在产品上的各种行为. 1.1  事件模型主要包括:两个核心实体  User(用户) Event(事件)  配合Item(物品)来做各种维度分析. 1.2 复杂的数据纬度, 统一的数据格式 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的分">
 <meta name="keywords" content="数据仓库,数据采集">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数仓之聊聊数据采集">
 <meta property="og:url" content="http://yoursite.com/2020/10/13/bigdata/数仓之聊聊数据采集/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="数据采集- 行为事件采集1. 用户行为数据模型 -  Event Model使用事件模型Event Model来描述用户在产品上的各种行为. 1.1  事件模型主要包括:两个核心实体  User(用户) Event(事件)  配合Item(物品)来做各种维度分析. 1.2 复杂的数据纬度, 统一的数据格式 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的">
+<meta property="og:description" content="数据采集之行为事件采集1. 用户行为数据模型 -  Event Model使用事件模型Event Model来描述用户在产品上的各种行为. 1.1  事件模型主要包括:两个核心实体  User(用户) Event(事件)  配合Item(物品)来做各种维度分析. 1.2 复杂的数据纬度, 统一的数据格式 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的分">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-13T14:17:39.617Z">
+<meta property="og:updated_time" content="2020-10-13T14:20:32.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数仓之聊聊数据采集">
-<meta name="twitter:description" content="数据采集- 行为事件采集1. 用户行为数据模型 -  Event Model使用事件模型Event Model来描述用户在产品上的各种行为. 1.1  事件模型主要包括:两个核心实体  User(用户) Event(事件)  配合Item(物品)来做各种维度分析. 1.2 复杂的数据纬度, 统一的数据格式 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的">
+<meta name="twitter:description" content="数据采集之行为事件采集1. 用户行为数据模型 -  Event Model使用事件模型Event Model来描述用户在产品上的各种行为. 1.1  事件模型主要包括:两个核心实体  User(用户) Event(事件)  配合Item(物品)来做各种维度分析. 1.2 复杂的数据纬度, 统一的数据格式 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的分">
 
 <link rel="canonical" href="http://yoursite.com/2020/10/13/bigdata/数仓之聊聊数据采集/">
 
@@ -208,7 +208,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="数据采集-行为事件采集"><a href="#数据采集-行为事件采集" class="headerlink" title="数据采集- 行为事件采集"></a>数据采集- 行为事件采集</h1><h2 id="1-用户行为数据模型-Event-Model"><a href="#1-用户行为数据模型-Event-Model" class="headerlink" title="1. 用户行为数据模型 -  Event Model"></a>1. 用户行为数据模型 -  Event Model</h2><p>使用事件模型Event Model来描述用户在产品上的各种行为.</p>
+        <h1 id="数据采集之行为事件采集"><a href="#数据采集之行为事件采集" class="headerlink" title="数据采集之行为事件采集"></a>数据采集之行为事件采集</h1><h2 id="1-用户行为数据模型-Event-Model"><a href="#1-用户行为数据模型-Event-Model" class="headerlink" title="1. 用户行为数据模型 -  Event Model"></a>1. 用户行为数据模型 -  Event Model</h2><p>使用事件模型Event Model来描述用户在产品上的各种行为.</p>
 <h3 id="1-1-事件模型主要包括"><a href="#1-1-事件模型主要包括" class="headerlink" title="1.1  事件模型主要包括:"></a>1.1  事件模型主要包括:</h3><p>两个核心实体</p>
 <ul>
 <li>User(用户)</li>
@@ -216,6 +216,7 @@
 </ul>
 <p>配合Item(物品)来做各种维度分析.</p>
 <h3 id="1-2-复杂的数据纬度-统一的数据格式"><a href="#1-2-复杂的数据纬度-统一的数据格式" class="headerlink" title="1.2 复杂的数据纬度, 统一的数据格式"></a>1.2 复杂的数据纬度, 统一的数据格式</h3><p> 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的分析, 都需要复杂的数据纬度来支撑. </p>
+<a id="more"></a>
 <h3 id="1-3-Event五要素"><a href="#1-3-Event五要素" class="headerlink" title="1.3 Event五要素"></a>1.3 Event五要素</h3><ul>
 <li>Who:  登录用户ID, 匿名ID(cookie_id, 设备id)</li>
 <li>When: 事件发生实际时间, 要考虑到本地时间不一定准确的问题, 可以初始化时从服务器获取, 而服务器要做NTP服务</li>
@@ -239,6 +240,32 @@
 <p>对数据的完整性、一致性、即时性要求很高, 后端发(controller层在处理业务请求时同时发送)</p>
 <p>eg: </p>
 <p>客户端通常会多条数据打包压缩, 等满足一定条件再发, 如果网络状况不好, 或者应用关闭or进入后台, 可能造成上传不及时</p>
+<h1 id="数据采集-数据同步方式"><a href="#数据采集-数据同步方式" class="headerlink" title="数据采集 - 数据同步方式"></a>数据采集 - 数据同步方式</h1><h2 id="1-接口级"><a href="#1-接口级" class="headerlink" title="1. 接口级"></a>1. 接口级</h2><p>推: 应用主动发送数据到大数据平台.</p>
+<p>拉: 大数据平台定时从应用拉取数据.</p>
+<p>优点:</p>
+<p> 实现简单</p>
+<p>缺点: </p>
+<p>耦合严重, 需要记录对方的访问信息和接口地址</p>
+<p>可能要重复发送, 比如智课要把同样的数据发送两次</p>
+<h2 id="2-消息队列"><a href="#2-消息队列" class="headerlink" title="2. 消息队列"></a>2. 消息队列</h2><p>订阅: 应用将数据发布到消息队列, 大数据订阅主题并消费</p>
+<p>优点: </p>
+<p>解耦, 应用不关心谁消费了这条消息</p>
+<p>多个消费者可以同时消费</p>
+<p>缺点:</p>
+<p>复杂度, 可用性问题</p>
+<h2 id="3-数仓收集"><a href="#3-数仓收集" class="headerlink" title="3. 数仓收集"></a>3. 数仓收集</h2><p>离线数据同步 sqoop, datax</p>
+<p>增量数据同步 <strong>canal, streamsets</strong></p>
+<ul>
+<li>canal 模拟 MySQL slave 的交互协议，伪装自己为 MySQL slave ，向 MySQL master 发送 dump 协议</li>
+<li>MySQL master 收到 dump 请求，开始推送 binary log 给 slave (即 canal )</li>
+<li>canal 解析 binary log 对象(原始为 byte 流)</li>
+</ul>
+<p>MySQL增量数据 - 字段映射并同步 - HBase/ES/RDB(mysql, postgresql, oracle, sqlserver…)</p>
+<p>优点: </p>
+<p>不影响开发过程, 只需要定义好字段</p>
+<p>缺点:</p>
+<p>复杂度</p>
+<p>无法在迁移过程中做复杂的转换</p>
 
     </div>
 
@@ -325,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据采集-行为事件采集"><span class="nav-number">1.</span> <span class="nav-text">数据采集- 行为事件采集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-用户行为数据模型-Event-Model"><span class="nav-number">1.1.</span> <span class="nav-text">1. 用户行为数据模型 -  Event Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-事件模型主要包括"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1  事件模型主要包括:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-复杂的数据纬度-统一的数据格式"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 复杂的数据纬度, 统一的数据格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Event五要素"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 Event五要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-前端-客户端埋点-vs-后端"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 前端/客户端埋点 vs 后端</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据采集之行为事件采集"><span class="nav-number">1.</span> <span class="nav-text">数据采集之行为事件采集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-用户行为数据模型-Event-Model"><span class="nav-number">1.1.</span> <span class="nav-text">1. 用户行为数据模型 -  Event Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-事件模型主要包括"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1  事件模型主要包括:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-复杂的数据纬度-统一的数据格式"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 复杂的数据纬度, 统一的数据格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Event五要素"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 Event五要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-前端-客户端埋点-vs-后端"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 前端/客户端埋点 vs 后端</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据采集-数据同步方式"><span class="nav-number">2.</span> <span class="nav-text">数据采集 - 数据同步方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-接口级"><span class="nav-number">2.1.</span> <span class="nav-text">1. 接口级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-消息队列"><span class="nav-number">2.2.</span> <span class="nav-text">2. 消息队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-数仓收集"><span class="nav-number">2.3.</span> <span class="nav-text">3. 数仓收集</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
