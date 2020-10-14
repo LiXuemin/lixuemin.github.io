@@ -175,7 +175,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/10/13/bigdata/数仓之聊聊数据采集/" class="post-title-link" itemprop="url">数仓之聊聊数据采集</a>
+            <a href="/2020/10/13/bigdata/数仓之聊聊数据采集/" class="post-title-link" itemprop="url">数仓1. 聊聊数据采集</a>
         </h2>
 
         <div class="post-meta">
@@ -199,14 +199,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="数据采集之行为事件采集"><a href="#数据采集之行为事件采集" class="headerlink" title="数据采集之行为事件采集"></a>数据采集之行为事件采集</h1><h2 id="1-用户行为数据模型-Event-Model"><a href="#1-用户行为数据模型-Event-Model" class="headerlink" title="1. 用户行为数据模型 -  Event Model"></a>1. 用户行为数据模型 -  Event Model</h2><p>使用事件模型Event Model来描述用户在产品上的各种行为.</p>
-<h3 id="1-1-事件模型主要包括"><a href="#1-1-事件模型主要包括" class="headerlink" title="1.1  事件模型主要包括:"></a>1.1  事件模型主要包括:</h3><p>两个核心实体</p>
+          <h2 id="数据仓库"><a href="#数据仓库" class="headerlink" title="数据仓库"></a>数据仓库</h2><p>数据仓库的数据来源往往有两类:</p>
 <ul>
-<li>User(用户)</li>
-<li>Event(事件)</li>
+<li>业务数据, 处理事务过程中产生的数据, 通常存储在关系型数据库中,如 MySQL, Oracle等.</li>
+<li>行为数据, 用户与客户端产品交互过程中产生的数据, 通常存储在日志文件中.<br>那么业务数据应该如何采集到数据仓库呢?</li>
 </ul>
-<p>配合Item(物品)来做各种维度分析.</p>
-<h3 id="1-2-复杂的数据纬度-统一的数据格式"><a href="#1-2-复杂的数据纬度-统一的数据格式" class="headerlink" title="1.2 复杂的数据纬度, 统一的数据格式"></a>1.2 复杂的数据纬度, 统一的数据格式</h3><p> 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的分析, 都需要复杂的数据纬度来支撑. </p>
+<h2 id="1-数据采集-业务数据同步方式"><a href="#1-数据采集-业务数据同步方式" class="headerlink" title="1. 数据采集 - 业务数据同步方式"></a>1. 数据采集 - 业务数据同步方式</h2><h3 id="接口-最古老的方式"><a href="#接口-最古老的方式" class="headerlink" title="接口 - 最古老的方式"></a>接口 - 最古老的方式</h3><p>推: 应用主动发送数据到大数据平台.</p>
+<p>拉: 大数据平台定时从应用拉取数据.</p>
+<p>优点:<br>    实现简单</p>
+<p>缺点:<br>    耦合非常严重, 需要记录对方的访问信息和接口地址<br>    增加业务开发人员额外工作</p>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>订阅: 应用将数据发布到消息队列, 大数据订阅主题并消费</p>
+<p>优点:<br>    业务与大数据解耦,  业务应用不关心谁消费了这条消息<br>    多个消费者可以同时消费</p>
+<p>缺点:<br>    仍旧增加开发人员额外工作<br>    MQ带来的复杂度, 可用性问题</p>
+<h3 id="数据库级别同步"><a href="#数据库级别同步" class="headerlink" title="数据库级别同步"></a>数据库级别同步</h3><p>离线数据同步, 适用T+1的场景 sqoop, datax</p>
+<p>增量数据同步, <strong>canal</strong>, streamsets</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/10/13/bigdata/数仓之聊聊数据采集/#more" rel="contents">

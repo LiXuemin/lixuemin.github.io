@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="数据采集之行为事件采集1. 用户行为数据模型 -  Event Model使用事件模型Event Model来描述用户在产品上的各种行为. 1.1  事件模型主要包括:两个核心实体  User(用户) Event(事件)  配合Item(物品)来做各种维度分析. 1.2 复杂的数据纬度, 统一的数据格式 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的分">
+  <meta name="description" content="数据仓库数据仓库的数据来源往往有两类:  业务数据, 处理事务过程中产生的数据, 通常存储在关系型数据库中,如 MySQL, Oracle等. 行为数据, 用户与客户端产品交互过程中产生的数据, 通常存储在日志文件中.那么业务数据应该如何采集到数据仓库呢?  1. 数据采集 - 业务数据同步方式接口 - 最古老的方式推: 应用主动发送数据到大数据平台. 拉: 大数据平台定时从应用拉取数据. 优点:">
 <meta name="keywords" content="数据仓库,数据采集">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数仓之聊聊数据采集">
+<meta property="og:title" content="数仓1. 聊聊数据采集">
 <meta property="og:url" content="http://yoursite.com/2020/10/13/bigdata/数仓之聊聊数据采集/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="数据采集之行为事件采集1. 用户行为数据模型 -  Event Model使用事件模型Event Model来描述用户在产品上的各种行为. 1.1  事件模型主要包括:两个核心实体  User(用户) Event(事件)  配合Item(物品)来做各种维度分析. 1.2 复杂的数据纬度, 统一的数据格式 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的分">
+<meta property="og:description" content="数据仓库数据仓库的数据来源往往有两类:  业务数据, 处理事务过程中产生的数据, 通常存储在关系型数据库中,如 MySQL, Oracle等. 行为数据, 用户与客户端产品交互过程中产生的数据, 通常存储在日志文件中.那么业务数据应该如何采集到数据仓库呢?  1. 数据采集 - 业务数据同步方式接口 - 最古老的方式推: 应用主动发送数据到大数据平台. 拉: 大数据平台定时从应用拉取数据. 优点:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-13T14:20:32.562Z">
+<meta property="og:updated_time" content="2020-10-14T13:35:55.406Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数仓之聊聊数据采集">
-<meta name="twitter:description" content="数据采集之行为事件采集1. 用户行为数据模型 -  Event Model使用事件模型Event Model来描述用户在产品上的各种行为. 1.1  事件模型主要包括:两个核心实体  User(用户) Event(事件)  配合Item(物品)来做各种维度分析. 1.2 复杂的数据纬度, 统一的数据格式 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的分">
+<meta name="twitter:title" content="数仓1. 聊聊数据采集">
+<meta name="twitter:description" content="数据仓库数据仓库的数据来源往往有两类:  业务数据, 处理事务过程中产生的数据, 通常存储在关系型数据库中,如 MySQL, Oracle等. 行为数据, 用户与客户端产品交互过程中产生的数据, 通常存储在日志文件中.那么业务数据应该如何采集到数据仓库呢?  1. 数据采集 - 业务数据同步方式接口 - 最古老的方式推: 应用主动发送数据到大数据平台. 拉: 大数据平台定时从应用拉取数据. 优点:">
 
 <link rel="canonical" href="http://yoursite.com/2020/10/13/bigdata/数仓之聊聊数据采集/">
 
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>数仓之聊聊数据采集 | 设计与思考</title>
+  <title>数仓1. 聊聊数据采集 | 设计与思考</title>
   
 
 
@@ -177,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          数仓之聊聊数据采集
+          数仓1. 聊聊数据采集
         </h1>
 
         <div class="post-meta">
@@ -208,64 +208,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="数据采集之行为事件采集"><a href="#数据采集之行为事件采集" class="headerlink" title="数据采集之行为事件采集"></a>数据采集之行为事件采集</h1><h2 id="1-用户行为数据模型-Event-Model"><a href="#1-用户行为数据模型-Event-Model" class="headerlink" title="1. 用户行为数据模型 -  Event Model"></a>1. 用户行为数据模型 -  Event Model</h2><p>使用事件模型Event Model来描述用户在产品上的各种行为.</p>
-<h3 id="1-1-事件模型主要包括"><a href="#1-1-事件模型主要包括" class="headerlink" title="1.1  事件模型主要包括:"></a>1.1  事件模型主要包括:</h3><p>两个核心实体</p>
+        <h2 id="数据仓库"><a href="#数据仓库" class="headerlink" title="数据仓库"></a>数据仓库</h2><p>数据仓库的数据来源往往有两类:</p>
 <ul>
-<li>User(用户)</li>
-<li>Event(事件)</li>
+<li>业务数据, 处理事务过程中产生的数据, 通常存储在关系型数据库中,如 MySQL, Oracle等.</li>
+<li>行为数据, 用户与客户端产品交互过程中产生的数据, 通常存储在日志文件中.<br>那么业务数据应该如何采集到数据仓库呢?</li>
 </ul>
-<p>配合Item(物品)来做各种维度分析.</p>
-<h3 id="1-2-复杂的数据纬度-统一的数据格式"><a href="#1-2-复杂的数据纬度-统一的数据格式" class="headerlink" title="1.2 复杂的数据纬度, 统一的数据格式"></a>1.2 复杂的数据纬度, 统一的数据格式</h3><p> 每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的分析, 都需要复杂的数据纬度来支撑. </p>
+<h2 id="1-数据采集-业务数据同步方式"><a href="#1-数据采集-业务数据同步方式" class="headerlink" title="1. 数据采集 - 业务数据同步方式"></a>1. 数据采集 - 业务数据同步方式</h2><h3 id="接口-最古老的方式"><a href="#接口-最古老的方式" class="headerlink" title="接口 - 最古老的方式"></a>接口 - 最古老的方式</h3><p>推: 应用主动发送数据到大数据平台.</p>
+<p>拉: 大数据平台定时从应用拉取数据.</p>
+<p>优点:<br>    实现简单</p>
+<p>缺点:<br>    耦合非常严重, 需要记录对方的访问信息和接口地址<br>    增加业务开发人员额外工作</p>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>订阅: 应用将数据发布到消息队列, 大数据订阅主题并消费</p>
+<p>优点:<br>    业务与大数据解耦,  业务应用不关心谁消费了这条消息<br>    多个消费者可以同时消费</p>
+<p>缺点:<br>    仍旧增加开发人员额外工作<br>    MQ带来的复杂度, 可用性问题</p>
+<h3 id="数据库级别同步"><a href="#数据库级别同步" class="headerlink" title="数据库级别同步"></a>数据库级别同步</h3><p>离线数据同步, 适用T+1的场景 sqoop, datax</p>
+<p>增量数据同步, <strong>canal</strong>, streamsets</p>
 <a id="more"></a>
-<h3 id="1-3-Event五要素"><a href="#1-3-Event五要素" class="headerlink" title="1.3 Event五要素"></a>1.3 Event五要素</h3><ul>
+<blockquote>
+<p>-canal 模拟 MySQL slave 的交互协议，伪装自己为 MySQL slave ，向 MySQL master 发送 dump 协议<br>-MySQL master 收到 dump 请求，开始推送 binary log 给 slave (即 canal )<br>-canal 解析 binary log 对象(原始为 byte 流)<br>实现MySQL增量数据 - 字段映射并同步 - HBase/ES/RDB(mysql, postgresql, oracle, sqlserver…)</p>
+</blockquote>
+<p>优点:<br>    不影响业务开发, 只需要双方提前对数据格式达成共识</p>
+<p>缺点:<br>    复杂度<br>    无法在迁移过程中做复杂的转换</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>毫无疑问, 目前所有的数仓(的业务数据)都是基于数据库级别的同步来作为数据输入的.</p>
+<p>那么我们再来看一下行为数据的采集:</p>
+<h2 id="2-数据采集-行为数据同步"><a href="#2-数据采集-行为数据同步" class="headerlink" title="2. 数据采集 - 行为数据同步"></a>2. 数据采集 - 行为数据同步</h2><p>在讨论行为数据的同步方式之前, 先来考虑两个问题:</p>
+<ol>
+<li><p>业务数据的数据结构是有固定的模式的, 然而行为数据(停留,点击, 跳转, 提交, 轨迹等)复杂多样, <strong>怎样针对不同的行为制定相同的数据模式?</strong></p>
+</li>
+<li><p>行为数据由前端发送, 还是后端发送? </p>
+</li>
+</ol>
+<p>带着这俩问题, 先来看下事件模型.</p>
+<h3 id="2-1-用户行为数据模型-Event-Model"><a href="#2-1-用户行为数据模型-Event-Model" class="headerlink" title="2.1. 用户行为数据模型 -  Event Model"></a>2.1. 用户行为数据模型 -  Event Model</h3><p>通常都会使用事件模型Event Model来描述用户在产品上的各种行为.</p>
+<h4 id="Event五要素"><a href="#Event五要素" class="headerlink" title="Event五要素"></a>Event五要素</h4><ul>
 <li>Who:  登录用户ID, 匿名ID(cookie_id, 设备id)</li>
 <li>When: 事件发生实际时间, 要考虑到本地时间不一定准确的问题, 可以初始化时从服务器获取, 而服务器要做NTP服务</li>
 <li>Where: ip, GPS</li>
 <li>How: 从事这个事件的方式. 包括设备,浏览器,APP版本,OS版本,渠道,referer,屏幕宽高,是否wifi</li>
 <li>What: 用户所做事件的具体内容</li>
 </ul>
-<p>eg: </p>
-<ul>
-<li>对于一个“购买”类型的事件，则可能需要记录的字段有：商品名称、商品类型、购买数量、购买金额、 付款方式等；</li>
-<li>对于一个“搜索”类型的事件，则可能需要记录的字段有：搜索关键词、搜索类型等；</li>
-<li>对于一个“点击”类型的事件，则可能需要记录的字段有：点击 URL、点击 title、点击位置等；</li>
-<li>对于一个“用户注册”类型的事件，则可能需要记录的字段有：注册渠道、注册邀请码等；</li>
-<li>对于一个“用户投诉”类型的事件，则可能需要记录的字段有：投诉内容、投诉对象、投诉渠道、投诉方式等；</li>
-<li>对于一个“申请退货”类型的事件，则可能需要记录的字段有：退货金额、退货原因、退货方式等。</li>
-</ul>
-<h3 id="1-4-前端-客户端埋点-vs-后端"><a href="#1-4-前端-客户端埋点-vs-后端" class="headerlink" title="1.4 前端/客户端埋点 vs 后端"></a>1.4 前端/客户端埋点 vs 后端</h3><p>事件只在前端发生, 不往后端发送任何请求, 前端发</p>
+<h4 id="复杂的数据纬度-统一的数据格式"><a href="#复杂的数据纬度-统一的数据格式" class="headerlink" title="复杂的数据纬度, 统一的数据格式"></a>复杂的数据纬度, 统一的数据格式</h4><p>每个产品的数据指标都不同, 如PV, UV, 视频播放数, 做题数等.尤其一些细节、精细化的分析, 都需要复杂的数据纬度来支撑.<br>通过上面的Event Model, 为不同的事件, 定义相同的数据格式, 方便后续的收集处理.</p>
+<h3 id="埋点-前端-vs-后端"><a href="#埋点-前端-vs-后端" class="headerlink" title="埋点: 前端 vs 后端"></a>埋点: 前端 vs 后端</h3><p><strong>一句话:如果事件只在客户端发生,不需要往后端发送任何请求,那么在前端埋点;否则后端埋点较好.</strong></p>
+<p>考虑以下几种情况: </p>
+<p>事件只在前端发生, 不往后端发送任何请求, 前端发</p>
 <p>前端不能拿到事件所有(关键)字段,  后端发</p>
 <p>事件数据后端也需要使用, 后端发</p>
 <p>经常新增或修改指标, 后端发 (app涉及发版和用户更新问题)</p>
 <p>对数据的完整性、一致性、即时性要求很高, 后端发(controller层在处理业务请求时同时发送)</p>
-<p>eg: </p>
+<p>eg:</p>
 <p>客户端通常会多条数据打包压缩, 等满足一定条件再发, 如果网络状况不好, 或者应用关闭or进入后台, 可能造成上传不及时</p>
-<h1 id="数据采集-数据同步方式"><a href="#数据采集-数据同步方式" class="headerlink" title="数据采集 - 数据同步方式"></a>数据采集 - 数据同步方式</h1><h2 id="1-接口级"><a href="#1-接口级" class="headerlink" title="1. 接口级"></a>1. 接口级</h2><p>推: 应用主动发送数据到大数据平台.</p>
-<p>拉: 大数据平台定时从应用拉取数据.</p>
-<p>优点:</p>
-<p> 实现简单</p>
-<p>缺点: </p>
-<p>耦合严重, 需要记录对方的访问信息和接口地址</p>
-<p>可能要重复发送, 比如智课要把同样的数据发送两次</p>
-<h2 id="2-消息队列"><a href="#2-消息队列" class="headerlink" title="2. 消息队列"></a>2. 消息队列</h2><p>订阅: 应用将数据发布到消息队列, 大数据订阅主题并消费</p>
-<p>优点: </p>
-<p>解耦, 应用不关心谁消费了这条消息</p>
-<p>多个消费者可以同时消费</p>
-<p>缺点:</p>
-<p>复杂度, 可用性问题</p>
-<h2 id="3-数仓收集"><a href="#3-数仓收集" class="headerlink" title="3. 数仓收集"></a>3. 数仓收集</h2><p>离线数据同步 sqoop, datax</p>
-<p>增量数据同步 <strong>canal, streamsets</strong></p>
-<ul>
-<li>canal 模拟 MySQL slave 的交互协议，伪装自己为 MySQL slave ，向 MySQL master 发送 dump 协议</li>
-<li>MySQL master 收到 dump 请求，开始推送 binary log 给 slave (即 canal )</li>
-<li>canal 解析 binary log 对象(原始为 byte 流)</li>
-</ul>
-<p>MySQL增量数据 - 字段映射并同步 - HBase/ES/RDB(mysql, postgresql, oracle, sqlserver…)</p>
-<p>优点: </p>
-<p>不影响开发过程, 只需要定义好字段</p>
-<p>缺点:</p>
-<p>复杂度</p>
-<p>无法在迁移过程中做复杂的转换</p>
+<h3 id="行为数据同步方式"><a href="#行为数据同步方式" class="headerlink" title="行为数据同步方式"></a>行为数据同步方式</h3><p>浏览器/APP -&gt; Nginx -&gt; Flume -&gt; HDFS, Kafka</p>
 
     </div>
 
@@ -352,7 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据采集之行为事件采集"><span class="nav-number">1.</span> <span class="nav-text">数据采集之行为事件采集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-用户行为数据模型-Event-Model"><span class="nav-number">1.1.</span> <span class="nav-text">1. 用户行为数据模型 -  Event Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-事件模型主要包括"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1  事件模型主要包括:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-复杂的数据纬度-统一的数据格式"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 复杂的数据纬度, 统一的数据格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Event五要素"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 Event五要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-前端-客户端埋点-vs-后端"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 前端/客户端埋点 vs 后端</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据采集-数据同步方式"><span class="nav-number">2.</span> <span class="nav-text">数据采集 - 数据同步方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-接口级"><span class="nav-number">2.1.</span> <span class="nav-text">1. 接口级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-消息队列"><span class="nav-number">2.2.</span> <span class="nav-text">2. 消息队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-数仓收集"><span class="nav-number">2.3.</span> <span class="nav-text">3. 数仓收集</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据仓库"><span class="nav-number">1.</span> <span class="nav-text">数据仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-数据采集-业务数据同步方式"><span class="nav-number">2.</span> <span class="nav-text">1. 数据采集 - 业务数据同步方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口-最古老的方式"><span class="nav-number">2.1.</span> <span class="nav-text">接口 - 最古老的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息队列"><span class="nav-number">2.2.</span> <span class="nav-text">消息队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库级别同步"><span class="nav-number">2.3.</span> <span class="nav-text">数据库级别同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数据采集-行为数据同步"><span class="nav-number">3.</span> <span class="nav-text">2. 数据采集 - 行为数据同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-用户行为数据模型-Event-Model"><span class="nav-number">3.1.</span> <span class="nav-text">2.1. 用户行为数据模型 -  Event Model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Event五要素"><span class="nav-number">3.1.1.</span> <span class="nav-text">Event五要素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复杂的数据纬度-统一的数据格式"><span class="nav-number">3.1.2.</span> <span class="nav-text">复杂的数据纬度, 统一的数据格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#埋点-前端-vs-后端"><span class="nav-number">3.2.</span> <span class="nav-text">埋点: 前端 vs 后端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行为数据同步方式"><span class="nav-number">3.3.</span> <span class="nav-text">行为数据同步方式</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
