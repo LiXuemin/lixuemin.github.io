@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="题目假设你正在爬楼梯。需要 n 阶你才能到达楼顶。 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？ 注意：给定 n 是一个正整数。 示例 1： 12345输入： 2输出： 2解释： 有两种方法可以爬到楼顶。1.  1 阶 + 1 阶2.  2 阶">
-<meta name="keywords" content="数据结构与算法,动态规划,递归">
+  <meta name="description" content="题目LeetCode 19. Remove Nth Node From End of List 思路思路一:  单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第L-N+1个正数节点 长度L可以提前遍历一次来求值 移除第L - N + 1个节点  思路二:  利用双指针 先让两个指针相隔N - 1的位置 然后双指针同步后移 当第二个指针到了尾部, 第一个指针恰好在倒数第N个节点的前驱">
+<meta name="keywords" content="数据结构与算法,链表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="爬楼梯">
-<meta property="og:url" content="http://yoursite.com/2020/06/17/algorithm/爬楼梯/index.html">
+<meta property="og:title" content="LeetCode 19. Remove Nth Node From End of List">
+<meta property="og:url" content="http://yoursite.com/2020/07/03/algorithm/LeetCode 19. Remove Nth Node From End of List/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="题目假设你正在爬楼梯。需要 n 阶你才能到达楼顶。 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？ 注意：给定 n 是一个正整数。 示例 1： 12345输入： 2输出： 2解释： 有两种方法可以爬到楼顶。1.  1 阶 + 1 阶2.  2 阶">
+<meta property="og:description" content="题目LeetCode 19. Remove Nth Node From End of List 思路思路一:  单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第L-N+1个正数节点 长度L可以提前遍历一次来求值 移除第L - N + 1个节点  思路二:  利用双指针 先让两个指针相隔N - 1的位置 然后双指针同步后移 当第二个指针到了尾部, 第一个指针恰好在倒数第N个节点的前驱">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-21T05:26:48.862Z">
+<meta property="og:updated_time" content="2020-10-19T14:42:30.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="爬楼梯">
-<meta name="twitter:description" content="题目假设你正在爬楼梯。需要 n 阶你才能到达楼顶。 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？ 注意：给定 n 是一个正整数。 示例 1： 12345输入： 2输出： 2解释： 有两种方法可以爬到楼顶。1.  1 阶 + 1 阶2.  2 阶">
+<meta name="twitter:title" content="LeetCode 19. Remove Nth Node From End of List">
+<meta name="twitter:description" content="题目LeetCode 19. Remove Nth Node From End of List 思路思路一:  单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第L-N+1个正数节点 长度L可以提前遍历一次来求值 移除第L - N + 1个节点  思路二:  利用双指针 先让两个指针相隔N - 1的位置 然后双指针同步后移 当第二个指针到了尾部, 第一个指针恰好在倒数第N个节点的前驱">
 
-<link rel="canonical" href="http://yoursite.com/2020/06/17/algorithm/爬楼梯/">
+<link rel="canonical" href="http://yoursite.com/2020/07/03/algorithm/LeetCode 19. Remove Nth Node From End of List/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>爬楼梯 | 设计与思考</title>
+  <title>LeetCode 19. Remove Nth Node From End of List | 设计与思考</title>
   
 
 
@@ -164,7 +164,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/17/algorithm/爬楼梯/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/03/algorithm/LeetCode 19. Remove Nth Node From End of List/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          爬楼梯
+          LeetCode 19. Remove Nth Node From End of List
         </h1>
 
         <div class="post-meta">
@@ -187,7 +187,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-06-17 22:08:57" itemprop="dateCreated datePublished" datetime="2020-06-17T22:08:57+08:00">2020-06-17</time>
+              <time title="创建时间：2020-07-03 22:30:42" itemprop="dateCreated datePublished" datetime="2020-07-03T22:30:42+08:00">2020-07-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,27 +217,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
-<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
-<p>注意：给定 n 是一个正整数。</p>
-<p>示例 1：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入： 2</span><br><span class="line">输出： 2</span><br><span class="line">解释： 有两种方法可以爬到楼顶。</span><br><span class="line">1.  1 阶 + 1 阶</span><br><span class="line">2.  2 阶</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-<p>示例 2：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入： 3</span><br><span class="line">输出： 3</span><br><span class="line">解释： 有三种方法可以爬到楼顶。</span><br><span class="line">1.  1 阶 + 1 阶 + 1 阶</span><br><span class="line">2.  1 阶 + 2 阶</span><br><span class="line">3.  2 阶 + 1 阶</span><br></pre></td></tr></table></figure>
-
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
-<li>最简单的思路, 用递归的思想解决. 爬3层楼梯可以看成爬2层+1层问题的方法集合, 终止条件就是当n计算到1</li>
-<li>因为存在大量重复计算, 所以可以用HashMap或者数组存储中间结果</li>
-<li>当然也可以不用递归, 直接迭代计算</li>
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener">LeetCode 19. Remove Nth Node From End of List</a></p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>思路一:</p>
+<ol>
+<li>单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第<code>L-N+1</code>个正数节点</li>
+<li>长度L可以提前遍历一次来求值</li>
+<li>移除第<code>L - N + 1</code>个节点</li>
 </ol>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> climbStairs(n - <span class="number">1</span>) + climbStairs(n-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>思路二:</p>
+<ol>
+<li>利用双指针</li>
+<li>先让两个指针相隔<code>N - 1</code>的位置</li>
+<li>然后双指针同步后移</li>
+<li>当第二个指针到了尾部, 第一个指针恰好在倒数第N个节点的前驱位置.<a id="more"></a>
 
-<p>但是这种实现时间复杂度是O(n<sup>2</sup>), 有很多重复计算, 导致运行时间过长.<br>所以考虑缓存中间运算结果, 用HashMap或者数组都可以, 在这里用了数组来保存.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span>[] cache = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">       <span class="keyword">return</span> climbStairsWithCache(n, cache);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">climbStairsWithCache</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[] cache)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (cache[n] != <span class="number">0</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> cache[n];</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">           cache[n] = <span class="number">1</span>;</span><br><span class="line">           <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (n == <span class="number">2</span>) &#123;</span><br><span class="line">           cache[n] = <span class="number">2</span>;</span><br><span class="line">           <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">int</span> func2 = climbStairsWithCache(n - <span class="number">2</span>, cache);</span><br><span class="line">       cache[n - <span class="number">2</span>] = func2;</span><br><span class="line">       <span class="keyword">int</span> func1 = climbStairsWithCache(n - <span class="number">1</span>, cache);</span><br><span class="line">       cache[n - <span class="number">1</span>] = func1;</span><br><span class="line">       <span class="keyword">return</span> func2 + func1;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// return removeByTwoPass(head, n);</span></span><br><span class="line">        <span class="keyword">return</span> removeByTwoPointer(head, n);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//Method2: two pointer solution</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ListNode <span class="title">removeByTwoPointer</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        ListNode support = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        support.next = head;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//防止first.next.next删除节点时空指针错误</span></span><br><span class="line">        ListNode first = support;</span><br><span class="line">        ListNode second = support;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; n) &#123;</span><br><span class="line">            second = second.next;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (second != <span class="keyword">null</span> &amp;&amp; second.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            second = second.next;</span><br><span class="line">            first = first.next;</span><br><span class="line">        &#125;</span><br><span class="line">        first.next = first.next.next;</span><br><span class="line">        <span class="keyword">return</span> support.next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//Method1: get length, and remove (length -n + 1)th node</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ListNode <span class="title">removeByTwoPass</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        ListNode support = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        support.next = head;</span><br><span class="line">        <span class="keyword">int</span> length = <span class="number">1</span>;</span><br><span class="line">        ListNode iter = head;</span><br><span class="line">        <span class="keyword">while</span>(iter.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            iter = iter.next;</span><br><span class="line">            length++;</span><br><span class="line">        &#125;</span><br><span class="line">        length -= n;</span><br><span class="line">        <span class="comment">//在头节点前加了一个哨兵节点</span></span><br><span class="line">        iter = support;</span><br><span class="line">        <span class="keyword">while</span>(length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            length--;</span><br><span class="line">            iter = iter.next;</span><br><span class="line">        &#125;</span><br><span class="line">        iter.next = iter.next.next;</span><br><span class="line">        <span class="keyword">return</span> support.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> p = <span class="number">0</span>, q = <span class="number">0</span>, r = <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">           p = q;</span><br><span class="line">           q = r;</span><br><span class="line">           r = p + q;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> r;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -247,8 +245,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/数据结构与算法/" rel="tag"># 数据结构与算法</a>
-              <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
-              <a href="/tags/递归/" rel="tag"># 递归</a>
+              <a href="/tags/链表/" rel="tag"># 链表</a>
           </div>
 
         
@@ -257,12 +254,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/17/designpattern/设计模式0-开篇/" rel="prev" title="设计模式0-开篇">
-      <i class="fa fa-chevron-left"></i> 设计模式0-开篇
+    <a href="/2020/07/02/algorithm/LeetCode 6. Z字形变换/" rel="prev" title="LeetCode 6. Z字形变换">
+      <i class="fa fa-chevron-left"></i> LeetCode 6. Z字形变换
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/06/18/algorithm/LeetCode 206. Reverse Linked List/" rel="next" title="LeetCode 206. Reverse Linked List">
-      LeetCode 206. Reverse Linked List <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/04/algorithm/LeetCode 21. Merge Two Sorted Lists/" rel="next" title="LeetCode 21. Merge Two Sorted Lists">
+      LeetCode 21. Merge Two Sorted Lists <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -327,7 +324,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

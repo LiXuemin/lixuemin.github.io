@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/06/18/algorithm/LeetCode%20206.%20Reverse%20Linked%20List/</loc>
+    
+    <lastmod>2020-10-19T14:42:44.347Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/03/algorithm/LeetCode%2019.%20Remove%20Nth%20Node%20From%20End%20of%20List/</loc>
+    
+    <lastmod>2020-10-19T14:42:30.432Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/06/23/algorithm/LeetCode%20876.%20Middle%20of%20the%20Linked%20List/</loc>
     
     <lastmod>2020-10-19T14:41:49.332Z</lastmod>
@@ -205,28 +219,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/06/18/algorithm/LeetCode%E7%BB%83%E4%B9%A0-Reverse%20Linked%20List/</loc>
-    
-    <lastmod>2020-09-20T13:43:37.419Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/03/algorithm/LeetCode%E7%BB%83%E4%B9%A0-Remove-Nth-Node-From-End-of-List/</loc>
-    
-    <lastmod>2020-09-20T13:42:15.400Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/about/index.html</loc>
+    <loc>http://yoursite.com/categories/index.html</loc>
     
     <lastmod>2020-09-10T14:06:17.345Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/categories/index.html</loc>
+    <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2020-09-10T14:06:17.345Z</lastmod>
     
