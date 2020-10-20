@@ -14,7 +14,7 @@ tags:
 我的理解是这样的:
 
 ## 数据仓库分层
-
+![](https://tva1.sinaimg.cn/large/007S8ZIlly1gjw482colsj30mj0bf75s.jpg)
 整体来讲, 可以分为数据输入, 数据分析, 数据输出三层.
 
 ODS, 备份一份原始数据
