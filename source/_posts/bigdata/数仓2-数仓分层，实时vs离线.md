@@ -15,7 +15,7 @@ tags:
 
 ## 数据仓库分层
 ![](https://tva1.sinaimg.cn/large/007S8ZIlly1gjw482colsj30mj0bf75s.jpg)
-整体来讲, 可以分为数据输入, 数据分析, 数据输出三层.
+整体来讲, 可以分为数据输入, 数据分析, 数据输出
 
 ODS, 备份一份原始数据
 
@@ -32,6 +32,7 @@ ADS, 指标
 ### Lambda, Kappa
 
 ## 数仓技术选型
+
 
 ### 输入层
 
