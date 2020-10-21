@@ -4,6 +4,7 @@ date: 2020-09-12 22:21:49
 categories: 流计算
 tags: 
 - Flink
+- 窗口函数
 ---
 
 ## Window
