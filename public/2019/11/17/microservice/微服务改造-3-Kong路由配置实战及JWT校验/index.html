@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.8.0">
+<meta name="generator" content="Hexo 3.9.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -30,7 +30,7 @@
 <meta property="og:site_name" content="设计与思考">
 <meta property="og:description" content="[toc] 一、 背景(一)网关用处  Open API: 将自身数据、能力作为开放平台对外开放. 这必然涉及到客户应用的接入、API权限的管理、调用次数管理等, 必然会有一个统一的入口进行管理 微服务网关: 负载均衡,缓存,路由,访问控制,服务代理,监控,日志等 API服务管理平台: 由于不同系统间存在大量的API服务互相调用, 因此需要对系统间服务调用进行管理, 清晰的看到个系统调用关系, 对">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-10T14:06:17.340Z">
+<meta property="og:updated_time" content="2020-10-26T05:19:49.849Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务改造-3 Kong路由配置实战及JWT校验">
 <meta name="twitter:description" content="[toc] 一、 背景(一)网关用处  Open API: 将自身数据、能力作为开放平台对外开放. 这必然涉及到客户应用的接入、API权限的管理、调用次数管理等, 必然会有一个统一的入口进行管理 微服务网关: 负载均衡,缓存,路由,访问控制,服务代理,监控,日志等 API服务管理平台: 由于不同系统间存在大量的API服务互相调用, 因此需要对系统间服务调用进行管理, 清晰的看到个系统调用关系, 对">
@@ -247,7 +247,7 @@
 
 <p><u>结论: <strong>完全无法满足需求, 因为strip_path属性会将匹配的paths全部删除, 导致路由到项目的地址错误.</strong></u></p>
 <p>Eg:</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#kong配置两条Route</span></span><br><span class="line"></span><br><span class="line"><span class="attr">route1:</span> <span class="string">/weikefangtest/api/common</span>         					   <span class="comment">#-不配置JWT插件</span></span><br><span class="line"></span><br><span class="line"><span class="attr">route2:</span> <span class="string">/weikefangtest/api/v1,</span> <span class="string">/weikefangtest/api/v2</span>   <span class="comment">#-配置JWT插件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#----------------------------期望---------------------------------------------</span></span><br><span class="line"><span class="string">访问:</span>     <span class="attr">https://open.ibeiwai.com/weikefangtest/api/common/login</span></span><br><span class="line"><span class="string">期待路径:</span> <span class="string">$&#123;weikefang_domain&#125;/api/common/login</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------- 结果1: 当Route.Strip_path=true ------------------------</span></span><br><span class="line"><span class="string">实际路径:</span> <span class="string">$&#123;weikefang_domain&#125;/login</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------- 结果1: 当Route.Strip_path=false ------------------------</span></span><br><span class="line"><span class="string">实际路径:</span> <span class="string">$&#123;weikefang_domain&#125;/weikefangtest/api/common/login</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#kong配置两条Route</span></span><br><span class="line"></span><br><span class="line"><span class="attr">route1:</span> <span class="string">/weikefangtest/api/common</span>         					   <span class="comment">#-不配置JWT插件</span></span><br><span class="line"></span><br><span class="line"><span class="attr">route2:</span> <span class="string">/weikefangtest/api/v1,</span> <span class="string">/weikefangtest/api/v2</span>   <span class="comment">#-配置JWT插件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#----------------------------期望---------------------------------------------</span></span><br><span class="line"><span class="string">访问:</span>     <span class="string">https://open.ibeiwai.com/weikefangtest/api/common/login</span></span><br><span class="line"><span class="string">期待路径:</span> <span class="string">$&#123;weikefang_domain&#125;/api/common/login</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------- 结果1: 当Route.Strip_path=true ------------------------</span></span><br><span class="line"><span class="string">实际路径:</span> <span class="string">$&#123;weikefang_domain&#125;/login</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------- 结果1: 当Route.Strip_path=false ------------------------</span></span><br><span class="line"><span class="string">实际路径:</span> <span class="string">$&#123;weikefang_domain&#125;/weikefangtest/api/common/login</span></span><br></pre></td></tr></table></figure>
 
 <p>所以尝试寻找解决方案, 能够实现:</p>
 <p><strong>部分匹配路径 或者 在请求时能够切除或者替换部分路径</strong></p>
@@ -422,7 +422,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">李学民</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
         

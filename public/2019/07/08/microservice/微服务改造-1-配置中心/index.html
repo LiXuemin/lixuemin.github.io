@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.8.0">
+<meta name="generator" content="Hexo 3.9.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -30,7 +30,7 @@
 <meta property="og:site_name" content="设计与思考">
 <meta property="og:description" content="一、问题发现之前使用配置文件的形式进行管理，比如MySQL配置文件分为:  db.properties db.dev.properties db.test.properties db.prod.properties  在部署到对应环境的时候，比如到test环境，运维会执行类似mv db.test.properties db.properties的命令，将对应环境的文件覆盖到程序指定的文件db.pr">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-10T14:06:17.339Z">
+<meta property="og:updated_time" content="2020-10-26T05:19:49.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务改造实践(1)-配置中心">
 <meta name="twitter:description" content="一、问题发现之前使用配置文件的形式进行管理，比如MySQL配置文件分为:  db.properties db.dev.properties db.test.properties db.prod.properties  在部署到对应环境的时候，比如到test环境，运维会执行类似mv db.test.properties db.properties的命令，将对应环境的文件覆盖到程序指定的文件db.pr">
@@ -224,8 +224,7 @@
 <li><code>db.test.properties</code></li>
 <li><code>db.prod.properties</code></li>
 </ul>
-<p>在部署到对应环境的时候，比如到<code>test</code>环境，运维会执行类似<code>mv db.test.properties db.properties</code>的命令，将对应环境的文件覆盖到程序指定的文件<code>db.properties</code>。
-除此之外，还有很多配置文件都与运行环境相关联，<strong>在不同的环境必须设置不同的值</strong>。</p>
+<p>在部署到对应环境的时候，比如到<code>test</code>环境，运维会执行类似<code>mv db.test.properties db.properties</code>的命令，将对应环境的文件覆盖到程序指定的文件<code>db.properties</code>。<br>除此之外，还有很多配置文件都与运行环境相关联，<strong>在不同的环境必须设置不同的值</strong>。</p>
 <a id="more"></a>
 <p>随着越来越多服务上线，陆续暴露了很多问题：</p>
 <ol>
@@ -397,7 +396,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">李学民</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
         
