@@ -11,3 +11,10 @@ tags:
 ### Table Connnector
 
 #### mysql-cdc
+
+业务Mysql -> Flink CDC -> 数仓贴源层
+
+
+
+### Dataset Connector
+
