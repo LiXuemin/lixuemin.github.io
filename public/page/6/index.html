@@ -22,36 +22,31 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Flink运行模型以上为 Flink 的运行模型，Flink 的程序主要由三部分构成，分别为 Source、 Transformation、Sink。DataSource 主要负责数据的读取，Transformation 主要负责对 属于的转换操作，Sink 负责最终数据的输出。 每个 Flink 程序都包含以下的若干流程:  获得一个执行环境;(Execution Environment) 加载">
-<meta name="keywords" content="Flink">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Flink-2. 流计算API基础">
-<meta property="og:url" content="http://yoursite.com/2020/09/05/flink/Flink-2-流计算API/index.html">
+  <meta name="description" content="个人博客,温故知新">
+<meta property="og:type" content="website">
+<meta property="og:title" content="设计与思考">
+<meta property="og:url" content="http://yoursite.com/page/6/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="Flink运行模型以上为 Flink 的运行模型，Flink 的程序主要由三部分构成，分别为 Source、 Transformation、Sink。DataSource 主要负责数据的读取，Transformation 主要负责对 属于的转换操作，Sink 负责最终数据的输出。 每个 Flink 程序都包含以下的若干流程:  获得一个执行环境;(Execution Environment) 加载">
+<meta property="og:description" content="个人博客,温故知新">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7lszqn0xj30jg04i74i.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7ls5f2oej30hl0dswfz.jpg">
-<meta property="og:updated_time" content="2020-10-27T08:08:15.939Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flink-2. 流计算API基础">
-<meta name="twitter:description" content="Flink运行模型以上为 Flink 的运行模型，Flink 的程序主要由三部分构成，分别为 Source、 Transformation、Sink。DataSource 主要负责数据的读取，Transformation 主要负责对 属于的转换操作，Sink 负责最终数据的输出。 每个 Flink 程序都包含以下的若干流程:  获得一个执行环境;(Execution Environment) 加载">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7lszqn0xj30jg04i74i.jpg">
+<meta name="twitter:title" content="设计与思考">
+<meta name="twitter:description" content="个人博客,温故知新">
 
-<link rel="canonical" href="http://yoursite.com/2020/09/05/flink/Flink-2-流计算API/">
+<link rel="canonical" href="http://yoursite.com/page/6/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
-    isPost : true,
+    isHome : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Flink-2. 流计算API基础 | 设计与思考</title>
+  <title>设计与思考</title>
   
 
 
@@ -160,14 +155,13 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content index posts-expand">
             
-
-    
+      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/05/flink/Flink-2-流计算API/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/08/microservice/微服务改造-1-配置中心/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,9 +173,10 @@
       <meta itemprop="name" content="设计与思考">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Flink-2. 流计算API基础
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/08/microservice/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0-1-%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" class="post-title-link" itemprop="url">微服务改造实践(1)-配置中心</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -190,7 +185,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-05 16:15:49" itemprop="dateCreated datePublished" datetime="2020-09-05T16:15:49+08:00">2020-09-05</time>
+              <time title="创建时间：2019-07-08 21:49:43" itemprop="dateCreated datePublished" datetime="2019-07-08T21:49:43+08:00">2019-07-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -198,18 +193,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/流计算/" itemprop="url" rel="index"><span itemprop="name">流计算</span></a>
+                  <a href="/categories/微服务改造/" itemprop="url" rel="index"><span itemprop="name">微服务改造</span></a>
                 </span>
             </span>
 
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
 
         </div>
       </header>
@@ -220,120 +208,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Flink运行模型"><a href="#Flink运行模型" class="headerlink" title="Flink运行模型"></a>Flink运行模型</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7lszqn0xj30jg04i74i.jpg" alt="runtime"><br>以上为 Flink 的运行模型，Flink 的程序主要由三部分构成，分别为 Source、 Transformation、Sink。DataSource 主要负责数据的读取，Transformation 主要负责对 属于的转换操作，Sink 负责最终数据的输出。</p>
-<p>每个 Flink 程序都包含以下的若干流程:</p>
-<ol>
-<li>获得一个执行环境;(Execution Environment)</li>
-<li>加载/创建初始数据;(Source)</li>
-<li>指定转换这些数据;(Transformation)</li>
-<li>指定放置计算结果的位置;(Sink)</li>
-<li>触发程序执行</li>
-</ol>
-<p>如下图所示:</p>
-<a id="more"></a>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gj7ls5f2oej30hl0dswfz.jpg" alt="stream dataflow"></p>
-<h2 id="Enviroment"><a href="#Enviroment" class="headerlink" title="Enviroment"></a>Enviroment</h2><p><strong>执行环境 StreamExecutionEnvironment 是所有 Flink 程序的基础。</strong></p>
-<p>创建一个执行环境，表示当前执行程序的上下文。</p>
+          <h4 id="一、问题发现"><a href="#一、问题发现" class="headerlink" title="一、问题发现"></a>一、问题发现</h4><p>之前使用配置文件的形式进行管理，比如MySQL配置文件分为:</p>
 <ul>
-<li>如果程序独立调用, 如IDE中Run, 返回本地执行环境</li>
-<li>如果提交到集群, 则返回此集群的执行环境</li>
+<li><code>db.properties</code></li>
+<li><code>db.dev.properties</code></li>
+<li><code>db.test.properties</code></li>
+<li><code>db.prod.properties</code></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();</span><br></pre></td></tr></table></figure>
-
-<h2 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h2><p>数据源.</p>
-<ul>
-<li><p>内置的数据源: 基于File, Socket, Collection等.</p>
-</li>
-<li><p>addSource, 自定义数据源, 官方提供了常用的kafka, rabbitmq等, 也可以自己开发</p>
-</li>
-</ul>
-<p>eg: <code>env.addSource(new FlinkKafkaConsumer010&lt;&gt;(...))</code></p>
-<h2 id="Sink"><a href="#Sink" class="headerlink" title="Sink"></a>Sink</h2><p>Data Sinks消费DataStreams中的数据, 并且输出到file, socket, 外部系统中.</p>
-<ul>
-<li>内置可以输出到txt, csv, socket, 直接打印等</li>
-<li>addSink - 扩展sink方法, 通过connectors消费到外部系统</li>
-</ul>
-<h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a>Transformations</h2><p>DataStream API的转换分为四类：</p>
-<ol>
-<li><p>作用于单个事件的基本转换</p>
-</li>
-<li><p>针对相同键值事件的KeyedStream转换</p>
-</li>
-<li><p>将多条数据流合并为一条，或将一条数据流拆分为多条流的转换</p>
-</li>
-<li><p>对流中的事件进行重新组织的分发转换</p>
-</li>
-</ol>
-<p>Basic Transformations</p>
-<ul>
-<li>Map<br>  对整个DataStream做一一对应的映射, 即每一个元素产生一个输出元素。</li>
-<li>Filter, 过滤</li>
-<li>FlatMap<br>  对整个DataStream做一对多的映射， 即每一个元素可以产生多个（可以是一个）输出元素。</li>
-</ul>
-<p>KeyedStream Transformations</p>
-<ul>
-<li>KeyBy<br>  对输入DataStream分区， 即相同key的元素分到同一分区。基于key对流(内部使用hash函数)进行分区。</li>
-<li>Aggregations<br>  聚合操作,如min, max, sum等。</li>
-<li>Reduce<br>  根据多个元素生成一个元素。返回单个结果值。</li>
-</ul>
-<p>Multistream Transformation，多流转换</p>
-<ul>
-<li>Union, 组合流</li>
-<li>Connect, coMap, coFlatMap</li>
-<li>Split &amp; select, split拆分流, select从拆分流中选择特定流</li>
-</ul>
-<p>Distribution Transformation</p>
-<ul>
-<li>Random<br>  均匀分布分区</li>
-<li>Round-Robin<br>  轮询分区</li>
-<li>Rescale<br>  可伸缩分区</li>
-<li>Broadcast<br>  广播分区</li>
-<li>Rebanlance<br>  负载均衡分区</li>
-<li>Global<br>  global()方法将输入流中的所有事件发往下游算子的第一个并行任务。</li>
-<li>Custom<br>  用户程序自定义分区</li>
-</ul>
-
+<p>在部署到对应环境的时候，比如到<code>test</code>环境，运维会执行类似<code>mv db.test.properties db.properties</code>的命令，将对应环境的文件覆盖到程序指定的文件<code>db.properties</code>。<br>除此之外，还有很多配置文件都与运行环境相关联，<strong>在不同的环境必须设置不同的值</strong>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/08/microservice/微服务改造-1-配置中心/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
     </div>
 
     
     
     
-
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Flink/" rel="tag"># Flink</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/08/30/flink/Flink-1-Flink基本架构/" rel="prev" title="Flink 1. 基本架构">
-      <i class="fa fa-chevron-left"></i> Flink 1. 基本架构
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/09/12/flink/Flink-3-窗口/" rel="next" title="Flink-2. 流计算API窗口">
-      Flink-2. 流计算API窗口 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
+        <div class="post-eof"></div>
       </footer>
-    
   </article>
   
   
   
 
 
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+
 
           </div>
           
-    
-  <div class="comments">
-    <div id="lv-container" data-id="city" data-uid="MTAyMC80NDcwOC8yMTIzMw=="></div>
-  </div>
-  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -380,7 +294,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink运行模型"><span class="nav-number">1.</span> <span class="nav-text">Flink运行模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Enviroment"><span class="nav-number">2.</span> <span class="nav-text">Enviroment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Source"><span class="nav-number">3.</span> <span class="nav-text">Source</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sink"><span class="nav-number">4.</span> <span class="nav-text">Sink</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformations"><span class="nav-number">5.</span> <span class="nav-text">Transformations</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -504,21 +417,6 @@
 
   
 
-<script>
-NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
-  window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
-  };
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-    if (typeof LivereTower === 'function') { return; }
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
-});
-</script>
 
 </body>
 </html>
