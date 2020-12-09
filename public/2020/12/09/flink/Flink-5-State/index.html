@@ -22,20 +22,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="题目实现栈中元素的逆序, 但是只能用递归函数来实现, 不能使用其它数据结构. 思路递归获取栈底元素">
-<meta name="keywords" content="数据结构与算法,栈,递归">
+  <meta name="description" content="示例： 利用ValueState，保存之前运算结果，并在条件满足后输出 12345678910111213141516Configuration configuration = new Configuration();StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="仅用递归函数和栈操作逆序一个栈">
-<meta property="og:url" content="http://yoursite.com/2020/06/09/algorithm/仅用递归函数和栈操作逆序一个栈/index.html">
+<meta property="og:title" content="Flink 5. State">
+<meta property="og:url" content="http://yoursite.com/2020/12/09/flink/Flink-5-State/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="题目实现栈中元素的逆序, 但是只能用递归函数来实现, 不能使用其它数据结构. 思路递归获取栈底元素">
+<meta property="og:description" content="示例： 利用ValueState，保存之前运算结果，并在条件满足后输出 12345678910111213141516Configuration configuration = new Configuration();StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-27T08:08:15.929Z">
+<meta property="og:updated_time" content="2020-12-09T09:05:27.628Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="仅用递归函数和栈操作逆序一个栈">
-<meta name="twitter:description" content="题目实现栈中元素的逆序, 但是只能用递归函数来实现, 不能使用其它数据结构. 思路递归获取栈底元素">
+<meta name="twitter:title" content="Flink 5. State">
+<meta name="twitter:description" content="示例： 利用ValueState，保存之前运算结果，并在条件满足后输出 12345678910111213141516Configuration configuration = new Configuration();StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI">
 
-<link rel="canonical" href="http://yoursite.com/2020/06/09/algorithm/仅用递归函数和栈操作逆序一个栈/">
+<link rel="canonical" href="http://yoursite.com/2020/12/09/flink/Flink-5-State/">
 
 
 <script id="page-configurations">
@@ -48,7 +47,7 @@
   };
 </script>
 
-  <title>仅用递归函数和栈操作逆序一个栈 | 设计与思考</title>
+  <title>Flink 5. State | 设计与思考</title>
   
 
 
@@ -164,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/09/algorithm/仅用递归函数和栈操作逆序一个栈/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/09/flink/Flink-5-State/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          仅用递归函数和栈操作逆序一个栈
+          Flink 5. State
         </h1>
 
         <div class="post-meta">
@@ -187,16 +186,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-06-09 23:11:20" itemprop="dateCreated datePublished" datetime="2020-06-09T23:11:20+08:00">2020-06-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
-                </span>
+              <time title="创建时间：2020-12-09 17:03:21" itemprop="dateCreated datePublished" datetime="2020-12-09T17:03:21+08:00">2020-12-09</time>
             </span>
 
           
@@ -217,11 +207,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>实现栈中元素的逆序, 但是只能用递归函数来实现, 不能使用其它数据结构.</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>递归获取栈底元素</p>
-<a id="more"></a>
+        <p>示例： 利用ValueState，保存之前运算结果，并在条件满足后输出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(configuration);</span><br><span class="line">env.setParallelism(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">DataStream&lt;Tuple2&lt;Long, Long&gt;&gt; dataStream =</span><br><span class="line">    env.fromElements(</span><br><span class="line">        Tuple2.of(<span class="number">1L</span>, <span class="number">3L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">1L</span>, <span class="number">5L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">2L</span>, <span class="number">6L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">2L</span>, <span class="number">2L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">2L</span>, <span class="number">4L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">1L</span>, <span class="number">7L</span>));</span><br><span class="line"></span><br><span class="line">dataStream.keyBy(<span class="number">0</span>).flatMap(<span class="keyword">new</span> CountAverageWithValueState()).print();</span><br><span class="line"></span><br><span class="line">env.execute(<span class="string">"Test state"</span>);</span><br></pre></td></tr></table></figure>
 
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 将栈倒置</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">reverse</span><span class="params">(Stack&lt;Integer&gt; stack)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (stack.isEmpty()) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> item = getAndRemoveLastElement(stack);</span><br><span class="line">    reverse(stack);</span><br><span class="line">    stack.push(item);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 将stack的栈底元素返回并移除</span></span><br><span class="line"><span class="comment">   * */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getAndRemoveLastElement</span><span class="params">(Stack&lt;Integer&gt; stack)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = stack.pop();</span><br><span class="line">    <span class="keyword">if</span> (stack.isEmpty()) &#123;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> last = getAndRemoveLastElement(stack);</span><br><span class="line">    stack.push(result);</span><br><span class="line">    <span class="keyword">return</span> last;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.functions.RichFlatMapFunction;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.state.ValueState;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.state.ValueStateDescriptor;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.typeinfo.Types;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.java.tuple.Tuple2;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.configuration.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.util.Collector;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountAverageWithValueState</span> <span class="keyword">extends</span> <span class="title">RichFlatMapFunction</span>&lt;<span class="title">Tuple2</span>&lt;<span class="title">Long</span>, <span class="title">Long</span>&gt;, <span class="title">Tuple2</span>&lt;<span class="title">Long</span>, <span class="title">Double</span>&gt;&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ValueState&lt;Tuple2&lt;Long,Long&gt;&gt; countAndSum;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">open</span><span class="params">(Configuration parameters)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ValueStateDescriptor&lt;Tuple2&lt;Long,Long&gt;&gt; descriptor = <span class="keyword">new</span> ValueStateDescriptor&lt;Tuple2&lt;Long, Long&gt;&gt;(<span class="string">"average"</span>,</span><br><span class="line">            Types.TUPLE(Types.LONG, Types.LONG));</span><br><span class="line">        countAndSum = getRuntimeContext().getState(descriptor);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatMap</span><span class="params">(Tuple2&lt;Long, Long&gt; element, Collector&lt;Tuple2&lt;Long, Double&gt;&gt; out)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Tuple2&lt;Long, Long&gt; currentState = countAndSum.value();</span><br><span class="line">        <span class="keyword">if</span> (currentState == <span class="keyword">null</span>) &#123;</span><br><span class="line">            currentState = Tuple2.of(<span class="number">0L</span>, <span class="number">0L</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        currentState.f0 += <span class="number">1</span>;</span><br><span class="line">        currentState.f1 += element.f1;</span><br><span class="line"></span><br><span class="line">        countAndSum.update(currentState);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (currentState.f0 &gt;= <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">double</span> avg = (<span class="keyword">double</span>)currentState.f1 / currentState.f0;</span><br><span class="line">            out.collect(Tuple2.of(element.f0, avg));</span><br><span class="line">            countAndSum.clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -229,11 +218,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/数据结构与算法/" rel="tag"># 数据结构与算法</a>
-              <a href="/tags/栈/" rel="tag"># 栈</a>
-              <a href="/tags/递归/" rel="tag"># 递归</a>
-          </div>
 
         
 
@@ -241,13 +225,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/08/algorithm/由两个栈组成的队列/" rel="prev" title="由两个栈组成的队列">
-      <i class="fa fa-chevron-left"></i> 由两个栈组成的队列
+    <a href="/2020/10/14/bigdata/数仓2-数仓分层，实时vs离线/" rel="prev" title="数仓2. 数仓分层，实时vs离线">
+      <i class="fa fa-chevron-left"></i> 数仓2. 数仓分层，实时vs离线
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/06/10/algorithm/猫狗队列/" rel="next" title="猫狗队列">
-      猫狗队列 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -311,7 +292,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

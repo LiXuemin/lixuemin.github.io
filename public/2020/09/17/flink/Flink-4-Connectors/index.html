@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="DataStreeam ConnectorTable Connnector">
+  <meta name="description" content="DataStreeam ConnectorTable Connnectormysql-cdc业务Mysql -&amp;gt; Flink CDC -&amp;gt; 数仓贴源层 cdc采集端配置 12345678910111213CREATE TABLE `ods_table_name` (  `PK_ID` BIGINT NOT NULL,  `TITLE` STRING,  ...) WITH ( &apos;con">
 <meta name="keywords" content="Flink">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flink 4. Connectors">
 <meta property="og:url" content="http://yoursite.com/2020/09/17/flink/Flink-4-Connectors/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="DataStreeam ConnectorTable Connnector">
+<meta property="og:description" content="DataStreeam ConnectorTable Connnectormysql-cdc业务Mysql -&amp;gt; Flink CDC -&amp;gt; 数仓贴源层 cdc采集端配置 12345678910111213CREATE TABLE `ods_table_name` (  `PK_ID` BIGINT NOT NULL,  `TITLE` STRING,  ...) WITH ( &apos;con">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-12T09:34:33.836Z">
+<meta property="og:updated_time" content="2020-11-17T10:05:01.212Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink 4. Connectors">
-<meta name="twitter:description" content="DataStreeam ConnectorTable Connnector">
+<meta name="twitter:description" content="DataStreeam ConnectorTable Connnectormysql-cdc业务Mysql -&amp;gt; Flink CDC -&amp;gt; 数仓贴源层 cdc采集端配置 12345678910111213CREATE TABLE `ods_table_name` (  `PK_ID` BIGINT NOT NULL,  `TITLE` STRING,  ...) WITH ( &apos;con">
 
 <link rel="canonical" href="http://yoursite.com/2020/09/17/flink/Flink-4-Connectors/">
 
@@ -217,7 +217,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="DataStreeam-Connector"><a href="#DataStreeam-Connector" class="headerlink" title="DataStreeam Connector"></a>DataStreeam Connector</h3><h3 id="Table-Connnector"><a href="#Table-Connnector" class="headerlink" title="Table Connnector"></a>Table Connnector</h3>
+        <h3 id="DataStreeam-Connector"><a href="#DataStreeam-Connector" class="headerlink" title="DataStreeam Connector"></a>DataStreeam Connector</h3><h3 id="Table-Connnector"><a href="#Table-Connnector" class="headerlink" title="Table Connnector"></a>Table Connnector</h3><h4 id="mysql-cdc"><a href="#mysql-cdc" class="headerlink" title="mysql-cdc"></a>mysql-cdc</h4><p>业务Mysql -&gt; Flink CDC -&gt; 数仓贴源层</p>
+<p>cdc采集端配置</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`ods_table_name`</span> (</span><br><span class="line">  <span class="string">`PK_ID`</span> <span class="built_in">BIGINT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`TITLE`</span> <span class="keyword">STRING</span>,</span><br><span class="line">  ...</span><br><span class="line">) <span class="keyword">WITH</span> (</span><br><span class="line"> <span class="string">'connector'</span> = <span class="string">'mysql-cdc'</span>,</span><br><span class="line"> <span class="string">'hostname'</span> = <span class="string">'localhost'</span>,</span><br><span class="line"> <span class="string">'port'</span> = <span class="string">'3306'</span>,</span><br><span class="line"> <span class="string">'username'</span> = <span class="string">'root'</span>,</span><br><span class="line"> <span class="string">'password'</span> = <span class="string">'root'</span>,</span><br><span class="line"> <span class="string">'database-name'</span> = <span class="string">'dbname'</span>,</span><br><span class="line"> <span class="string">'table-name'</span> = <span class="string">'mysql_table_name'</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>CDC输出端建表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`dwd_resource_label`</span> (</span><br><span class="line">  <span class="string">`PK_ID`</span> <span class="built_in">BIGINT</span> PRIMARY <span class="keyword">KEY</span> <span class="keyword">NOT</span> <span class="keyword">ENFORCED</span>,</span><br><span class="line">  <span class="string">`TITLE`</span> <span class="keyword">STRING</span>,</span><br><span class="line">  ...</span><br><span class="line">) <span class="keyword">WITH</span> (</span><br><span class="line"> <span class="string">'connector'</span> = <span class="string">'jdbc'</span>,</span><br><span class="line"> <span class="string">'url'</span> = <span class="string">'jdbc:mysql://localhost:3306/dbname?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=UTF-8'</span>,</span><br><span class="line"> <span class="string">'table-name'</span> = <span class="string">'mysql_table_name_destination'</span>,</span><br><span class="line"> <span class="string">'username'</span> = <span class="string">'root'</span>,</span><br><span class="line"> <span class="string">'password'</span> = <span class="string">'root'</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>同步</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dwd_resource_label <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> ods_resource_label;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Dataset-Connector"><a href="#Dataset-Connector" class="headerlink" title="Dataset Connector"></a>Dataset Connector</h3>
     </div>
 
     
@@ -305,7 +315,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DataStreeam-Connector"><span class="nav-number">1.</span> <span class="nav-text">DataStreeam Connector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table-Connnector"><span class="nav-number">2.</span> <span class="nav-text">Table Connnector</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DataStreeam-Connector"><span class="nav-number">1.</span> <span class="nav-text">DataStreeam Connector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table-Connnector"><span class="nav-number">2.</span> <span class="nav-text">Table Connnector</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql-cdc"><span class="nav-number">2.1.</span> <span class="nav-text">mysql-cdc</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dataset-Connector"><span class="nav-number">3.</span> <span class="nav-text">Dataset Connector</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -319,7 +329,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

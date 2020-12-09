@@ -22,19 +22,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="数据仓库概念一听到数据仓库的概念, 我们第一反应会问到数据库与数据仓库的区别在哪里? 我的理解是这样的: 数据仓库分层整体来讲, 可以分为数据输入, 数据分析, 数据输出 ODS, 备份一份原始数据 DWD, 负责数据ETL DWS, 聚合层 按天 DWT, 聚合层 累积 ADS, 指标 离线数仓 VS 实时数仓Lambda, Kappa数仓技术选型输入层OLAP数据引擎">
+  <meta name="description" content="数据仓库概念一听到数据仓库的概念, 我们第一反应会问到数据库与数据仓库的区别在哪里? 我的理解是这样的: 数据仓库分层整体来讲, 可以分为数据输入, 数据分析, 数据输出 ODS, 备份一份原始数据 DWD, 负责数据ETL DWS, 聚合层 按天 DWT, 聚合层 累积 ADS, 指标 离线数仓 VS 实时数仓 Lambda, Kappa数仓技术选型输入层OLAP数据引擎">
 <meta name="keywords" content="数据仓库,数仓分层">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数仓2. 数仓分层，实时vs离线">
 <meta property="og:url" content="http://yoursite.com/2020/10/14/bigdata/数仓2-数仓分层，实时vs离线/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="数据仓库概念一听到数据仓库的概念, 我们第一反应会问到数据库与数据仓库的区别在哪里? 我的理解是这样的: 数据仓库分层整体来讲, 可以分为数据输入, 数据分析, 数据输出 ODS, 备份一份原始数据 DWD, 负责数据ETL DWS, 聚合层 按天 DWT, 聚合层 累积 ADS, 指标 离线数仓 VS 实时数仓Lambda, Kappa数仓技术选型输入层OLAP数据引擎">
+<meta property="og:description" content="数据仓库概念一听到数据仓库的概念, 我们第一反应会问到数据库与数据仓库的区别在哪里? 我的理解是这样的: 数据仓库分层整体来讲, 可以分为数据输入, 数据分析, 数据输出 ODS, 备份一份原始数据 DWD, 负责数据ETL DWS, 聚合层 按天 DWT, 聚合层 累积 ADS, 指标 离线数仓 VS 实时数仓 Lambda, Kappa数仓技术选型输入层OLAP数据引擎">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjw482colsj30mj0bf75s.jpg">
-<meta property="og:updated_time" content="2020-10-27T08:08:15.935Z">
+<meta property="og:image" content="https://i.loli.net/2020/11/27/irHSFayM4wXhzRN.png">
+<meta property="og:updated_time" content="2020-11-27T09:00:33.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数仓2. 数仓分层，实时vs离线">
-<meta name="twitter:description" content="数据仓库概念一听到数据仓库的概念, 我们第一反应会问到数据库与数据仓库的区别在哪里? 我的理解是这样的: 数据仓库分层整体来讲, 可以分为数据输入, 数据分析, 数据输出 ODS, 备份一份原始数据 DWD, 负责数据ETL DWS, 聚合层 按天 DWT, 聚合层 累积 ADS, 指标 离线数仓 VS 实时数仓Lambda, Kappa数仓技术选型输入层OLAP数据引擎">
+<meta name="twitter:description" content="数据仓库概念一听到数据仓库的概念, 我们第一反应会问到数据库与数据仓库的区别在哪里? 我的理解是这样的: 数据仓库分层整体来讲, 可以分为数据输入, 数据分析, 数据输出 ODS, 备份一份原始数据 DWD, 负责数据ETL DWS, 聚合层 按天 DWT, 聚合层 累积 ADS, 指标 离线数仓 VS 实时数仓 Lambda, Kappa数仓技术选型输入层OLAP数据引擎">
 <meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjw482colsj30mj0bf75s.jpg">
 
 <link rel="canonical" href="http://yoursite.com/2020/10/14/bigdata/数仓2-数仓分层，实时vs离线/">
@@ -218,7 +219,8 @@
 <p>DWS, 聚合层 按天</p>
 <p>DWT, 聚合层 累积</p>
 <p>ADS, 指标</p>
-<h2 id="离线数仓-VS-实时数仓"><a href="#离线数仓-VS-实时数仓" class="headerlink" title="离线数仓 VS 实时数仓"></a>离线数仓 VS 实时数仓</h2><h3 id="Lambda-Kappa"><a href="#Lambda-Kappa" class="headerlink" title="Lambda, Kappa"></a>Lambda, Kappa</h3><h2 id="数仓技术选型"><a href="#数仓技术选型" class="headerlink" title="数仓技术选型"></a>数仓技术选型</h2><h3 id="输入层"><a href="#输入层" class="headerlink" title="输入层"></a>输入层</h3><h3 id="OLAP数据引擎"><a href="#OLAP数据引擎" class="headerlink" title="OLAP数据引擎"></a>OLAP数据引擎</h3>
+<h2 id="离线数仓-VS-实时数仓"><a href="#离线数仓-VS-实时数仓" class="headerlink" title="离线数仓 VS 实时数仓"></a>离线数仓 VS 实时数仓</h2><p><img src="https://i.loli.net/2020/11/27/irHSFayM4wXhzRN.png" alt></p>
+<h3 id="Lambda-Kappa"><a href="#Lambda-Kappa" class="headerlink" title="Lambda, Kappa"></a>Lambda, Kappa</h3><h2 id="数仓技术选型"><a href="#数仓技术选型" class="headerlink" title="数仓技术选型"></a>数仓技术选型</h2><h3 id="输入层"><a href="#输入层" class="headerlink" title="输入层"></a>输入层</h3><h3 id="OLAP数据引擎"><a href="#OLAP数据引擎" class="headerlink" title="OLAP数据引擎"></a>OLAP数据引擎</h3>
     </div>
 
     
@@ -240,7 +242,10 @@
     <a href="/2020/10/13/bigdata/数仓1.聊聊数据采集/" rel="prev" title="数仓1. 聊聊数据采集">
       <i class="fa fa-chevron-left"></i> 数仓1. 聊聊数据采集
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/09/flink/Flink-5-State/" rel="next" title="Flink 5. State">
+      Flink 5. State <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -318,7 +323,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

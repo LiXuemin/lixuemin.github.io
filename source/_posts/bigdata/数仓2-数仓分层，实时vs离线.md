@@ -29,6 +29,8 @@ ADS, 指标
 
 ## 离线数仓 VS 实时数仓
 
+![](https://i.loli.net/2020/11/27/irHSFayM4wXhzRN.png)
+
 ### Lambda, Kappa
 
 ## 数仓技术选型

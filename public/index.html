@@ -161,6 +161,66 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/09/flink/Flink-5-State/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李学民">
+      <meta itemprop="description" content="个人博客,温故知新">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="设计与思考">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/09/flink/Flink-5-State/" class="post-title-link" itemprop="url">Flink 5. State</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-09 17:03:21" itemprop="dateCreated datePublished" datetime="2020-12-09T17:03:21+08:00">2020-12-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>示例： 利用ValueState，保存之前运算结果，并在条件满足后输出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(configuration);</span><br><span class="line">env.setParallelism(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">DataStream&lt;Tuple2&lt;Long, Long&gt;&gt; dataStream =</span><br><span class="line">    env.fromElements(</span><br><span class="line">        Tuple2.of(<span class="number">1L</span>, <span class="number">3L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">1L</span>, <span class="number">5L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">2L</span>, <span class="number">6L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">2L</span>, <span class="number">2L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">2L</span>, <span class="number">4L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">1L</span>, <span class="number">7L</span>));</span><br><span class="line"></span><br><span class="line">dataStream.keyBy(<span class="number">0</span>).flatMap(<span class="keyword">new</span> CountAverageWithValueState()).print();</span><br><span class="line"></span><br><span class="line">env.execute(<span class="string">"Test state"</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.functions.RichFlatMapFunction;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.state.ValueState;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.state.ValueStateDescriptor;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.typeinfo.Types;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.java.tuple.Tuple2;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.configuration.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.util.Collector;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountAverageWithValueState</span> <span class="keyword">extends</span> <span class="title">RichFlatMapFunction</span>&lt;<span class="title">Tuple2</span>&lt;<span class="title">Long</span>, <span class="title">Long</span>&gt;, <span class="title">Tuple2</span>&lt;<span class="title">Long</span>, <span class="title">Double</span>&gt;&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ValueState&lt;Tuple2&lt;Long,Long&gt;&gt; countAndSum;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">open</span><span class="params">(Configuration parameters)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ValueStateDescriptor&lt;Tuple2&lt;Long,Long&gt;&gt; descriptor = <span class="keyword">new</span> ValueStateDescriptor&lt;Tuple2&lt;Long, Long&gt;&gt;(<span class="string">"average"</span>,</span><br><span class="line">            Types.TUPLE(Types.LONG, Types.LONG));</span><br><span class="line">        countAndSum = getRuntimeContext().getState(descriptor);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatMap</span><span class="params">(Tuple2&lt;Long, Long&gt; element, Collector&lt;Tuple2&lt;Long, Double&gt;&gt; out)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Tuple2&lt;Long, Long&gt; currentState = countAndSum.value();</span><br><span class="line">        <span class="keyword">if</span> (currentState == <span class="keyword">null</span>) &#123;</span><br><span class="line">            currentState = Tuple2.of(<span class="number">0L</span>, <span class="number">0L</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        currentState.f0 += <span class="number">1</span>;</span><br><span class="line">        currentState.f1 += element.f1;</span><br><span class="line"></span><br><span class="line">        countAndSum.update(currentState);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (currentState.f0 &gt;= <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">double</span> avg = (<span class="keyword">double</span>)currentState.f1 / currentState.f0;</span><br><span class="line">            out.collect(Tuple2.of(element.f0, avg));</span><br><span class="line">            countAndSum.clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/14/bigdata/数仓2-数仓分层，实时vs离线/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -207,7 +267,8 @@
 <p>DWS, 聚合层 按天</p>
 <p>DWT, 聚合层 累积</p>
 <p>ADS, 指标</p>
-<h2 id="离线数仓-VS-实时数仓"><a href="#离线数仓-VS-实时数仓" class="headerlink" title="离线数仓 VS 实时数仓"></a>离线数仓 VS 实时数仓</h2><h3 id="Lambda-Kappa"><a href="#Lambda-Kappa" class="headerlink" title="Lambda, Kappa"></a>Lambda, Kappa</h3><h2 id="数仓技术选型"><a href="#数仓技术选型" class="headerlink" title="数仓技术选型"></a>数仓技术选型</h2><h3 id="输入层"><a href="#输入层" class="headerlink" title="输入层"></a>输入层</h3><h3 id="OLAP数据引擎"><a href="#OLAP数据引擎" class="headerlink" title="OLAP数据引擎"></a>OLAP数据引擎</h3>
+<h2 id="离线数仓-VS-实时数仓"><a href="#离线数仓-VS-实时数仓" class="headerlink" title="离线数仓 VS 实时数仓"></a>离线数仓 VS 实时数仓</h2><p><img src="https://i.loli.net/2020/11/27/irHSFayM4wXhzRN.png" alt></p>
+<h3 id="Lambda-Kappa"><a href="#Lambda-Kappa" class="headerlink" title="Lambda, Kappa"></a>Lambda, Kappa</h3><h2 id="数仓技术选型"><a href="#数仓技术选型" class="headerlink" title="数仓技术选型"></a>数仓技术选型</h2><h3 id="输入层"><a href="#输入层" class="headerlink" title="输入层"></a>输入层</h3><h3 id="OLAP数据引擎"><a href="#OLAP数据引擎" class="headerlink" title="OLAP数据引擎"></a>OLAP数据引擎</h3>
       
     </div>
 
@@ -409,7 +470,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="DataStreeam-Connector"><a href="#DataStreeam-Connector" class="headerlink" title="DataStreeam Connector"></a>DataStreeam Connector</h3><h3 id="Table-Connnector"><a href="#Table-Connnector" class="headerlink" title="Table Connnector"></a>Table Connnector</h3>
+          <h3 id="DataStreeam-Connector"><a href="#DataStreeam-Connector" class="headerlink" title="DataStreeam Connector"></a>DataStreeam Connector</h3><h3 id="Table-Connnector"><a href="#Table-Connnector" class="headerlink" title="Table Connnector"></a>Table Connnector</h3><h4 id="mysql-cdc"><a href="#mysql-cdc" class="headerlink" title="mysql-cdc"></a>mysql-cdc</h4><p>业务Mysql -&gt; Flink CDC -&gt; 数仓贴源层</p>
+<p>cdc采集端配置</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`ods_table_name`</span> (</span><br><span class="line">  <span class="string">`PK_ID`</span> <span class="built_in">BIGINT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`TITLE`</span> <span class="keyword">STRING</span>,</span><br><span class="line">  ...</span><br><span class="line">) <span class="keyword">WITH</span> (</span><br><span class="line"> <span class="string">'connector'</span> = <span class="string">'mysql-cdc'</span>,</span><br><span class="line"> <span class="string">'hostname'</span> = <span class="string">'localhost'</span>,</span><br><span class="line"> <span class="string">'port'</span> = <span class="string">'3306'</span>,</span><br><span class="line"> <span class="string">'username'</span> = <span class="string">'root'</span>,</span><br><span class="line"> <span class="string">'password'</span> = <span class="string">'root'</span>,</span><br><span class="line"> <span class="string">'database-name'</span> = <span class="string">'dbname'</span>,</span><br><span class="line"> <span class="string">'table-name'</span> = <span class="string">'mysql_table_name'</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>CDC输出端建表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`dwd_resource_label`</span> (</span><br><span class="line">  <span class="string">`PK_ID`</span> <span class="built_in">BIGINT</span> PRIMARY <span class="keyword">KEY</span> <span class="keyword">NOT</span> <span class="keyword">ENFORCED</span>,</span><br><span class="line">  <span class="string">`TITLE`</span> <span class="keyword">STRING</span>,</span><br><span class="line">  ...</span><br><span class="line">) <span class="keyword">WITH</span> (</span><br><span class="line"> <span class="string">'connector'</span> = <span class="string">'jdbc'</span>,</span><br><span class="line"> <span class="string">'url'</span> = <span class="string">'jdbc:mysql://localhost:3306/dbname?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=UTF-8'</span>,</span><br><span class="line"> <span class="string">'table-name'</span> = <span class="string">'mysql_table_name_destination'</span>,</span><br><span class="line"> <span class="string">'username'</span> = <span class="string">'root'</span>,</span><br><span class="line"> <span class="string">'password'</span> = <span class="string">'root'</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>同步</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dwd_resource_label <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> ods_resource_label;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Dataset-Connector"><a href="#Dataset-Connector" class="headerlink" title="Dataset Connector"></a>Dataset Connector</h3>
       
     </div>
 
@@ -861,83 +932,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/26/algorithm/LeetCode-112-路径总和/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="李学民">
-      <meta itemprop="description" content="个人博客,温故知新">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="设计与思考">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/26/algorithm/LeetCode-112-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C/" class="post-title-link" itemprop="url">LeetCode 112. 路径总和</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-26 14:09:47" itemprop="dateCreated datePublished" datetime="2020-07-26T14:09:47+08:00">2020-07-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode-cn.com/problems/path-sum/" target="_blank" rel="noopener">LeetCode 112. 路径总和</a></p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>这道题, 递归和广度优先都可以, 关键在于迭代的时候, 可以通过传递sum与节点值的<code>差值</code>来得到结果. </p>
-<p>当<code>差值</code>为<code>0</code>, 代表确实存在这样一条路径. </p>
-<p>如果使用额外的数据结构存储每条路径的和, 反而会极大增加代码复杂度.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/26/algorithm/LeetCode-112-路径总和/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1007,7 +1001,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
