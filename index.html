@@ -161,6 +161,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/11/flink/Flink-CDC踩坑集合/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李学民">
+      <meta itemprop="description" content="个人博客,温故知新">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="设计与思考">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/11/flink/Flink-CDC%E8%B8%A9%E5%9D%91%E9%9B%86%E5%90%88/" class="post-title-link" itemprop="url">Flink CDC踩坑集合</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-11 17:02:47" itemprop="dateCreated datePublished" datetime="2020-12-11T17:02:47+08:00">2020-12-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/流计算/" itemprop="url" rel="index"><span itemprop="name">流计算</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>使用flink sql 时，提前引入flink-json依赖</li>
+</ol>
+<p>异常信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Caused by: org.apache.flink.table.api.ValidationException: Could not find any factories that implement &apos;org.apache.flink.table.factories.DeserializationFormatFactory&apos; in the classpath.</span><br><span class="line">	at org.apache.flink.table.factories.FactoryUtil.discoverFactory(FactoryUtil.java:229)</span><br><span class="line">	at org.apache.flink.table.factories.FactoryUtil$TableFactoryHelper.discoverOptionalFormatFactory(FactoryUtil.java:538)</span><br><span class="line">	at org.apache.flink.table.factories.FactoryUtil$TableFactoryHelper.discoverOptionalDecodingFormat(FactoryUtil.java:426)</span><br><span class="line">	at org.apache.flink.table.factories.FactoryUtil$TableFactoryHelper.discoverDecodingFormat(FactoryUtil.java:413)</span><br><span class="line">	at org.apache.flink.streaming.connectors.kafka.table.KafkaDynamicTableFactoryBase.createDynamicTableSource(KafkaDynamicTableFactoryBase.java:73)</span><br><span class="line">	at org.apache.flink.table.factories.FactoryUtil.createTableSource(FactoryUtil.java:122)</span><br></pre></td></tr></table></figure>
+
+<p>解决方案： pom文件中引入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.flink<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>flink-json<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.11.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Flink 1.11版本后简化了 connector 参数</li>
+</ol>
+<p>Flink由于发展太快（2020年已经发布了1.10，1.11，1.12三个大版本），很多2020年初的blog提供教程已经面临失效</p>
+<p>以 Kafka 为例，在 1.11 版本之前用户的 DDL 需要声明成如下方式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> user_behavior (</span><br><span class="line">  ...</span><br><span class="line">) <span class="keyword">WITH</span> (</span><br><span class="line">  <span class="string">'connector.type'</span>=<span class="string">'kafka'</span>,</span><br><span class="line">  <span class="string">'connector.version'</span>=<span class="string">'universal'</span>,</span><br><span class="line">  <span class="string">'connector.topic'</span>=<span class="string">'user_behavior'</span>,</span><br><span class="line">  <span class="string">'connector.startup-mode'</span>=<span class="string">'earliest-offset'</span>,</span><br><span class="line">  <span class="string">'connector.properties.zookeeper.connect'</span>=<span class="string">'localhost:2181'</span>,</span><br><span class="line">  <span class="string">'connector.properties.bootstrap.servers'</span>=<span class="string">'localhost:9092'</span>,</span><br><span class="line">  <span class="string">'format.type'</span>=<span class="string">'json'</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>而在 Flink SQL 1.11 中则简化为</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> user_behavior (</span><br><span class="line">  ...</span><br><span class="line">) <span class="keyword">WITH</span> (</span><br><span class="line">  <span class="string">'connector'</span>=<span class="string">'kafka'</span>,</span><br><span class="line">  <span class="string">'topic'</span>=<span class="string">'user_behavior'</span>,</span><br><span class="line">  <span class="string">'scan.startup.mode'</span>=<span class="string">'earliest-offset'</span>,</span><br><span class="line">  <span class="string">'properties.zookeeper.connect'</span>=<span class="string">'localhost:2181'</span>,</span><br><span class="line">  <span class="string">'properties.bootstrap.servers'</span>=<span class="string">'localhost:9092'</span>,</span><br><span class="line">  <span class="string">'format'</span>=<span class="string">'json'</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>详细变更见<a href="https://cwiki.apache.org/confluence/display/FLINK/FLIP-122%3A+New+Connector+Property+Keys+for+New+Factory" target="_blank" rel="noopener">FLIP-122</a></p>
+<ol start="3">
+<li>flink-sql-connector-jdbc声明表时，必须指定主键</li>
+</ol>
+<p>否则会报异常：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalStateException: please declare primary key for sink table when query contains update/delete record.</span><br><span class="line">	at org.apache.flink.util.Preconditions.checkState(Preconditions.java:195)</span><br><span class="line">	at org.apache.flink.connector.jdbc.table.JdbcDynamicTableSink.validatePrimaryKey(JdbcDynamicTableSink.java:72)</span><br><span class="line">	at org.apache.flink.connector.jdbc.table.JdbcDynamicTableSink.getChangelogMode(JdbcDynamicTableSink.java:63)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkChangelogModeInferenceProgram$SatisfyModifyKindSetTraitVisitor.visit(FlinkChangelogModeInferenceProgram.scala:120)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkChangelogModeInferenceProgram.optimize(FlinkChangelogModeInferenceProgram.scala:50)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkChangelogModeInferenceProgram.optimize(FlinkChangelogModeInferenceProgram.scala:39)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkGroupProgram$$anonfun$optimize$1$$anonfun$apply$1.apply(FlinkGroupProgram.scala:63)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkGroupProgram$$anonfun$optimize$1$$anonfun$apply$1.apply(FlinkGroupProgram.scala:60)</span><br><span class="line">	at scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.Iterator$class.foreach(Iterator.scala:891)</span><br><span class="line">	at scala.collection.AbstractIterator.foreach(Iterator.scala:1334)</span><br><span class="line">	at scala.collection.IterableLike$class.foreach(IterableLike.scala:72)</span><br><span class="line">	at scala.collection.AbstractIterable.foreach(Iterable.scala:54)</span><br><span class="line">	at scala.collection.TraversableOnce$class.foldLeft(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.AbstractTraversable.foldLeft(Traversable.scala:104)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkGroupProgram$$anonfun$optimize$1.apply(FlinkGroupProgram.scala:60)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkGroupProgram$$anonfun$optimize$1.apply(FlinkGroupProgram.scala:55)</span><br><span class="line">	at scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.immutable.Range.foreach(Range.scala:160)</span><br><span class="line">	at scala.collection.TraversableOnce$class.foldLeft(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.AbstractTraversable.foldLeft(Traversable.scala:104)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkGroupProgram.optimize(FlinkGroupProgram.scala:55)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkChainedProgram$$anonfun$optimize$1.apply(FlinkChainedProgram.scala:62)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkChainedProgram$$anonfun$optimize$1.apply(FlinkChainedProgram.scala:58)</span><br><span class="line">	at scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.Iterator$class.foreach(Iterator.scala:891)</span><br><span class="line">	at scala.collection.AbstractIterator.foreach(Iterator.scala:1334)</span><br><span class="line">	at scala.collection.IterableLike$class.foreach(IterableLike.scala:72)</span><br><span class="line">	at scala.collection.AbstractIterable.foreach(Iterable.scala:54)</span><br><span class="line">	at scala.collection.TraversableOnce$class.foldLeft(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.AbstractTraversable.foldLeft(Traversable.scala:104)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkChainedProgram.optimize(FlinkChainedProgram.scala:57)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.StreamCommonSubGraphBasedOptimizer.optimizeTree(StreamCommonSubGraphBasedOptimizer.scala:164)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.StreamCommonSubGraphBasedOptimizer.doOptimize(StreamCommonSubGraphBasedOptimizer.scala:80)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.CommonSubGraphBasedOptimizer.optimize(CommonSubGraphBasedOptimizer.scala:77)</span><br><span class="line">	at org.apache.flink.table.planner.delegation.PlannerBase.optimize(PlannerBase.scala:279)</span><br><span class="line">	at org.apache.flink.table.planner.delegation.PlannerBase.translate(PlannerBase.scala:164)</span><br><span class="line">	at org.apache.flink.table.api.internal.TableEnvironmentImpl.translate(TableEnvironmentImpl.java:1264)</span><br><span class="line">	at org.apache.flink.table.api.internal.TableEnvironmentImpl.executeInternal(TableEnvironmentImpl.java:700)</span><br><span class="line">	at org.apache.flink.table.api.internal.TableEnvironmentImpl.executeOperation(TableEnvironmentImpl.java:787)</span><br><span class="line">	at org.apache.flink.table.api.internal.TableEnvironmentImpl.executeSql(TableEnvironmentImpl.java:690)</span><br><span class="line">    ···</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>使用flink-mysql-cdc时，请注意检查线上数据库binlog-format属性，另外要给用户授权</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> binlog_format = <span class="string">'ROW'</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span>, RELOAD, <span class="keyword">SHOW</span> <span class="keyword">DATABASES</span>, <span class="keyword">REPLICATION</span> <span class="keyword">SLAVE</span>, <span class="keyword">REPLICATION</span> <span class="keyword">CLIENT</span> <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'user'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>接收到MIXED或STATEMENT格式日志退出</p>
+</li>
+<li><p>目标表要注意清除外键依赖</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/09/flink/Flink-5-State/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -848,90 +953,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/01/algorithm/LeetCode-977-有序数组的平方/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="李学民">
-      <meta itemprop="description" content="个人博客,温故知新">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="设计与思考">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/01/algorithm/LeetCode-977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" class="post-title-link" itemprop="url">LeetCode 977.有序数组的平方</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-01 17:07:01" itemprop="dateCreated datePublished" datetime="2020-08-01T17:07:01+08:00">2020-08-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode-cn.com/problems/squares-of-a-sorted-array/" target="_blank" rel="noopener">LeetCode 977. 有序数组的平方</a></p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
-<li>最简单的思路是首先遍历数组, 每个值求平方, 然后排序并返回</li>
-</ol>
-<p>时间复杂度 = 遍历一次数组O(n) + 调用一次<code>Arrays.sort()</code> 快排O(n<em>logn)<br>即O(n + n</em> logn) = O(n * logn)</p>
-<ol start="2">
-<li>另外仔细审题, 提示<em>已经按非递减顺序排序</em>, 所以说其实数据是由小到大排序的.<br>那么可以得出:</li>
-</ol>
-<ul>
-<li>如果数组中没有负数, 那么只需要按顺序求平方并返回结果即可.</li>
-<li>负数部分由小到大, 说明它们的绝对值是按<em>由大到小</em>排序的.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/01/algorithm/LeetCode-977-有序数组的平方/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1001,7 +1022,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1012,7 +1033,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
