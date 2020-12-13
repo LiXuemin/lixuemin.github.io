@@ -6,4 +6,4 @@
 近期记录热点：flink sql
 flink cdc
 flink datastream
-kafka 0.8版本 0.10版本
+
