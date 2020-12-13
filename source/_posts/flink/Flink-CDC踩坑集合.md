@@ -134,4 +134,15 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
 
 5. 接收到MIXED或STATEMENT格式日志退出
 
+虽然你可能将Mysql的binlog日志格式改为`row`，但是仍然可能存在之前的`session`或者有用户手动修改并提交`mixed`或者`statement`格式的日志，这会导致cdc组件异常并退出。
+
+`flink-mysql-cdc`并没有直接关于此情况设置，但是其引用的`debezium`组件，在`1.3`版本（虽然官方文档在1.2版本也有相关属性，但是看其源码并不支持）开始支持**忽略解析错误的语句**。
+可以通过添加属性配置，来跳过。
+
+```properties
+https://debezium.io/documentation/reference/1.3/connectors/mysql.html#mysql-property-event-processing-failure-handling-mode
+```
+
 6. 目标表要注意清除外键依赖
+
+同步数据时，很多公司都会直接同步原始表的所有字段作为数仓`ods`，不做任何处理
