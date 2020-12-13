@@ -145,4 +145,8 @@ https://debezium.io/documentation/reference/1.3/connectors/mysql.html#mysql-prop
 
 6. 目标表要注意清除外键依赖
 
-同步数据时，很多公司都会直接同步原始表的所有字段作为数仓`ods`，不做任何处理
+同步数据时，很多公司都会直接同步原始表的所有字段作为数仓`ods`层或者`dim`层，并使用mysql存储，不做任何处理，只有在流表与维表join的时候才会读取.
+
+此时可能从业务数据库导出sql并导入数仓的mysql，外键依赖也可能会导入。
+
+那么需要注意去掉其外键依赖，否则会在同步时发生异常。
