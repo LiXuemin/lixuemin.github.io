@@ -161,6 +161,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/01/algorithm/LeetCode-977-有序数组的平方/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李学民">
+      <meta itemprop="description" content="个人博客,温故知新">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="设计与思考">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/01/algorithm/LeetCode-977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" class="post-title-link" itemprop="url">LeetCode 977.有序数组的平方</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-01 17:07:01" itemprop="dateCreated datePublished" datetime="2020-08-01T17:07:01+08:00">2020-08-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode-cn.com/problems/squares-of-a-sorted-array/" target="_blank" rel="noopener">LeetCode 977. 有序数组的平方</a></p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>最简单的思路是首先遍历数组, 每个值求平方, 然后排序并返回</li>
+</ol>
+<p>时间复杂度 = 遍历一次数组O(n) + 调用一次<code>Arrays.sort()</code> 快排O(n<em>logn)<br>即O(n + n</em> logn) = O(n * logn)</p>
+<ol start="2">
+<li>另外仔细审题, 提示<em>已经按非递减顺序排序</em>, 所以说其实数据是由小到大排序的.<br>那么可以得出:</li>
+</ol>
+<ul>
+<li>如果数组中没有负数, 那么只需要按顺序求平方并返回结果即可.</li>
+<li>负数部分由小到大, 说明它们的绝对值是按<em>由大到小</em>排序的.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/01/algorithm/LeetCode-977-有序数组的平方/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/26/algorithm/LeetCode-112-路径总和/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -873,83 +957,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/algorithm/LeetCode 141. Linked List Cycle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="李学民">
-      <meta itemprop="description" content="个人博客,温故知新">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="设计与思考">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/20/algorithm/LeetCode%20141.%20Linked%20List%20Cycle/" class="post-title-link" itemprop="url">LeetCode 141. Linked List Cycle</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-20 22:35:39" itemprop="dateCreated datePublished" datetime="2020-07-20T22:35:39+08:00">2020-07-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目:"></a>题目:</h3><p><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="noopener">LeetCode 141. Linked List Cycle</a></p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><ol>
-<li>最先想到的是遍历链表, 并将结点的内存地址存在<code>HashSet</code>中.如果当前结点的内存地址已经存在,则表示存在环,直接返回<code>true</code></li>
-<li>还可以用双指针(快慢指针)来解决, 如果两个指针相遇(套圈), 则代表存在环.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/20/algorithm/LeetCode 141. Linked List Cycle/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1019,7 +1026,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1030,7 +1037,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

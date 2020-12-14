@@ -139,9 +139,15 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
 `flink-mysql-cdc`并没有直接关于此情况设置，但是其引用的`debezium`组件，在`1.3`版本（虽然官方文档在1.2版本也有相关属性，但是看其源码并不支持）开始支持**忽略解析错误的语句**。
 可以通过添加属性配置，来跳过。
 
+[debezium文档](https://debezium.io/documentation/reference/1.3/connectors/mysql.html#mysql-property-event-processing-failure-handling-mode
+)
+
 ```properties
-https://debezium.io/documentation/reference/1.3/connectors/mysql.html#mysql-property-event-processing-failure-handling-mode
+'debezium.event.processing.failure.handling.mode' = 'skip',
+'debezium.inconsistent.schema.handling.mode' = 'skip',
+'debezium.database.history.skip.unparseable.ddl' = 'true'
 ```
+
 
 6. 目标表要注意清除外键依赖
 
