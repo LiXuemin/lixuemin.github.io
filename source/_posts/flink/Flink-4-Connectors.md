@@ -90,49 +90,64 @@ Flink 还有些一些额外的连接器通过 Apache Bahir 发布, 包括:
 
 ### Table Connnector
 
-#### mysql-cdc
+Table API和SQL程序，都支持连接并读写外部系统。 对于Table连接器，除了要了解支持的**连接器**， 还应该了解其支持的**表格式**。
 
-业务Mysql -> Flink CDC -> 数仓贴源层
+#### 连接器
 
-cdc采集端配置
+以Flink1.12为例，下面是其Table API & SQL支持的连接器类型。
+
+|Name	|Version|	Source|	Sink|
+|---- |----|----|----|
+|Filesystem		    |                   |Bounded and Unbounded Scan,          |Lookup	Streaming Sink, Batch Sink|
+|Elasticsearch	  |6.x & 7.x	        |Not supported	                      |Streaming Sink, Batch Sink|
+|Apache Kafka	    |0.10+	            |Unbounded Scan	                      |Streaming Sink, Batch Sink|
+|Amazon Kinesis   |           		    |Unbounded Scan	                      |Streaming Sink|
+|JDBC		          |                   |Bounded Scan, Lookup	                |Streaming Sink, Batch Sink|
+|Apache HBase	    |1.4.x & 2.2.x    	|Bounded Scan, Lookup	                |Streaming Sink, Batch Sink|
+|Apache Hive	    |                 	|Unbounded Scan, Bounded Scan, Lookup	|Streaming Sink, Batch Sink|
+
+
+#### 格式
+
+表格式是一种存储格式，定义了如何把二进制数据映射到表的列上。
+
+|格式	          | 支持的连接器
+|----           |----
+|CSV	          |Apache Kafka, Upsert Kafka, Amazon Kinesis Data Streams, Filesystem
+|JSON	          |Apache Kafka, Upsert Kafka, Amazon Kinesis Data Streams, Filesystem, Elasticsearch
+|Apache Avro	  |Apache Kafka, Upsert Kafka, Amazon Kinesis Data Streams, Filesystem
+|Confluent Avro	|Apache Kafka, Upsert Kafka
+|Debezium CDC	  |Apache Kafka, Filesystem
+|Canal CDC	    |Apache Kafka, Filesystem
+|Maxwell CDC	  |Apache Kafka, Filesystem
+|Apache Parquet	|Filesystem
+|Apache ORC	    |Filesystem
+|Raw	          |Apache Kafka, Upsert Kafka, Amazon Kinesis Data Streams, Filesystem
+
+#### 使用示例
 
 ```SQL
-CREATE TABLE `ods_table_name` (
-  `PK_ID` BIGINT NOT NULL,
-  `TITLE` STRING,
-  ...
+CREATE TABLE MyUserTable (
+  -- declare the schema of the table
+  `user` BIGINT,
+  `message` STRING,
+  `rowtime` TIMESTAMP(3) METADATA FROM 'timestamp',    -- use a metadata column to access Kafka's record timestamp
+  `proctime AS PROCTIME(),    -- use a computed column to define a proctime attribute
+  WATERMARK FOR `rowtime` AS `rowtime` - INTERVAL '5' SECOND    -- use a WATERMARK statement to define a rowtime attribute
 ) WITH (
- 'connector' = 'mysql-cdc',
- 'hostname' = 'localhost',
- 'port' = '3306',
- 'username' = 'root',
- 'password' = 'root',
- 'database-name' = 'dbname',
- 'table-name' = 'mysql_table_name'
-);
-```
-
-CDC输出端建表
-
-```SQL
-CREATE TABLE `dwd_resource_label` (
-  `PK_ID` BIGINT PRIMARY KEY NOT ENFORCED,
-  `TITLE` STRING,
-  ...
-) WITH (
- 'connector' = 'jdbc',
- 'url' = 'jdbc:mysql://localhost:3306/dbname?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8',
- 'table-name' = 'mysql_table_name_destination',
- 'username' = 'root',
- 'password' = 'root'
-);
-```
-
-同步
-
-```SQL
-INSERT INTO dwd_resource_label SELECT * FROM ods_resource_label;
+  -- declare the external system to connect to
+  'connector' = 'kafka',
+  'topic' = 'topic_name',
+  'scan.startup.mode' = 'earliest-offset',
+  'properties.bootstrap.servers' = 'localhost:9092',
+  'format' = 'json'   -- declare a format for this system
+)
 ```
 
 ### Dataset Connector
 
+#### 文件系统
+
+#### Avro支持
+
+#### MongoDB
