@@ -208,54 +208,15 @@
 
       
           <ol>
-<li>使用flink sql 时，提前引入flink-json依赖</li>
-</ol>
-<p>异常信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Caused by: org.apache.flink.table.api.ValidationException: Could not find any factories that implement &#39;org.apache.flink.table.factories.DeserializationFormatFactory&#39; in the classpath.</span><br><span class="line">	at org.apache.flink.table.factories.FactoryUtil.discoverFactory(FactoryUtil.java:229)</span><br><span class="line">	at org.apache.flink.table.factories.FactoryUtil$TableFactoryHelper.discoverOptionalFormatFactory(FactoryUtil.java:538)</span><br><span class="line">	at org.apache.flink.table.factories.FactoryUtil$TableFactoryHelper.discoverOptionalDecodingFormat(FactoryUtil.java:426)</span><br><span class="line">	at org.apache.flink.table.factories.FactoryUtil$TableFactoryHelper.discoverDecodingFormat(FactoryUtil.java:413)</span><br><span class="line">	at org.apache.flink.streaming.connectors.kafka.table.KafkaDynamicTableFactoryBase.createDynamicTableSource(KafkaDynamicTableFactoryBase.java:73)</span><br><span class="line">	at org.apache.flink.table.factories.FactoryUtil.createTableSource(FactoryUtil.java:122)</span><br><span class="line">	  </span><br></pre></td></tr></table></figure>
-
-<p>解决方案： pom文件中引入</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.flink<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>flink-json<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.11.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>Flink 1.11版本后简化了 connector 参数</li>
-</ol>
-<p>Flink由于发展太快（2020年已经发布了1.10，1.11，1.12三个大版本），很多2020年初的blog提供教程已经面临失效</p>
-<p>以 Kafka 为例，在 1.11 版本之前用户的 DDL 需要声明成如下方式</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> user_behavior (</span><br><span class="line">  ...</span><br><span class="line">) <span class="keyword">WITH</span> (</span><br><span class="line">  <span class="string">&#x27;connector.type&#x27;</span>=<span class="string">&#x27;kafka&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;connector.version&#x27;</span>=<span class="string">&#x27;universal&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;connector.topic&#x27;</span>=<span class="string">&#x27;user_behavior&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;connector.startup-mode&#x27;</span>=<span class="string">&#x27;earliest-offset&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;connector.properties.zookeeper.connect&#x27;</span>=<span class="string">&#x27;localhost:2181&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;connector.properties.bootstrap.servers&#x27;</span>=<span class="string">&#x27;localhost:9092&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;format.type&#x27;</span>=<span class="string">&#x27;json&#x27;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>而在 Flink SQL 1.11 中则简化为</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> user_behavior (</span><br><span class="line">  ...</span><br><span class="line">) <span class="keyword">WITH</span> (</span><br><span class="line">  <span class="string">&#x27;connector&#x27;</span>=<span class="string">&#x27;kafka&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;topic&#x27;</span>=<span class="string">&#x27;user_behavior&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;scan.startup.mode&#x27;</span>=<span class="string">&#x27;earliest-offset&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;properties.zookeeper.connect&#x27;</span>=<span class="string">&#x27;localhost:2181&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;properties.bootstrap.servers&#x27;</span>=<span class="string">&#x27;localhost:9092&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;format&#x27;</span>=<span class="string">&#x27;json&#x27;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>详细变更见<a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/FLINK/FLIP-122%3A+New+Connector+Property+Keys+for+New+Factory">FLIP-122</a></p>
-<ol start="3">
-<li>flink-sql-connector-jdbc声明表时，必须指定主键</li>
-</ol>
-<p>否则会报异常：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalStateException: please declare primary key for sink table when query contains update&#x2F;delete record.</span><br><span class="line">	at org.apache.flink.util.Preconditions.checkState(Preconditions.java:195)</span><br><span class="line">	at org.apache.flink.connector.jdbc.table.JdbcDynamicTableSink.validatePrimaryKey(JdbcDynamicTableSink.java:72)</span><br><span class="line">	at org.apache.flink.connector.jdbc.table.JdbcDynamicTableSink.getChangelogMode(JdbcDynamicTableSink.java:63)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkChangelogModeInferenceProgram$SatisfyModifyKindSetTraitVisitor.visit(FlinkChangelogModeInferenceProgram.scala:120)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkChangelogModeInferenceProgram.optimize(FlinkChangelogModeInferenceProgram.scala:50)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkChangelogModeInferenceProgram.optimize(FlinkChangelogModeInferenceProgram.scala:39)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkGroupProgram$$anonfun$optimize$1$$anonfun$apply$1.apply(FlinkGroupProgram.scala:63)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkGroupProgram$$anonfun$optimize$1$$anonfun$apply$1.apply(FlinkGroupProgram.scala:60)</span><br><span class="line">	at scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.Iterator$class.foreach(Iterator.scala:891)</span><br><span class="line">	at scala.collection.AbstractIterator.foreach(Iterator.scala:1334)</span><br><span class="line">	at scala.collection.IterableLike$class.foreach(IterableLike.scala:72)</span><br><span class="line">	at scala.collection.AbstractIterable.foreach(Iterable.scala:54)</span><br><span class="line">	at scala.collection.TraversableOnce$class.foldLeft(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.AbstractTraversable.foldLeft(Traversable.scala:104)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkGroupProgram$$anonfun$optimize$1.apply(FlinkGroupProgram.scala:60)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkGroupProgram$$anonfun$optimize$1.apply(FlinkGroupProgram.scala:55)</span><br><span class="line">	at scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.immutable.Range.foreach(Range.scala:160)</span><br><span class="line">	at scala.collection.TraversableOnce$class.foldLeft(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.AbstractTraversable.foldLeft(Traversable.scala:104)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkGroupProgram.optimize(FlinkGroupProgram.scala:55)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkChainedProgram$$anonfun$optimize$1.apply(FlinkChainedProgram.scala:62)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkChainedProgram$$anonfun$optimize$1.apply(FlinkChainedProgram.scala:58)</span><br><span class="line">	at scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.Iterator$class.foreach(Iterator.scala:891)</span><br><span class="line">	at scala.collection.AbstractIterator.foreach(Iterator.scala:1334)</span><br><span class="line">	at scala.collection.IterableLike$class.foreach(IterableLike.scala:72)</span><br><span class="line">	at scala.collection.AbstractIterable.foreach(Iterable.scala:54)</span><br><span class="line">	at scala.collection.TraversableOnce$class.foldLeft(TraversableOnce.scala:157)</span><br><span class="line">	at scala.collection.AbstractTraversable.foldLeft(Traversable.scala:104)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.program.FlinkChainedProgram.optimize(FlinkChainedProgram.scala:57)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.StreamCommonSubGraphBasedOptimizer.optimizeTree(StreamCommonSubGraphBasedOptimizer.scala:164)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.StreamCommonSubGraphBasedOptimizer.doOptimize(StreamCommonSubGraphBasedOptimizer.scala:80)</span><br><span class="line">	at org.apache.flink.table.planner.plan.optimize.CommonSubGraphBasedOptimizer.optimize(CommonSubGraphBasedOptimizer.scala:77)</span><br><span class="line">	at org.apache.flink.table.planner.delegation.PlannerBase.optimize(PlannerBase.scala:279)</span><br><span class="line">	at org.apache.flink.table.planner.delegation.PlannerBase.translate(PlannerBase.scala:164)</span><br><span class="line">	at org.apache.flink.table.api.internal.TableEnvironmentImpl.translate(TableEnvironmentImpl.java:1264)</span><br><span class="line">	at org.apache.flink.table.api.internal.TableEnvironmentImpl.executeInternal(TableEnvironmentImpl.java:700)</span><br><span class="line">	at org.apache.flink.table.api.internal.TableEnvironmentImpl.executeOperation(TableEnvironmentImpl.java:787)</span><br><span class="line">	at org.apache.flink.table.api.internal.TableEnvironmentImpl.executeSql(TableEnvironmentImpl.java:690)</span><br><span class="line">    ···</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>使用flink-mysql-cdc时，请注意检查线上数据库binlog-format属性，另外要给用户授权</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> binlog_format = <span class="string">&#x27;ROW&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span>, RELOAD, <span class="keyword">SHOW</span> <span class="keyword">DATABASES</span>, <span class="keyword">REPLICATION</span> <span class="keyword">SLAVE</span>, <span class="keyword">REPLICATION</span> <span class="keyword">CLIENT</span> <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">&#x27;user&#x27;</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">&#x27;password&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>接收到MIXED或STATEMENT格式日志退出</li>
-</ol>
-<p>虽然你可能将Mysql的binlog日志格式改为<code>row</code>，但是仍然可能存在之前的<code>session</code>或者有用户手动修改并提交<code>mixed</code>或者<code>statement</code>格式的日志，这会导致cdc组件异常并退出。</p>
-<p><code>flink-mysql-cdc</code>并没有直接关于此情况设置，但是其引用的<code>debezium</code>组件，在<code>1.3</code>版本（虽然官方文档在1.2版本也有相关属性，但是看其源码并不支持）开始支持<strong>忽略解析错误的语句</strong>。<br>可以通过添加属性配置，来跳过。但是也可能带来丢失数据的风险。</p>
-<p><a target="_blank" rel="noopener" href="https://debezium.io/documentation/reference/1.3/connectors/mysql.html#mysql-property-event-processing-failure-handling-mode">debezium文档</a></p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;debezium.event.processing.failure.handling.mode&#x27;</span> = <span class="string">&#x27;skip&#x27;,</span></span><br><span class="line"><span class="meta">&#x27;debezium.inconsistent.schema.handling.mode&#x27;</span> = <span class="string">&#x27;skip&#x27;,</span></span><br><span class="line"><span class="meta">&#x27;debezium.database.history.skip.unparseable.ddl&#x27;</span> = <span class="string">&#x27;true&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-<ol start="6">
-<li>目标表要注意清除外键依赖</li>
-</ol>
-<p>同步数据时，很多公司都会直接同步原始表的所有字段作为数仓<code>ods</code>层或者<code>dim</code>层，并使用mysql存储，不做任何处理，只有在流表与维表join的时候才会读取.</p>
-<p>此时可能从业务数据库导出sql并导入数仓的mysql，外键依赖也可能会导入。</p>
-<p>那么需要注意去掉其外键依赖，否则会在同步时发生异常。</p>
-
+<li>使用flink sql 时，提前引入flink-json依赖
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/11/flink/Flink-CDC%E8%B8%A9%E5%9D%91%E9%9B%86%E5%90%88/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -587,171 +548,14 @@
 <li>File-based:</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">readTextFile(path)</span><br><span class="line">readFile(fileInputFormat, path)</span><br><span class="line">readFile(fileInputFormat, path, watchType, interval, pathFilter, typeInfo)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Socket-based:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socketTextStream()</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Collection-based:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fromCollection(Collection)</span><br><span class="line">fromCollection(Iterator, Class)</span><br><span class="line">fromElements(T ...)</span><br><span class="line">fromParallelCollection(SplittableIterator, Class)</span><br><span class="line">generateSequence(from, to) </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Custom:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addSource()</span><br></pre></td></tr></table></figure>
-
-<h4 id="预定义的Sink"><a href="#预定义的Sink" class="headerlink" title="预定义的Sink"></a>预定义的Sink</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">writeAsText() / TextOutputFormat</span><br><span class="line"></span><br><span class="line">writeAsCsv(...) / CsvOutputFormat</span><br><span class="line"></span><br><span class="line">print() / printToErr()</span><br><span class="line"></span><br><span class="line">writeUsingOutputFormat() / FileOutputFormat</span><br><span class="line"></span><br><span class="line">writeToSocket()</span><br><span class="line"></span><br><span class="line">addSink()</span><br></pre></td></tr></table></figure>
-
-<h4 id="附带连接器"><a href="#附带连接器" class="headerlink" title="附带连接器"></a>附带连接器</h4><ul>
-<li>Apache Kafka (source/sink)</li>
-<li>Apache Cassandra (sink)</li>
-<li>Amazon Kinesis Streams (source/sink)</li>
-<li>Elasticsearch (sink)</li>
-<li>FileSystem（包括 Hadoop ） - 仅支持流 (sink)</li>
-<li>FileSystem（包括 Hadoop ） - 流批统一 (sink)</li>
-<li>RabbitMQ (source/sink)</li>
-<li>Apache NiFi (source/sink)</li>
-<li>Twitter Streaming API (source)</li>
-<li>Google PubSub (source/sink)</li>
-<li>JDBC (sink)</li>
-</ul>
-<h4 id="Apache-Bahir-中的连接器"><a href="#Apache-Bahir-中的连接器" class="headerlink" title="Apache Bahir 中的连接器"></a>Apache Bahir 中的连接器</h4><p>Flink 还有些一些额外的连接器通过 Apache Bahir 发布, 包括:</p>
-<ul>
-<li>Apache ActiveMQ (source/sink)</li>
-<li>Apache Flume (sink)</li>
-<li>Redis (sink)</li>
-<li>Akka (sink)</li>
-<li>Netty (source)</li>
-</ul>
-<h4 id="连接Flink的其它方法"><a href="#连接Flink的其它方法" class="headerlink" title="连接Flink的其它方法"></a>连接Flink的其它方法</h4><h5 id="异步-I-O"><a href="#异步-I-O" class="headerlink" title="异步 I/O"></a>异步 I/O</h5><p>使用connector并不是唯一可以使数据进入或者流出Flink的方式。 一种常见的模式是从外部数据库或者 Web 服务查询数据得到初始数据流，然后通过 Map 或者 FlatMap 对初始数据流进行丰富和增强。 Flink 提供了异步 I/O API 来让这个过程更加简单、高效和稳定。</p>
-<h5 id="可查询状态（Queryable-State-Beta）"><a href="#可查询状态（Queryable-State-Beta）" class="headerlink" title="可查询状态（Queryable State Beta）"></a>可查询状态（Queryable State Beta）</h5><p>当 Flink 应用程序需要向外部存储推送大量数据时会导致 I/O 瓶颈问题出现。在这种场景下，如果对数据的读操作远少于写操作，那么让外部应用从 Flink 拉取所需的数据会是一种更好的方式。 可查询状态 接口可以实现这个功能，该接口允许被 Flink 托管的状态可以被按需查询。</p>
-<h3 id="Table-Connnector"><a href="#Table-Connnector" class="headerlink" title="Table Connnector"></a>Table Connnector</h3><p>Table API和SQL程序，都支持连接并读写外部系统。 对于Table连接器，除了要了解支持的<strong>连接器</strong>， 还应该了解其支持的<strong>表格式</strong>。</p>
-<h4 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h4><p>以Flink1.12为例，下面是其Table API &amp; SQL支持的连接器类型。</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Version</th>
-<th>Source</th>
-<th>Sink</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Filesystem</td>
-<td></td>
-<td>Bounded and Unbounded Scan,</td>
-<td>Lookup    Streaming Sink, Batch Sink</td>
-</tr>
-<tr>
-<td>Elasticsearch</td>
-<td>6.x &amp; 7.x</td>
-<td>Not supported</td>
-<td>Streaming Sink, Batch Sink</td>
-</tr>
-<tr>
-<td>Apache Kafka</td>
-<td>0.10+</td>
-<td>Unbounded Scan</td>
-<td>Streaming Sink, Batch Sink</td>
-</tr>
-<tr>
-<td>Amazon Kinesis</td>
-<td></td>
-<td>Unbounded Scan</td>
-<td>Streaming Sink</td>
-</tr>
-<tr>
-<td>JDBC</td>
-<td></td>
-<td>Bounded Scan, Lookup</td>
-<td>Streaming Sink, Batch Sink</td>
-</tr>
-<tr>
-<td>Apache HBase</td>
-<td>1.4.x &amp; 2.2.x</td>
-<td>Bounded Scan, Lookup</td>
-<td>Streaming Sink, Batch Sink</td>
-</tr>
-<tr>
-<td>Apache Hive</td>
-<td></td>
-<td>Unbounded Scan, Bounded Scan, Lookup</td>
-<td>Streaming Sink, Batch Sink</td>
-</tr>
-</tbody></table>
-<h4 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h4><p>表格式是一种存储格式，定义了如何把二进制数据映射到表的列上。</p>
-<table>
-<thead>
-<tr>
-<th>格式</th>
-<th>支持的连接器</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>CSV</td>
-<td>Apache Kafka, Upsert Kafka, Amazon Kinesis Data Streams, Filesystem</td>
-</tr>
-<tr>
-<td>JSON</td>
-<td>Apache Kafka, Upsert Kafka, Amazon Kinesis Data Streams, Filesystem, Elasticsearch</td>
-</tr>
-<tr>
-<td>Apache Avro</td>
-<td>Apache Kafka, Upsert Kafka, Amazon Kinesis Data Streams, Filesystem</td>
-</tr>
-<tr>
-<td>Confluent Avro</td>
-<td>Apache Kafka, Upsert Kafka</td>
-</tr>
-<tr>
-<td>Debezium CDC</td>
-<td>Apache Kafka, Filesystem</td>
-</tr>
-<tr>
-<td>Canal CDC</td>
-<td>Apache Kafka, Filesystem</td>
-</tr>
-<tr>
-<td>Maxwell CDC</td>
-<td>Apache Kafka, Filesystem</td>
-</tr>
-<tr>
-<td>Apache Parquet</td>
-<td>Filesystem</td>
-</tr>
-<tr>
-<td>Apache ORC</td>
-<td>Filesystem</td>
-</tr>
-<tr>
-<td>Raw</td>
-<td>Apache Kafka, Upsert Kafka, Amazon Kinesis Data Streams, Filesystem</td>
-</tr>
-</tbody></table>
-<h4 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> MyUserTable (</span><br><span class="line">  <span class="comment">-- declare the schema of the table</span></span><br><span class="line">  <span class="string">`user`</span> <span class="built_in">BIGINT</span>,</span><br><span class="line">  <span class="string">`message`</span> <span class="keyword">STRING</span>,</span><br><span class="line">  <span class="string">`rowtime`</span> <span class="built_in">TIMESTAMP</span>(<span class="number">3</span>) METADATA <span class="keyword">FROM</span> <span class="string">&#x27;timestamp&#x27;</span>,    <span class="comment">-- use a metadata column to access Kafka&#x27;s record timestamp</span></span><br><span class="line">  <span class="string">`proctime AS PROCTIME(),    -- use a computed column to define a proctime attribute</span></span><br><span class="line"><span class="string">  WATERMARK FOR `</span>rowtime<span class="string">` AS `</span>rowtime<span class="string">` - INTERVAL &#x27;5&#x27; SECOND    -- use a WATERMARK statement to define a rowtime attribute</span></span><br><span class="line"><span class="string">) WITH (</span></span><br><span class="line"><span class="string">  -- declare the external system to connect to</span></span><br><span class="line"><span class="string">  &#x27;connector&#x27; = &#x27;kafka&#x27;,</span></span><br><span class="line"><span class="string">  &#x27;topic&#x27; = &#x27;topic_name&#x27;,</span></span><br><span class="line"><span class="string">  &#x27;scan.startup.mode&#x27; = &#x27;earliest-offset&#x27;,</span></span><br><span class="line"><span class="string">  &#x27;properties.bootstrap.servers&#x27; = &#x27;localhost:9092&#x27;,</span></span><br><span class="line"><span class="string">  &#x27;format&#x27; = &#x27;json&#x27;   -- declare a format for this system</span></span><br><span class="line"><span class="string">)</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Dataset-Connector"><a href="#Dataset-Connector" class="headerlink" title="Dataset Connector"></a>Dataset Connector</h3><h4 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h4><h5 id="本地文件系统"><a href="#本地文件系统" class="headerlink" title="本地文件系统"></a>本地文件系统</h5><p>Flink 原生支持本地机器上的文件系统，包括任何挂载到本地文件系统的 NFS 或 SAN 驱动器，默认即可使用，无需额外配置。本地文件可通过 file:// URI Scheme 引用。</p>
-<h5 id="外部文件系统"><a href="#外部文件系统" class="headerlink" title="外部文件系统"></a>外部文件系统</h5><ul>
-<li><p>Amazon S3</p>
-</li>
-<li><p>MapR FS</p>
-</li>
-<li><p>OpenStack Swift FS</p>
-</li>
-<li><p>阿里云对象存储</p>
-</li>
-<li><p>Azure Blob Storage</p>
-</li>
-<li><p>Hadoop 文件系统 (HDFS) 及其其他实现<br>Flink 无缝支持所有实现 org.apache.hadoop.fs.FileSystem 接口的 Hadoop 文件系统和所有兼容 Hadoop 的文件系统 (Hadoop-compatible file system, HCFS)</p>
-</li>
-</ul>
-<h4 id="Avro支持"><a href="#Avro支持" class="headerlink" title="Avro支持"></a>Avro支持</h4><p>在引入flink avro依赖后，可以声明<code>AvroInputFormat</code>接收并序列化来自avro rpc的数据并进行处理。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.flink<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>flink-avro<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h4>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/17/flink/Flink-4-Connectors/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

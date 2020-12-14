@@ -17,7 +17,7 @@ readTextFile(path)
 readFile(fileInputFormat, path)
 readFile(fileInputFormat, path, watchType, interval, pathFilter, typeInfo)
 ```
-
+<!--more-->
 * Socket-based:
 
 ```java
