@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="一、问题发现之前使用配置文件的形式进行管理，比如MySQL配置文件分为:  db.properties db.dev.properties db.test.properties db.prod.properties  在部署到对应环境的时候，比如到test环境，运维会执行类似mv db.test.properties db.properties的命令，将对应环境的文件覆盖到程序指定的文件db.pr">
-<meta name="keywords" content="微服务,配置中心">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微服务改造实践(1)-配置中心">
-<meta property="og:url" content="http://yoursite.com/2019/07/08/microservice/微服务改造-1-配置中心/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/07/08/microservice/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0-1-%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/index.html">
 <meta property="og:site_name" content="设计与思考">
 <meta property="og:description" content="一、问题发现之前使用配置文件的形式进行管理，比如MySQL配置文件分为:  db.properties db.dev.properties db.test.properties db.prod.properties  在部署到对应环境的时候，比如到test环境，运维会执行类似mv db.test.properties db.properties的命令，将对应环境的文件覆盖到程序指定的文件db.pr">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-27T08:08:15.941Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-08T13:49:43.000Z">
+<meta property="article:modified_time" content="2020-10-27T08:08:15.941Z">
+<meta property="article:author" content="李学民">
+<meta property="article:tag" content="微服务">
+<meta property="article:tag" content="配置中心">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微服务改造实践(1)-配置中心">
-<meta name="twitter:description" content="一、问题发现之前使用配置文件的形式进行管理，比如MySQL配置文件分为:  db.properties db.dev.properties db.test.properties db.prod.properties  在部署到对应环境的时候，比如到test环境，运维会执行类似mv db.test.properties db.properties的命令，将对应环境的文件覆盖到程序指定的文件db.pr">
 
-<link rel="canonical" href="http://yoursite.com/2019/07/08/microservice/微服务改造-1-配置中心/">
+<link rel="canonical" href="http://yoursite.com/2019/07/08/microservice/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0-1-%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/">
 
 
 <script id="page-configurations">
@@ -164,7 +165,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/08/microservice/微服务改造-1-配置中心/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/08/microservice/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0-1-%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -195,7 +196,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微服务改造/" itemprop="url" rel="index"><span itemprop="name">微服务改造</span></a>
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0/" itemprop="url" rel="index"><span itemprop="name">微服务改造</span></a>
                 </span>
             </span>
 
@@ -261,8 +262,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/微服务/" rel="tag"># 微服务</a>
-              <a href="/tags/配置中心/" rel="tag"># 配置中心</a>
+              <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag"># 微服务</a>
+              <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/" rel="tag"># 配置中心</a>
           </div>
 
         
@@ -272,7 +273,7 @@
     <div class="post-nav">
       <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2019/07/11/microservice/微服务改造-2-网关/" rel="next" title="微服务改造-2-网关">
+    <a href="/2019/07/11/microservice/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0-2-%E7%BD%91%E5%85%B3/" rel="next" title="微服务改造-2-网关">
       微服务改造-2-网关 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -338,7 +339,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、问题发现"><span class="nav-number">1.</span> <span class="nav-text">一、问题发现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、找寻方案"><span class="nav-number">2.</span> <span class="nav-text">二、找寻方案</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%97%AE%E9%A2%98%E5%8F%91%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">一、问题发现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%89%BE%E5%AF%BB%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">二、找寻方案</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -436,9 +437,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 
