@@ -148,6 +148,35 @@ CREATE TABLE MyUserTable (
 
 #### 文件系统
 
+##### 本地文件系统
+
+Flink 原生支持本地机器上的文件系统，包括任何挂载到本地文件系统的 NFS 或 SAN 驱动器，默认即可使用，无需额外配置。本地文件可通过 file:// URI Scheme 引用。
+
+##### 外部文件系统
+
+* Amazon S3
+
+* MapR FS
+
+* OpenStack Swift FS
+
+* 阿里云对象存储
+
+* Azure Blob Storage
+
+* Hadoop 文件系统 (HDFS) 及其其他实现
+Flink 无缝支持所有实现 org.apache.hadoop.fs.FileSystem 接口的 Hadoop 文件系统和所有兼容 Hadoop 的文件系统 (Hadoop-compatible file system, HCFS)
+
 #### Avro支持
+
+在引入flink avro依赖后，可以声明`AvroInputFormat`接收并序列化来自avro rpc的数据并进行处理。
+
+```xml
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-avro</artifactId>
+  <version>1.12.0</version>
+</dependency>
+```
 
 #### MongoDB
