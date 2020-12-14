@@ -137,7 +137,7 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
 虽然你可能将Mysql的binlog日志格式改为`row`，但是仍然可能存在之前的`session`或者有用户手动修改并提交`mixed`或者`statement`格式的日志，这会导致cdc组件异常并退出。
 
 `flink-mysql-cdc`并没有直接关于此情况设置，但是其引用的`debezium`组件，在`1.3`版本（虽然官方文档在1.2版本也有相关属性，但是看其源码并不支持）开始支持**忽略解析错误的语句**。
-可以通过添加属性配置，来跳过。
+可以通过添加属性配置，来跳过。但是也可能带来丢失数据的风险。
 
 [debezium文档](https://debezium.io/documentation/reference/1.3/connectors/mysql.html#mysql-property-event-processing-failure-handling-mode
 )
