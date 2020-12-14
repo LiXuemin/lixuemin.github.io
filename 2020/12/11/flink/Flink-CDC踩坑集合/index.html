@@ -30,7 +30,7 @@
 <meta property="og:site_name" content="设计与思考">
 <meta property="og:description" content="使用flink sql 时，提前引入flink-json依赖  异常信息 1234567Caused by: org.apache.flink.table.api.ValidationException: Could not find any factories that implement &amp;apos;org.apache.flink.table.factories.Deserializati">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-12-11T09:19:49.526Z">
+<meta property="og:updated_time" content="2020-12-14T05:44:58.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink CDC踩坑集合">
 <meta name="twitter:description" content="使用flink sql 时，提前引入flink-json依赖  异常信息 1234567Caused by: org.apache.flink.table.api.ValidationException: Could not find any factories that implement &amp;apos;org.apache.flink.table.factories.Deserializati">
@@ -251,11 +251,19 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span>, RELOAD, <span class="keyword">SHOW</span> <span class="keyword">DATABASES</span>, <span class="keyword">REPLICATION</span> <span class="keyword">SLAVE</span>, <span class="keyword">REPLICATION</span> <span class="keyword">CLIENT</span> <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'user'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
 
 <ol start="5">
-<li><p>接收到MIXED或STATEMENT格式日志退出</p>
-</li>
-<li><p>目标表要注意清除外键依赖</p>
-</li>
+<li>接收到MIXED或STATEMENT格式日志退出</li>
 </ol>
+<p>虽然你可能将Mysql的binlog日志格式改为<code>row</code>，但是仍然可能存在之前的<code>session</code>或者有用户手动修改并提交<code>mixed</code>或者<code>statement</code>格式的日志，这会导致cdc组件异常并退出。</p>
+<p><code>flink-mysql-cdc</code>并没有直接关于此情况设置，但是其引用的<code>debezium</code>组件，在<code>1.3</code>版本（虽然官方文档在1.2版本也有相关属性，但是看其源码并不支持）开始支持<strong>忽略解析错误的语句</strong>。<br>可以通过添加属性配置，来跳过。但是也可能带来丢失数据的风险。</p>
+<p><a href="https://debezium.io/documentation/reference/1.3/connectors/mysql.html#mysql-property-event-processing-failure-handling-mode" target="_blank" rel="noopener">debezium文档</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&apos;debezium.event.processing.failure.handling.mode&apos; = &apos;skip&apos;,</span><br><span class="line">&apos;debezium.inconsistent.schema.handling.mode&apos; = &apos;skip&apos;,</span><br><span class="line">&apos;debezium.database.history.skip.unparseable.ddl&apos; = &apos;true&apos;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>目标表要注意清除外键依赖</li>
+</ol>
+<p>同步数据时，很多公司都会直接同步原始表的所有字段作为数仓<code>ods</code>层或者<code>dim</code>层，并使用mysql存储，不做任何处理，只有在流表与维表join的时候才会读取.</p>
+<p>此时可能从业务数据库导出sql并导入数仓的mysql，外键依赖也可能会导入。</p>
+<p>那么需要注意去掉其外键依赖，否则会在同步时发生异常。</p>
 
     </div>
 
