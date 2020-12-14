@@ -46,6 +46,6 @@ theme: next
 plugins: hexo-generator-sitemap
 deploy:
   type: git
-  repo: 'git@github.com:LiXuemin/lixuemin.github.io.git'
+  repo: 'https://github.com/LiXuemin/lixuemin.github.io.git'
   branch: master
   message: 'Site updated: {{ now(''YYYY-MM-DD HH:mm:ss'') }}'
