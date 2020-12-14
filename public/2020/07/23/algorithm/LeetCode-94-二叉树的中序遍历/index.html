@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,19 +23,20 @@
   </script>
 
   <meta name="description" content="题目LeetCode 94. 二叉树的中序遍历 思路中序遍历是按照左-根-右的顺序.  首先要找到左-左-左….的那个节点 打印后, 再判断它有没有右孩子, 若存在则继续迭代, 若无则打印当前节点 打印完毕再从栈中取出之前存入的节点">
-<meta name="keywords" content="数据结构与算法,二叉树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode 94. 二叉树的中序遍历">
-<meta property="og:url" content="http://yoursite.com/2020/07/23/algorithm/LeetCode-94-二叉树的中序遍历/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/07/23/algorithm/LeetCode-94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/index.html">
 <meta property="og:site_name" content="设计与思考">
 <meta property="og:description" content="题目LeetCode 94. 二叉树的中序遍历 思路中序遍历是按照左-根-右的顺序.  首先要找到左-左-左….的那个节点 打印后, 再判断它有没有右孩子, 若存在则继续迭代, 若无则打印当前节点 打印完毕再从栈中取出之前存入的节点">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-27T08:08:15.928Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-23T14:06:29.000Z">
+<meta property="article:modified_time" content="2020-10-27T08:08:15.928Z">
+<meta property="article:author" content="李学民">
+<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="二叉树">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode 94. 二叉树的中序遍历">
-<meta name="twitter:description" content="题目LeetCode 94. 二叉树的中序遍历 思路中序遍历是按照左-根-右的顺序.  首先要找到左-左-左….的那个节点 打印后, 再判断它有没有右孩子, 若存在则继续迭代, 若无则打印当前节点 打印完毕再从栈中取出之前存入的节点">
 
-<link rel="canonical" href="http://yoursite.com/2020/07/23/algorithm/LeetCode-94-二叉树的中序遍历/">
+<link rel="canonical" href="http://yoursite.com/2020/07/23/algorithm/LeetCode-94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/">
 
 
 <script id="page-configurations">
@@ -164,7 +165,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/23/algorithm/LeetCode-94-二叉树的中序遍历/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/23/algorithm/LeetCode-94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -195,7 +196,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -217,7 +218,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="noopener">LeetCode 94. 二叉树的中序遍历</a></p>
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">LeetCode 94. 二叉树的中序遍历</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>中序遍历是按照<code>左-根-右</code>的顺序.</p>
 <ol>
 <li>首先要找到左-左-左….的那个节点</li>
@@ -235,8 +236,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/数据结构与算法/" rel="tag"># 数据结构与算法</a>
-              <a href="/tags/二叉树/" rel="tag"># 二叉树</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+              <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag"># 二叉树</a>
           </div>
 
         
@@ -245,11 +246,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/23/algorithm/LeetCode-144-二叉树的前序遍历/" rel="prev" title="LeetCode 144. 二叉树的前序遍历">
+    <a href="/2020/07/23/algorithm/LeetCode-144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/" rel="prev" title="LeetCode 144. 二叉树的前序遍历">
       <i class="fa fa-chevron-left"></i> LeetCode 144. 二叉树的前序遍历
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/23/algorithm/LeetCode-145-二叉树的后序遍历/" rel="next" title="LeetCode 145. 二叉树的后序遍历">
+    <a href="/2020/07/23/algorithm/LeetCode-145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/" rel="next" title="LeetCode 145. 二叉树的后序遍历">
       LeetCode 145. 二叉树的后序遍历 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -315,7 +316,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -413,9 +414,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -28,10 +28,9 @@
 <meta property="og:url" content="http://yoursite.com/page/5/index.html">
 <meta property="og:site_name" content="设计与思考">
 <meta property="og:description" content="个人博客,温故知新">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="李学民">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计与思考">
-<meta name="twitter:description" content="个人博客,温故知新">
 
 <link rel="canonical" href="http://yoursite.com/page/5/">
 
@@ -161,7 +160,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/11/algorithm/用一个栈实现另一个栈的排序/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/11/algorithm/%E7%94%A8%E4%B8%80%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%A0%88%E7%9A%84%E6%8E%92%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -193,7 +192,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -213,7 +212,7 @@
 <li><p>利用两个栈+临时变量, 通过比较, 使得辅助栈中元素有序<br>申请一个辅助栈, 将原始栈的元素挨个取出, 通过比较最终<strong>使得辅助栈内的元素顶-&gt;底, 小-&gt;大排序</strong>.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/11/algorithm/用一个栈实现另一个栈的排序/#more" rel="contents">
+              <a class="btn" href="/2020/06/11/algorithm/%E7%94%A8%E4%B8%80%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%A0%88%E7%9A%84%E6%8E%92%E5%BA%8F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -237,7 +236,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/10/algorithm/猫狗队列/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/10/algorithm/%E7%8C%AB%E7%8B%97%E9%98%9F%E5%88%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -269,7 +268,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -285,12 +284,12 @@
 
       
           <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>宠物、狗和猫的类如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String type;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pet</span><span class="params">(String type)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.type = type;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPetType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.type;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Pet</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>(<span class="string">"dog"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Pet</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Cat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>(<span class="string">"cat"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String type;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pet</span><span class="params">(String type)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.type = type;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPetType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.type;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Pet</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>(<span class="string">&quot;dog&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Pet</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Cat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>(<span class="string">&quot;cat&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 <p>实现一种猫狗队列的结构, 要求如下:</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/10/algorithm/猫狗队列/#more" rel="contents">
+              <a class="btn" href="/2020/06/10/algorithm/%E7%8C%AB%E7%8B%97%E9%98%9F%E5%88%97/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -314,7 +313,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/09/algorithm/仅用递归函数和栈操作逆序一个栈/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/09/algorithm/%E4%BB%85%E7%94%A8%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0%E5%92%8C%E6%A0%88%E6%93%8D%E4%BD%9C%E9%80%86%E5%BA%8F%E4%B8%80%E4%B8%AA%E6%A0%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -346,7 +345,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -365,7 +364,7 @@
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>递归获取栈底元素</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/09/algorithm/仅用递归函数和栈操作逆序一个栈/#more" rel="contents">
+              <a class="btn" href="/2020/06/09/algorithm/%E4%BB%85%E7%94%A8%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0%E5%92%8C%E6%A0%88%E6%93%8D%E4%BD%9C%E9%80%86%E5%BA%8F%E4%B8%80%E4%B8%AA%E6%A0%88/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -389,7 +388,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/08/algorithm/由两个栈组成的队列/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/08/algorithm/%E7%94%B1%E4%B8%A4%E4%B8%AA%E6%A0%88%E7%BB%84%E6%88%90%E7%9A%84%E9%98%9F%E5%88%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -421,7 +420,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -440,7 +439,7 @@
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>栈是FILO, 队列是FIFO.<br> 一个栈stackPush按用户操作顺序存储, 提供入队操作.<br> 另一个栈stackPop按照相反顺序存储, 提供出队操作.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/08/algorithm/由两个栈组成的队列/#more" rel="contents">
+              <a class="btn" href="/2020/06/08/algorithm/%E7%94%B1%E4%B8%A4%E4%B8%AA%E6%A0%88%E7%BB%84%E6%88%90%E7%9A%84%E9%98%9F%E5%88%97/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -464,7 +463,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/algorithm/设计一个有getMin功能的栈/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/algorithm/%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%9C%89getMin%E5%8A%9F%E8%83%BD%E7%9A%84%E6%A0%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -496,7 +495,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -522,7 +521,7 @@
 <li>可以用另一个栈来存储当前的最小值.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/07/algorithm/设计一个有getMin功能的栈/#more" rel="contents">
+              <a class="btn" href="/2020/06/07/algorithm/%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%9C%89getMin%E5%8A%9F%E8%83%BD%E7%9A%84%E6%A0%88/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -546,7 +545,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/08/bigdata/数据收集-1-Flume/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/08/bigdata/%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86-1-Flume/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -578,7 +577,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
                 </span>
             </span>
 
@@ -601,7 +600,7 @@
 <li>对可靠性有一定要求
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/08/bigdata/数据收集-1-Flume/#more" rel="contents">
+              <a class="btn" href="/2020/05/08/bigdata/%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86-1-Flume/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -625,7 +624,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/04/bigdata/HDFS原理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/04/bigdata/HDFS%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -657,7 +656,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
                 </span>
             </span>
 
@@ -680,7 +679,7 @@
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/04/bigdata/HDFS原理/#more" rel="contents">
+              <a class="btn" href="/2020/05/04/bigdata/HDFS%E5%8E%9F%E7%90%86/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -704,7 +703,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/03/bigdata/Designing-Data-Intensive-Applications-7-事务/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/03/bigdata/Designing-Data-Intensive-Applications-7-%E4%BA%8B%E5%8A%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -736,7 +735,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
                 </span>
             </span>
 
@@ -754,7 +753,7 @@
           <h1 id="深入理解事务"><a href="#深入理解事务" class="headerlink" title="深入理解事务"></a>深入理解事务</h1><h2 id="ACID的含义"><a href="#ACID的含义" class="headerlink" title="ACID的含义"></a>ACID的含义</h2><h3 id="原子性（Atomicity）"><a href="#原子性（Atomicity）" class="headerlink" title="原子性（Atomicity）"></a>原子性（Atomicity）</h3><h4 id="在出错时中止事务，-并将部分完成的写入全部丢弃"><a href="#在出错时中止事务，-并将部分完成的写入全部丢弃" class="headerlink" title="在出错时中止事务， 并将部分完成的写入全部丢弃"></a>在出错时中止事务， 并将部分完成的写入全部丢弃</h4><h4 id="可中止性。简化了排错过程，事务如果中止，-应用可以安全地重试"><a href="#可中止性。简化了排错过程，事务如果中止，-应用可以安全地重试" class="headerlink" title="可中止性。简化了排错过程，事务如果中止， 应用可以安全地重试"></a>可中止性。简化了排错过程，事务如果中止， 应用可以安全地重试</h4><h3 id="一致性-Consistency"><a href="#一致性-Consistency" class="headerlink" title="一致性(Consistency)"></a>一致性(Consistency)</h3><h4 id="对数据有特定的预期状态，-任何数据更改必须满足这些状态约束（或者恒等条件）"><a href="#对数据有特定的预期状态，-任何数据更改必须满足这些状态约束（或者恒等条件）" class="headerlink" title="对数据有特定的预期状态， 任何数据更改必须满足这些状态约束（或者恒等条件）"></a>对数据有特定的预期状态， 任何数据更改必须满足这些状态约束（或者恒等条件）</h4><h4 id="本质上要求应用层来维护一致"><a href="#本质上要求应用层来维护一致" class="headerlink" title="本质上要求应用层来维护一致"></a>本质上要求应用层来维护一致</h4><h4 id="应用程序可能借助数据库提供的原子性和隔离性，-以达到一致性，-但一致性本身并不源于数据库"><a href="#应用程序可能借助数据库提供的原子性和隔离性，-以达到一致性，-但一致性本身并不源于数据库" class="headerlink" title="应用程序可能借助数据库提供的原子性和隔离性， 以达到一致性， 但一致性本身并不源于数据库"></a>应用程序可能借助数据库提供的原子性和隔离性， 以达到一致性， 但一致性本身并不源于数据库</h4>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/03/bigdata/Designing-Data-Intensive-Applications-7-事务/#more" rel="contents">
+              <a class="btn" href="/2020/05/03/bigdata/Designing-Data-Intensive-Applications-7-%E4%BA%8B%E5%8A%A1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -778,7 +777,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/05/java/JVM常用知识点/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/05/java/JVM%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -810,7 +809,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
                 </span>
             </span>
 
@@ -833,7 +832,7 @@
 <li>堆
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/01/05/java/JVM常用知识点/#more" rel="contents">
+              <a class="btn" href="/2020/01/05/java/JVM%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -857,7 +856,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/17/microservice/微服务改造-3-Kong路由配置实战及JWT校验/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/17/microservice/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0-3-Kong%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E5%AE%9E%E6%88%98%E5%8F%8AJWT%E6%A0%A1%E9%AA%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -889,7 +888,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微服务改造/" itemprop="url" rel="index"><span itemprop="name">微服务改造</span></a>
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0/" itemprop="url" rel="index"><span itemprop="name">微服务改造</span></a>
                 </span>
             </span>
 
@@ -912,7 +911,7 @@
 <li>API服务管理平台: 由于不同系统间存在大量的API服务互相调用, 因此需要对系统间服务调用进行管理, 清晰的看到个系统调用关系, 对系统间调用进行监控等.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/11/17/microservice/微服务改造-3-Kong路由配置实战及JWT校验/#more" rel="contents">
+              <a class="btn" href="/2019/11/17/microservice/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%94%B9%E9%80%A0-3-Kong%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E5%AE%9E%E6%88%98%E5%8F%8AJWT%E6%A0%A1%E9%AA%8C/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1085,9 +1084,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 

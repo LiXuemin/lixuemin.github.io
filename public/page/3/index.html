@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -28,10 +28,9 @@
 <meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="设计与思考">
 <meta property="og:description" content="个人博客,温故知新">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="李学民">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计与思考">
-<meta name="twitter:description" content="个人博客,温故知新">
 
 <link rel="canonical" href="http://yoursite.com/page/3/">
 
@@ -161,7 +160,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/algorithm/LeetCode 141. Linked List Cycle/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/algorithm/LeetCode%20141.%20Linked%20List%20Cycle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -193,7 +192,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -208,13 +207,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目:"></a>题目:</h3><p><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="noopener">LeetCode 141. Linked List Cycle</a></p>
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目:"></a>题目:</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/linked-list-cycle/">LeetCode 141. Linked List Cycle</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><ol>
 <li>最先想到的是遍历链表, 并将结点的内存地址存在<code>HashSet</code>中.如果当前结点的内存地址已经存在,则表示存在环,直接返回<code>true</code></li>
 <li>还可以用双指针(快慢指针)来解决, 如果两个指针相遇(套圈), 则代表存在环.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/20/algorithm/LeetCode 141. Linked List Cycle/#more" rel="contents">
+              <a class="btn" href="/2020/07/20/algorithm/LeetCode%20141.%20Linked%20List%20Cycle/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -238,7 +237,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/algorithm/LeetCode 21. Merge Two Sorted Lists/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/algorithm/LeetCode%2021.%20Merge%20Two%20Sorted%20Lists/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -270,7 +269,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -285,11 +284,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目:"></a>题目:</h3><p><a href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank" rel="noopener">LeetCode 21. Merge Two Sorted Lists</a></p>
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目:"></a>题目:</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-two-sorted-lists/">LeetCode 21. Merge Two Sorted Lists</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><p>基本思想就是新建一个链表, 然后从两个列表的头结点分别依次比较大小, 并将较小的插入新链表中.<br>实现1: 递归实现<br>实现2: 两个链表依次遍历插入新链表</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/04/algorithm/LeetCode 21. Merge Two Sorted Lists/#more" rel="contents">
+              <a class="btn" href="/2020/07/04/algorithm/LeetCode%2021.%20Merge%20Two%20Sorted%20Lists/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -313,7 +312,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/03/algorithm/LeetCode 19. Remove Nth Node From End of List/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/03/algorithm/LeetCode%2019.%20Remove%20Nth%20Node%20From%20End%20of%20List/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -345,7 +344,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -360,7 +359,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener">LeetCode 19. Remove Nth Node From End of List</a></p>
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">LeetCode 19. Remove Nth Node From End of List</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>思路一:</p>
 <ol>
 <li>单链表, 无法从尾结点往前遍历. 那么可以将倒数第N个结点转为第<code>L-N+1</code>个正数节点</li>
@@ -375,7 +374,7 @@
 <li>当第二个指针到了尾部, 第一个指针恰好在倒数第N个节点的前驱位置.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/03/algorithm/LeetCode 19. Remove Nth Node From End of List/#more" rel="contents">
+              <a class="btn" href="/2020/07/03/algorithm/LeetCode%2019.%20Remove%20Nth%20Node%20From%20End%20of%20List/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -399,7 +398,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/02/algorithm/LeetCode 6. Z字形变换/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/02/algorithm/LeetCode%206.%20Z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -431,7 +430,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -446,7 +445,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/zigzag-conversion/submissions/" target="_blank" rel="noopener">LeetCode 6. ZigZag Conversion</a></p>
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/zigzag-conversion/submissions/">LeetCode 6. ZigZag Conversion</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
 <li>最开始想的就是一个二维数组, 它把原字符串, 按照规律放入固定位置, 最后再拼接</li>
 <li>那么又分为两个问题<ul>
@@ -458,7 +457,7 @@
 <li>另外选用了字符串来替代一维数组, 直接拼接保存该行
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/02/algorithm/LeetCode 6. Z字形变换/#more" rel="contents">
+              <a class="btn" href="/2020/07/02/algorithm/LeetCode%206.%20Z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -482,7 +481,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/01/algorithm/LeetCode 15. 三数之和/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/01/algorithm/LeetCode%2015.%20%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -514,7 +513,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -529,7 +528,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/3sum/submissions/" target="_blank" rel="noopener">LeetCode 15. 3Sum</a></p>
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/3sum/submissions/">LeetCode 15. 3Sum</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
 <li>采用固定一个数, 双指针寻找另外两个数</li>
 <li>排序后开始处理, 注意几个情况:<ol>
@@ -538,7 +537,7 @@
 <li>跳过left指针、right指针重复的情况
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/01/algorithm/LeetCode 15. 三数之和/#more" rel="contents">
+              <a class="btn" href="/2020/07/01/algorithm/LeetCode%2015.%20%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -562,7 +561,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/29/algorithm/LeetCode 66. 加一/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/29/algorithm/LeetCode%2066.%20%E5%8A%A0%E4%B8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -594,7 +593,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -609,7 +608,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/plus-one/" target="_blank" rel="noopener">LeetCode 66. Plus One</a></p>
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/plus-one/">LeetCode 66. Plus One</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>难度在于要考虑到所有情况:</p>
 <ol>
 <li>末位 ≠ 9, 直接++, 返回数组</li>
@@ -617,7 +616,7 @@
 <li>末位 == 9 , 前面所有位都是9, 新建一个数组, 首位置为1, 返回
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/29/algorithm/LeetCode 66. 加一/#more" rel="contents">
+              <a class="btn" href="/2020/06/29/algorithm/LeetCode%2066.%20%E5%8A%A0%E4%B8%80/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -641,7 +640,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/algorithm/LeetCode 27. 移除数组元素/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/algorithm/LeetCode%2027.%20%E7%A7%BB%E9%99%A4%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -673,7 +672,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -688,14 +687,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/remove-element/" target="_blank" rel="noopener">LeetCode 27. Remove Element</a></p>
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-element/">LeetCode 27. Remove Element</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>这道题目, 把题意读明白就好做了.<br>预定义的方法中要求返回<code>int类型长度len</code>, 但代码提交时, 却是按照 <code>nums中[0, len)的区间输出</code>判断的.<br>所以最终需要注意的是:</p>
 <ol>
 <li>O(1) 空间复杂度</li>
 <li>nums中跟val不等的元素, 要往前移
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/28/algorithm/LeetCode 27. 移除数组元素/#more" rel="contents">
+              <a class="btn" href="/2020/06/28/algorithm/LeetCode%2027.%20%E7%A7%BB%E9%99%A4%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -719,7 +718,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/algorithm/LeetCode 189. 翻转数组/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/algorithm/LeetCode%20189.%20%E7%BF%BB%E8%BD%AC%E6%95%B0%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -751,7 +750,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -766,7 +765,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/rotate-array/" target="_blank" rel="noopener">LeetCode 189. Rotate Array</a></p>
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/rotate-array/">LeetCode 189. Rotate Array</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="实现1-利用一个额外的数组"><a href="#实现1-利用一个额外的数组" class="headerlink" title="实现1: 利用一个额外的数组"></a>实现1: 利用一个额外的数组</h4><ol>
 <li>目标: 将数组1中每一个元素, 移动到额外数组目标索引位置</li>
 <li>目标索引 = (现在位置 + 步数) % 长度</li>
@@ -775,7 +774,7 @@
 <h4 id="实现2-分析数组翻转后的元素排列-使用位置互换"><a href="#实现2-分析数组翻转后的元素排列-使用位置互换" class="headerlink" title="实现2: 分析数组翻转后的元素排列, 使用位置互换"></a>实现2: 分析数组翻转后的元素排列, 使用位置互换</h4>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/26/algorithm/LeetCode 189. 翻转数组/#more" rel="contents">
+              <a class="btn" href="/2020/06/26/algorithm/LeetCode%20189.%20%E7%BF%BB%E8%BD%AC%E6%95%B0%E7%BB%84/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -799,7 +798,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/25/algorithm/LeetCode 122. 买卖股票的最佳时机 ii/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/25/algorithm/LeetCode%20122.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20ii/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -831,7 +830,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -846,15 +845,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/" target="_blank" rel="noopener">LeetCode 122. Best Time to Buy and Sell Stock II</a></p>
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/">LeetCode 122. Best Time to Buy and Sell Stock II</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
-<li>要求尽可能多的完成交易</li>
+<li> 要求尽可能多的完成交易</li>
 <li>要求不能同时多笔交易</li>
 <li>所以判断每笔交易能不能赚钱(即 arr[i + 1] - arr[i] &gt; 0), 满足条件则发生交易即可</li>
 </ol>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/25/algorithm/LeetCode 122. 买卖股票的最佳时机 ii/#more" rel="contents">
+              <a class="btn" href="/2020/06/25/algorithm/LeetCode%20122.%20%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20ii/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -878,7 +877,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/24/algorithm/LeetCode 14. 最长公共前缀/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/24/algorithm/LeetCode%2014.%20%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -910,7 +909,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -925,7 +924,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="https://leetcode.com/problems/longest-common-prefix/" target="_blank" rel="noopener">LeetCode 14. Longest Common Prefix</a></p>
+          <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-common-prefix/">LeetCode 14. Longest Common Prefix</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
 <li>index从0开始, 每个字符串取第index个元素, 判断是否相等, 相等则index递增继续计算, 直到不相等为止</li>
 <li>个人觉得问题比较简单, 但是各种边界条件必须考虑到位<ul>
@@ -934,7 +933,7 @@
 <li>注意 str.charAt(index) 越界问题
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/24/algorithm/LeetCode 14. 最长公共前缀/#more" rel="contents">
+              <a class="btn" href="/2020/06/24/algorithm/LeetCode%2014.%20%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1107,9 +1106,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,17 +23,17 @@
   </script>
 
   <meta name="description" content="DataStreeam Connector预定义的Source File-based:  123readTextFile(path)readFile(fileInputFormat, path)readFile(fileInputFormat, path, watchType, interval, pathFilter, typeInfo)   Socket-based:  1socketText">
-<meta name="keywords" content="Flink">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flink 4. Connectors">
 <meta property="og:url" content="http://yoursite.com/2020/09/17/flink/Flink-4-Connectors/index.html">
 <meta property="og:site_name" content="设计与思考">
 <meta property="og:description" content="DataStreeam Connector预定义的Source File-based:  123readTextFile(path)readFile(fileInputFormat, path)readFile(fileInputFormat, path, watchType, interval, pathFilter, typeInfo)   Socket-based:  1socketText">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-12-14T08:32:15.953Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-17T09:57:04.000Z">
+<meta property="article:modified_time" content="2020-12-14T08:32:15.953Z">
+<meta property="article:author" content="李学民">
+<meta property="article:tag" content="Flink">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flink 4. Connectors">
-<meta name="twitter:description" content="DataStreeam Connector预定义的Source File-based:  123readTextFile(path)readFile(fileInputFormat, path)readFile(fileInputFormat, path, watchType, interval, pathFilter, typeInfo)   Socket-based:  1socketText">
 
 <link rel="canonical" href="http://yoursite.com/2020/09/17/flink/Flink-4-Connectors/">
 
@@ -195,7 +195,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/流计算/" itemprop="url" rel="index"><span itemprop="name">流计算</span></a>
+                  <a href="/categories/%E6%B5%81%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">流计算</span></a>
                 </span>
             </span>
 
@@ -230,7 +230,7 @@
 <ul>
 <li>Collection-based:</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fromCollection(Collection)</span><br><span class="line">fromCollection(Iterator, Class)</span><br><span class="line">fromElements(T ...)</span><br><span class="line">fromParallelCollection(SplittableIterator, Class)</span><br><span class="line">generateSequence(from, to)</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fromCollection(Collection)</span><br><span class="line">fromCollection(Iterator, Class)</span><br><span class="line">fromElements(T ...)</span><br><span class="line">fromParallelCollection(SplittableIterator, Class)</span><br><span class="line">generateSequence(from, to) </span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Custom:</li>
@@ -365,7 +365,7 @@
 <td>Apache Kafka, Upsert Kafka, Amazon Kinesis Data Streams, Filesystem</td>
 </tr>
 </tbody></table>
-<h4 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> MyUserTable (</span><br><span class="line">  <span class="comment">-- declare the schema of the table</span></span><br><span class="line">  <span class="string">`user`</span> <span class="built_in">BIGINT</span>,</span><br><span class="line">  <span class="string">`message`</span> <span class="keyword">STRING</span>,</span><br><span class="line">  <span class="string">`rowtime`</span> <span class="built_in">TIMESTAMP</span>(<span class="number">3</span>) METADATA <span class="keyword">FROM</span> <span class="string">'timestamp'</span>,    <span class="comment">-- use a metadata column to access Kafka's record timestamp</span></span><br><span class="line">  <span class="string">`proctime AS PROCTIME(),    -- use a computed column to define a proctime attribute</span></span><br><span class="line"><span class="string">  WATERMARK FOR `</span>rowtime<span class="string">` AS `</span>rowtime<span class="string">` - INTERVAL '5' SECOND    -- use a WATERMARK statement to define a rowtime attribute</span></span><br><span class="line"><span class="string">) WITH (</span></span><br><span class="line"><span class="string">  -- declare the external system to connect to</span></span><br><span class="line"><span class="string">  'connector' = 'kafka',</span></span><br><span class="line"><span class="string">  'topic' = 'topic_name',</span></span><br><span class="line"><span class="string">  'scan.startup.mode' = 'earliest-offset',</span></span><br><span class="line"><span class="string">  'properties.bootstrap.servers' = 'localhost:9092',</span></span><br><span class="line"><span class="string">  'format' = 'json'   -- declare a format for this system</span></span><br><span class="line"><span class="string">)</span></span><br></pre></td></tr></table></figure>
+<h4 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> MyUserTable (</span><br><span class="line">  <span class="comment">-- declare the schema of the table</span></span><br><span class="line">  <span class="string">`user`</span> <span class="built_in">BIGINT</span>,</span><br><span class="line">  <span class="string">`message`</span> <span class="keyword">STRING</span>,</span><br><span class="line">  <span class="string">`rowtime`</span> <span class="built_in">TIMESTAMP</span>(<span class="number">3</span>) METADATA <span class="keyword">FROM</span> <span class="string">&#x27;timestamp&#x27;</span>,    <span class="comment">-- use a metadata column to access Kafka&#x27;s record timestamp</span></span><br><span class="line">  <span class="string">`proctime AS PROCTIME(),    -- use a computed column to define a proctime attribute</span></span><br><span class="line"><span class="string">  WATERMARK FOR `</span>rowtime<span class="string">` AS `</span>rowtime<span class="string">` - INTERVAL &#x27;5&#x27; SECOND    -- use a WATERMARK statement to define a rowtime attribute</span></span><br><span class="line"><span class="string">) WITH (</span></span><br><span class="line"><span class="string">  -- declare the external system to connect to</span></span><br><span class="line"><span class="string">  &#x27;connector&#x27; = &#x27;kafka&#x27;,</span></span><br><span class="line"><span class="string">  &#x27;topic&#x27; = &#x27;topic_name&#x27;,</span></span><br><span class="line"><span class="string">  &#x27;scan.startup.mode&#x27; = &#x27;earliest-offset&#x27;,</span></span><br><span class="line"><span class="string">  &#x27;properties.bootstrap.servers&#x27; = &#x27;localhost:9092&#x27;,</span></span><br><span class="line"><span class="string">  &#x27;format&#x27; = &#x27;json&#x27;   -- declare a format for this system</span></span><br><span class="line"><span class="string">)</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="Dataset-Connector"><a href="#Dataset-Connector" class="headerlink" title="Dataset Connector"></a>Dataset Connector</h3><h4 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h4><h5 id="本地文件系统"><a href="#本地文件系统" class="headerlink" title="本地文件系统"></a>本地文件系统</h5><p>Flink 原生支持本地机器上的文件系统，包括任何挂载到本地文件系统的 NFS 或 SAN 驱动器，默认即可使用，无需额外配置。本地文件可通过 file:// URI Scheme 引用。</p>
 <h5 id="外部文件系统"><a href="#外部文件系统" class="headerlink" title="外部文件系统"></a>外部文件系统</h5><ul>
@@ -403,11 +403,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/12/flink/Flink-3-窗口/" rel="prev" title="Flink-2. 流计算API窗口">
+    <a href="/2020/09/12/flink/Flink-3-%E7%AA%97%E5%8F%A3/" rel="prev" title="Flink-2. 流计算API窗口">
       <i class="fa fa-chevron-left"></i> Flink-2. 流计算API窗口
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/10/12/distribute/读DDIA-4-数据编码与演化/" rel="next" title="读DDIA 4.数据编码与演化">
+    <a href="/2020/10/12/distribute/%E8%AF%BBDDIA-4-%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81%E4%B8%8E%E6%BC%94%E5%8C%96/" rel="next" title="读DDIA 4.数据编码与演化">
       读DDIA 4.数据编码与演化 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -473,7 +473,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DataStreeam-Connector"><span class="nav-number">1.</span> <span class="nav-text">DataStreeam Connector</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预定义的Source"><span class="nav-number">1.1.</span> <span class="nav-text">预定义的Source</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预定义的Sink"><span class="nav-number">1.2.</span> <span class="nav-text">预定义的Sink</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附带连接器"><span class="nav-number">1.3.</span> <span class="nav-text">附带连接器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-Bahir-中的连接器"><span class="nav-number">1.4.</span> <span class="nav-text">Apache Bahir 中的连接器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接Flink的其它方法"><span class="nav-number">1.5.</span> <span class="nav-text">连接Flink的其它方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#异步-I-O"><span class="nav-number">1.5.1.</span> <span class="nav-text">异步 I/O</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可查询状态（Queryable-State-Beta）"><span class="nav-number">1.5.2.</span> <span class="nav-text">可查询状态（Queryable State Beta）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table-Connnector"><span class="nav-number">2.</span> <span class="nav-text">Table Connnector</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接器"><span class="nav-number">2.1.</span> <span class="nav-text">连接器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#格式"><span class="nav-number">2.2.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用示例"><span class="nav-number">2.3.</span> <span class="nav-text">使用示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dataset-Connector"><span class="nav-number">3.</span> <span class="nav-text">Dataset Connector</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件系统"><span class="nav-number">3.1.</span> <span class="nav-text">文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#本地文件系统"><span class="nav-number">3.1.1.</span> <span class="nav-text">本地文件系统</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#外部文件系统"><span class="nav-number">3.1.2.</span> <span class="nav-text">外部文件系统</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Avro支持"><span class="nav-number">3.2.</span> <span class="nav-text">Avro支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MongoDB"><span class="nav-number">3.3.</span> <span class="nav-text">MongoDB</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DataStreeam-Connector"><span class="nav-number">1.</span> <span class="nav-text">DataStreeam Connector</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E5%AE%9A%E4%B9%89%E7%9A%84Source"><span class="nav-number">1.1.</span> <span class="nav-text">预定义的Source</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E5%AE%9A%E4%B9%89%E7%9A%84Sink"><span class="nav-number">1.2.</span> <span class="nav-text">预定义的Sink</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%84%E5%B8%A6%E8%BF%9E%E6%8E%A5%E5%99%A8"><span class="nav-number">1.3.</span> <span class="nav-text">附带连接器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-Bahir-%E4%B8%AD%E7%9A%84%E8%BF%9E%E6%8E%A5%E5%99%A8"><span class="nav-number">1.4.</span> <span class="nav-text">Apache Bahir 中的连接器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5Flink%E7%9A%84%E5%85%B6%E5%AE%83%E6%96%B9%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">连接Flink的其它方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5-I-O"><span class="nav-number">1.5.1.</span> <span class="nav-text">异步 I&#x2F;O</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%AF%E6%9F%A5%E8%AF%A2%E7%8A%B6%E6%80%81%EF%BC%88Queryable-State-Beta%EF%BC%89"><span class="nav-number">1.5.2.</span> <span class="nav-text">可查询状态（Queryable State Beta）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table-Connnector"><span class="nav-number">2.</span> <span class="nav-text">Table Connnector</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E5%99%A8"><span class="nav-number">2.1.</span> <span class="nav-text">连接器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.3.</span> <span class="nav-text">使用示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dataset-Connector"><span class="nav-number">3.</span> <span class="nav-text">Dataset Connector</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.1.</span> <span class="nav-text">文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.1.1.</span> <span class="nav-text">本地文件系统</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.1.2.</span> <span class="nav-text">外部文件系统</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Avro%E6%94%AF%E6%8C%81"><span class="nav-number">3.2.</span> <span class="nav-text">Avro支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MongoDB"><span class="nav-number">3.3.</span> <span class="nav-text">MongoDB</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -571,9 +571,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 

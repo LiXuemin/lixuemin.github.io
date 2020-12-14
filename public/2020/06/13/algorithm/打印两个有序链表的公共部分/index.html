@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,20 +22,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="题目给定两个有序链表的头指针head1和head2, 打印两个链表的公共部分.链表使用如下结构: 1234567public class Node &amp;#123;    public int value;    public Node next;    public Node(int data) &amp;#123;        this.value = data;    &amp;#125;&amp;#125;  思路">
-<meta name="keywords" content="数据结构与算法,链表">
+  <meta name="description" content="题目给定两个有序链表的头指针head1和head2, 打印两个链表的公共部分.链表使用如下结构: 1234567public class Node &amp;#123;    public int value;    public Node next;    public Node(int data) &amp;#123;        this.value &#x3D; data;    &amp;#125;&amp;#125;  思路">
 <meta property="og:type" content="article">
 <meta property="og:title" content="打印两个有序链表的公共部分">
-<meta property="og:url" content="http://yoursite.com/2020/06/13/algorithm/打印两个有序链表的公共部分/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/06/13/algorithm/%E6%89%93%E5%8D%B0%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%E7%9A%84%E5%85%AC%E5%85%B1%E9%83%A8%E5%88%86/index.html">
 <meta property="og:site_name" content="设计与思考">
-<meta property="og:description" content="题目给定两个有序链表的头指针head1和head2, 打印两个链表的公共部分.链表使用如下结构: 1234567public class Node &amp;#123;    public int value;    public Node next;    public Node(int data) &amp;#123;        this.value = data;    &amp;#125;&amp;#125;  思路">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-27T08:08:15.930Z">
+<meta property="og:description" content="题目给定两个有序链表的头指针head1和head2, 打印两个链表的公共部分.链表使用如下结构: 1234567public class Node &amp;#123;    public int value;    public Node next;    public Node(int data) &amp;#123;        this.value &#x3D; data;    &amp;#125;&amp;#125;  思路">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-13T14:36:35.000Z">
+<meta property="article:modified_time" content="2020-10-27T08:08:15.930Z">
+<meta property="article:author" content="李学民">
+<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="链表">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="打印两个有序链表的公共部分">
-<meta name="twitter:description" content="题目给定两个有序链表的头指针head1和head2, 打印两个链表的公共部分.链表使用如下结构: 1234567public class Node &amp;#123;    public int value;    public Node next;    public Node(int data) &amp;#123;        this.value = data;    &amp;#125;&amp;#125;  思路">
 
-<link rel="canonical" href="http://yoursite.com/2020/06/13/algorithm/打印两个有序链表的公共部分/">
+<link rel="canonical" href="http://yoursite.com/2020/06/13/algorithm/%E6%89%93%E5%8D%B0%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%E7%9A%84%E5%85%AC%E5%85%B1%E9%83%A8%E5%88%86/">
 
 
 <script id="page-configurations">
@@ -164,7 +165,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/13/algorithm/打印两个有序链表的公共部分/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/13/algorithm/%E6%89%93%E5%8D%B0%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%E7%9A%84%E5%85%AC%E5%85%B1%E9%83%A8%E5%88%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -195,7 +196,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法日常练习/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法日常练习</span></a>
                 </span>
             </span>
 
@@ -227,7 +228,7 @@
 <li><a id="more"></a></li>
 <li>head1或head2任意next为null, 终止</li>
 </ul>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getCommonPart</span><span class="params">(Node head1, Node head2)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Common Part: "</span>);</span><br><span class="line">        <span class="keyword">while</span> (head1.next != <span class="keyword">null</span> &amp;&amp; head2.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(head1.value &lt; head2.value) &#123;</span><br><span class="line">                System.out.println(head1.value + <span class="string">","</span>);</span><br><span class="line">                head1 = head1.next;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (head1.value &gt; head2.value) &#123;</span><br><span class="line">                System.out.println(head2.value + <span class="string">","</span>);</span><br><span class="line">                head2 = head2.next;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(head1.value + <span class="string">","</span>);</span><br><span class="line">            head1 = head1.next;</span><br><span class="line">            head2 = head2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getCommonPart</span><span class="params">(Node head1, Node head2)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Common Part: &quot;</span>);</span><br><span class="line">        <span class="keyword">while</span> (head1.next != <span class="keyword">null</span> &amp;&amp; head2.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(head1.value &lt; head2.value) &#123;</span><br><span class="line">                System.out.println(head1.value + <span class="string">&quot;,&quot;</span>);</span><br><span class="line">                head1 = head1.next;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (head1.value &gt; head2.value) &#123;</span><br><span class="line">                System.out.println(head2.value + <span class="string">&quot;,&quot;</span>);</span><br><span class="line">                head2 = head2.next;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(head1.value + <span class="string">&quot;,&quot;</span>);</span><br><span class="line">            head1 = head1.next;</span><br><span class="line">            head2 = head2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -236,8 +237,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/数据结构与算法/" rel="tag"># 数据结构与算法</a>
-              <a href="/tags/链表/" rel="tag"># 链表</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+              <a href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag"># 链表</a>
           </div>
 
         
@@ -246,11 +247,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/12/algorithm/汉诺塔问题/" rel="prev" title="汉诺塔问题">
+    <a href="/2020/06/12/algorithm/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/" rel="prev" title="汉诺塔问题">
       <i class="fa fa-chevron-left"></i> 汉诺塔问题
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/06/14/algorithm/单链表删除倒数第K个节点/" rel="next" title="单链表删除倒数第K个节点">
+    <a href="/2020/06/14/algorithm/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%88%A0%E9%99%A4%E5%80%92%E6%95%B0%E7%AC%ACK%E4%B8%AA%E8%8A%82%E7%82%B9/" rel="next" title="单链表删除倒数第K个节点">
       单链表删除倒数第K个节点 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -316,7 +317,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -414,9 +415,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 
