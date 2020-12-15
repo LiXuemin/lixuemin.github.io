@@ -261,6 +261,15 @@
 
               <time title="创建时间：2020-12-09 17:03:21" itemprop="dateCreated datePublished" datetime="2020-12-09T17:03:21+08:00">2020-12-09</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%81%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">流计算</span></a>
+                </span>
+            </span>
 
           
 
@@ -273,10 +282,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>示例： 利用ValueState，保存之前运算结果，并在条件满足后输出</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(configuration);</span><br><span class="line">env.setParallelism(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">DataStream&lt;Tuple2&lt;Long, Long&gt;&gt; dataStream =</span><br><span class="line">    env.fromElements(</span><br><span class="line">        Tuple2.of(<span class="number">1L</span>, <span class="number">3L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">1L</span>, <span class="number">5L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">2L</span>, <span class="number">6L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">2L</span>, <span class="number">2L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">2L</span>, <span class="number">4L</span>),</span><br><span class="line">        Tuple2.of(<span class="number">1L</span>, <span class="number">7L</span>));</span><br><span class="line"></span><br><span class="line">dataStream.keyBy(<span class="number">0</span>).flatMap(<span class="keyword">new</span> CountAverageWithValueState()).print();</span><br><span class="line"></span><br><span class="line">env.execute(<span class="string">&quot;Test state&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.functions.RichFlatMapFunction;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.state.ValueState;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.state.ValueStateDescriptor;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.common.typeinfo.Types;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.java.tuple.Tuple2;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.configuration.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.util.Collector;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountAverageWithValueState</span> <span class="keyword">extends</span> <span class="title">RichFlatMapFunction</span>&lt;<span class="title">Tuple2</span>&lt;<span class="title">Long</span>, <span class="title">Long</span>&gt;, <span class="title">Tuple2</span>&lt;<span class="title">Long</span>, <span class="title">Double</span>&gt;&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ValueState&lt;Tuple2&lt;Long,Long&gt;&gt; countAndSum;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">open</span><span class="params">(Configuration parameters)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ValueStateDescriptor&lt;Tuple2&lt;Long,Long&gt;&gt; descriptor = <span class="keyword">new</span> ValueStateDescriptor&lt;Tuple2&lt;Long, Long&gt;&gt;(<span class="string">&quot;average&quot;</span>,</span><br><span class="line">            Types.TUPLE(Types.LONG, Types.LONG));</span><br><span class="line">        countAndSum = getRuntimeContext().getState(descriptor);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatMap</span><span class="params">(Tuple2&lt;Long, Long&gt; element, Collector&lt;Tuple2&lt;Long, Double&gt;&gt; out)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Tuple2&lt;Long, Long&gt; currentState = countAndSum.value();</span><br><span class="line">        <span class="keyword">if</span> (currentState == <span class="keyword">null</span>) &#123;</span><br><span class="line">            currentState = Tuple2.of(<span class="number">0L</span>, <span class="number">0L</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        currentState.f0 += <span class="number">1</span>;</span><br><span class="line">        currentState.f1 += element.f1;</span><br><span class="line"></span><br><span class="line">        countAndSum.update(currentState);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (currentState.f0 &gt;= <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">double</span> avg = (<span class="keyword">double</span>)currentState.f1 / currentState.f0;</span><br><span class="line">            out.collect(Tuple2.of(element.f0, avg));</span><br><span class="line">            countAndSum.clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>状态，通常是指程序运行时的中间运算结果。</p>
+<p>通常我们在设计微服务应用的时候，为了服务的迁移和可伸缩，通常都追求无状态， 典型的设计如tomcat的session。</p>
+<p>默认的tomcat session会存储在服务端的内存中，由客户端保存一个sessionId进行标记。而无状态的设计大致分为两类：</p>
+<ol>
+<li><p>利用客户端保存状态： 如JWT Token，token携带用户信息，每次交互时服务端验证解析token</p>
+</li>
+<li><p>利用额外存储保存状态： 如使用redis保存session， 这样tomcat就可以实现伸缩。</p>
+</li>
+</ol>
+<p>那么Flink的状态有什么区别，个人理解有以下区别：</p>
+<ol>
+<li><p>首先Flink需要保存各种各样不同运算程序的中间结果,结构多种多样，并不像web应用（user,role等基本信息）那么简单，</p>
+</li>
+<li><p>Flink的状态可能每条数据处理都需要读取-计算-更新状态，web应用更多是读多写少的操作</p>
+</li>
+<li><p>如果状态采用外部存储，那么实时性、性能上都很难保证，比如每次都要读写redis；如果状态完全采用内存管理，可靠性则无法保证</p>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/09/flink/Flink-5-State/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1003,7 +1034,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
