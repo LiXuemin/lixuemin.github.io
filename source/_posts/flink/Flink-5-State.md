@@ -56,6 +56,17 @@ Flink的每个并行任务都会把状态维护在本地。
 
 * 将状态以检查点的形式写入远程存储
 
+Flink内置以下三种状态后端：
+
+MemoryStateBackend (默认)，FsStateBackend, RocksDBStateBackend
+
+#### The MemoryStateBackend
+
+将数据保存在**堆内存**中。
+
+如果配置checkpoint，会将状态快照发送到JobManager，同样在堆内存中存储。
+
+
 ### 算子状态
 
 ### 键值分区状态
