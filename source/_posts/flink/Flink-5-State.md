@@ -62,10 +62,36 @@ MemoryStateBackend (默认)，FsStateBackend, RocksDBStateBackend
 
 #### The MemoryStateBackend
 
-将数据保存在**堆内存**中。
+##### 简介
 
-如果配置checkpoint，会将状态快照发送到JobManager，同样在堆内存中存储。
+将数据保存在**堆内存**中。如果配置checkpoint，会将状态快照发送到JobManager，同样在堆内存中存储。
 
+MemoryStateBackend默认使用**异步快照**，来避免阻塞数据流。可以通过设置构造参数来关闭异步快照：
+```JAVA
+new MemoryStateBackend(MAX_MEM_STATE_SIZE, false);
+```
+
+##### 限制
+
+* 每个单独状态默认限制5M内存。可以通过构造函数设置更大值。
+
+* 状态最大不会超过`akka.framesize`设置
+
+* aggregate状态必须适合 JobManager内存
+
+##### 优势
+
+* 本地开发和调试
+
+* 只需要保存很小状态的任务
+
+##### 推荐设置
+
+官方推荐将 managed memory设为0， Flink将为程序分配最大内存。
+
+#### The FsStateBackend
+
+#### The RocksDBStateBackend
 
 ### 算子状态
 
