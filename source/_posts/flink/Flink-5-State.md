@@ -79,7 +79,7 @@ new MemoryStateBackend(MAX_MEM_STATE_SIZE, false);
 
 * aggregate状态必须适合 JobManager内存
 
-##### 优势
+##### 适用场景
 
 * 本地开发和调试
 
@@ -91,7 +91,30 @@ new MemoryStateBackend(MAX_MEM_STATE_SIZE, false);
 
 #### The FsStateBackend
 
+##### 简介
+
+FsStateBackend使用文件系统URL来配置（包含类型，地址和路径）：如“hdfs://namenode:40010/flink/checkpoints” or “file:///data/flink/checkpoints”.
+
+FsStateBackend将数据保存在TaskManager的内存中。Checkpoint时，将数据快照**写入配置的文件路径中**。 元数据存在JobManager内存中（高可用模式下，存在元数据checkpoint）。
+
+FsStateBackend默认也使用**异步快照**来进行checkpoint。同样可以关闭此特性：
+```JAVA
+new FsStateBackend(path, false)
+```
+
+##### 适用场景
+
+* 状态数据很大的任务，长时间的window
+
+* 所有要求高可用的设置
+
+##### 推荐设置
+
+官方推荐将 managed memory设为0， Flink将为程序分配最大内存。
+
 #### The RocksDBStateBackend
+
+
 
 ### 算子状态
 
