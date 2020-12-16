@@ -93,7 +93,7 @@ new MemoryStateBackend(MAX_MEM_STATE_SIZE, false);
 
 ##### 简介
 
-FsStateBackend使用文件系统URL来配置（包含类型，地址和路径）：如“hdfs://namenode:40010/flink/checkpoints” or “file:///data/flink/checkpoints”.
+FsStateBackend使用文件系统存储状态。配置URL（包含类型，地址和路径）来保存：如“hdfs://namenode:40010/flink/checkpoints” or “file:///data/flink/checkpoints”.
 
 FsStateBackend将数据保存在TaskManager的内存中。Checkpoint时，将数据快照**写入配置的文件路径中**。 元数据存在JobManager内存中（高可用模式下，存在元数据checkpoint）。
 
@@ -114,6 +114,32 @@ new FsStateBackend(path, false)
 
 #### The RocksDBStateBackend
 
+##### 简介
+
+RocksDBStateBackend将状态存储在TaskManager本地data目录下，自带的RocksDB数据库。当进行Checkpoint时，再将数据写入文件系统。
+RocksDB无需配置，需要与FsStateBackend同样配置文件系统路径。
+
+RocksDBStateBackend只能使用异步快照。
+
+##### 限制
+
+* 由于RocksDB JNI bridge API是基于字节的，单个状态的key和value不能超过2^31字节。
+
+* 对于使用具有合并操作的状态的应用程序，例如 ListState，随着时间可能会累积到超过 2^31 字节大小，这将会导致在接下来的查询中失败
+
+##### 适用场景
+
+* 所有FsStateBackend适用的场景
+
+* 目前唯一支持增量Checkpoint的方案
+
+#### 如何选择正确的状态后端
+
+* 生产环境尽量避免适用MemoryStateBackend，因为状态没有持久化
+
+* FsStateBackend的性能更好，因为都是操作Java Heap上的对象； 可伸缩性受限，因为状态大小受集群可用内存限制
+
+* RocksDBStateBackend性能稍差，因为每次操作状态都需要反序列化，并且可能从磁盘读取； 可伸缩性更好，可以对磁盘扩展，并且是唯一支持增量快照
 
 
 ### 算子状态
