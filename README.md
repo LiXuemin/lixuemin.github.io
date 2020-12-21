@@ -9,4 +9,3 @@ flink cdc
 
 flink table api
 
-flink维表join
