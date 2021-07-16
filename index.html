@@ -215,40 +215,14 @@
 <li><p><code>jstat</code>，查看GC情况</p>
 </li>
 <li><p><code>arthas</code>，阿里开源JVM性能分析工具</p>
-</li>
-<li><p><code>visualvm</code>，开源JVM分析工具</p>
-</li>
-<li><p><code>jprofiler</code>，商业JVM分析工具</p>
-</li>
-</ul>
-<h3 id="排查思路及过程"><a href="#排查思路及过程" class="headerlink" title="排查思路及过程"></a>排查思路及过程</h3><p>从整体到部分，逐步确认问题所在</p>
-<p><strong>监控</strong>看到的问题往往是最宏观的，所以首先可以从监控看起。通过监控面板， 查看主机或容器CPU、内存、连接数， 查看数据库连接数等信息。</p>
-<p>此时看到机器的**CPU使用率100%，内存使用率90%**，其它指标比较正常，那么大概率是程序问题。</p>
-<h3 id="排查过程"><a href="#排查过程" class="headerlink" title="排查过程"></a>排查过程</h3><p>最开始，业务开发希望协助使用arthas帮助寻找到底是什么方法比较慢。</p>
-<ol>
-<li>arthas查看全局情况</li>
-</ol>
-<p><img src="/images/oom/jvm-arthas-dashboard.png" alt="arthas dashboard"></p>
-<p>发现占用CPU较高的全是GC线程，此时就应该进一步查看GC的情况，而非具体跟踪某一个方法了。</p>
-<ol start="2">
-<li>jmap -heap pid 查看堆内存</li>
-</ol>
-<p><img src="/images/oom/jmap-heap.png" alt="jmpa heap"></p>
-<p>发现老年代数据无法GC掉，占用20G+内存，使用率99%</p>
-<ol start="3">
-<li>jstat- gcutil pid 1000 10 查看GC情况</li>
-</ol>
-<p><img src="/images/oom/jstat-gc.png" alt="jstat gc"></p>
-<p>发现每分钟一次FullGC，且无法将老年代内存清理。<br>此时可以确定是程序问题，怀疑某处内存泄漏，导致GC无法清除数据。</p>
-<ol start="4">
-<li>jmap -heap:live pid 查看堆内存中占用最多的类</li>
-</ol>
-<p><img src="/images/oom/jmap-histo.png" alt="jmap histo"></p>
-<p>发现几乎都是QuizExaminne类，业务开发此时应该分析产生的代码和原因了。</p>
-<ol start="5">
-<li>heapdump下载堆转储文件，可以使用visualvm，MAT，JProfiler等进一步分析方法引用，此处不再展示。</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/30/java/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E8%80%81%E5%B9%B4%E4%BB%A3OOM%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
