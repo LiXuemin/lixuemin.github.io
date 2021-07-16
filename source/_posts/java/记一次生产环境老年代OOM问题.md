@@ -9,38 +9,55 @@ tags:
 
 ### 使用命令及工具简介
 
-* `top`, linux自带，查看当前最占资源的进程，按`SHIFT + M`可以重排序
+* `top`, linux自带，查看当前最占资源的进程
 
 * `jmap`，jdk自带堆内存工具
 
-* `jstat`
+* `jstat`，查看GC情况
 
-* `arthas`
+* `arthas`，阿里开源JVM性能分析工具
 
-* `visualvm`
+* `visualvm`，开源JVM分析工具
 
-* `jprofiler`
+* `jprofiler`，商业JVM分析工具
 
 ### 排查思路及过程
 
-1. 从整体到部分，逐步确认问题所在
+从整体到部分，逐步确认问题所在
 
 **监控**看到的问题往往是最宏观的，所以首先可以从监控看起。通过监控面板， 查看主机或容器CPU、内存、连接数， 查看数据库连接数等信息。
 
-后来看到机器的**CPU使用率100%，内存使用率90%**， 那么大概率是程序问题。
-
-2. 
+此时看到机器的**CPU使用率100%，内存使用率90%**，其它指标比较正常，那么大概率是程序问题。
 
 
 ### 排查过程
 
-1. arthas排查
-发现占用CPU较高的全是GC线程
-2. jmap -heap pid查看堆内存
+最开始，业务开发希望协助使用arthas帮助寻找到底是什么方法比较慢。
+
+1. arthas查看全局情况
+
+![arthas dashboard](/images/oom/jvm-arthas-dashboard.png)
+
+发现占用CPU较高的全是GC线程，此时就应该进一步查看GC的情况，而非具体跟踪某一个方法了。
+
+2. jmap -heap pid 查看堆内存
+
+![jmpa heap](/images/oom/jmap-heap.png)
+
 发现老年代数据无法GC掉，占用20G+内存，使用率99%
-3. jstat- gcutil pid 1000 10查看GC情况
-发现每分钟一次FullGC，且无法GC掉
-此时可以确定是程序问题，怀疑某处内存泄漏，导致无法GC清除数据
+
+3. jstat- gcutil pid 1000 10 查看GC情况
+
+![jstat gc](/images/oom/jstat-gc.png)
+
+发现每分钟一次FullGC，且无法将老年代内存清理。
+此时可以确定是程序问题，怀疑某处内存泄漏，导致GC无法清除数据。
+
+
 4. jmap -heap:live pid 查看堆内存中占用最多的类
-发现几乎都是QuizExaminne类
-5. heapdump下载堆转储文件，进一步分析堆内存中内容，排查问题
+
+![jmap histo](/images/oom/jmap-histo.png)
+
+发现几乎都是QuizExaminne类，业务开发此时应该分析产生的代码和原因了。
+
+5. heapdump下载堆转储文件，可以使用visualvm，MAT，JProfiler等进一步分析方法引用，此处不再展示。
